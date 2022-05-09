@@ -4,11 +4,13 @@ class Play extends Phaser.Scene {
         super("play");
     }
 
-    create() {
-        console.log("play");
+    preload() {
+        this.load.image("inventory", "assets/sprites/inventory.png");
     }
 
-    update() {
+    create() {
+        console.log("play");
 
+        this.inventory = new Inventory(this).setOrigin(0.5);
     }
 }
