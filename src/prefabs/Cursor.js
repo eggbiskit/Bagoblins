@@ -21,20 +21,13 @@ class Cursor extends Phaser.GameObjects.Sprite {
     move(isVertical, isPositive) {
         let posChange = (isPositive) ? this.inventory.slotSize : -this.inventory.slotSize;
         let increment = (isPositive) ? 1 : -1;
-        if(isVertical) {
-            if((this.coordinates.y == 1 && !isPositive) || (this.coordinates.y == this.inventory.arrBounds.rows && isPositive)) {
-                // Placeholder for tweens later maybe
-            } else {
-                this.y += posChange;
-                this.coordinates.y += increment;
-            }
+        let axisTerms = (isVertical) ? { axis: "y", tableJust: "rows" } : { axis: "x", tableJust: "cols" };
+        if ((this.coordinates[axisTerms.axis] == 1 && !isPositive)
+            || (this.coordinates[axisTerms.axis] == this.inventory.arrBounds[axisTerms.tableJust] && isPositive)) {
+            // Placeholder for tweens later maybe
         } else {
-            if((this.coordinates.x == 1 && !isPositive) || (this.coordinates.x == this.inventory.arrBounds.cols && isPositive)) {
-                // Placeholder for tweens later maybe
-            } else {
-                this.x += posChange;
-                this.coordinates.x += increment;
-            }
+            this[axisTerms.axis] += posChange;
+            this.coordinates[axisTerms.axis] += increment;
         }
     }
 }
