@@ -24,8 +24,8 @@ class Inventory extends Phaser.GameObjects.Sprite {
      * @returns the world-space X,Y coordinates of the center of the given cell
      */
     getSpaceCoords(row, col) {
-        console.assert(0 <= row && row <= this.arrBounds.row, "Error: Row index out of bounds");
-        console.assert(0 <= col && col <= this.arrBounds.col, "Error: Col index out of bounds");
+        console.assert(0 <= row && row < this.arrBounds.rows, "Error: Row index out of bounds");
+        console.assert(0 <= col && col < this.arrBounds.cols, "Error: Col index out of bounds");
 
         let topRow = this.y - this.displayHeight / 2 + this.slotSize / 2;
         let leftCol = this.x - this.displayWidth / 2 + this.slotSize / 2;
