@@ -1,5 +1,5 @@
 class Inventory extends Phaser.GameObjects.Sprite {
-    constructor(scene, cols, rows) {
+    constructor(scene, rows, cols) {
         // Sprite Setup
         super(scene, game.config.width / 2, game.config.height / 2, "inventory");
         scene.add.existing(this);
@@ -12,7 +12,7 @@ class Inventory extends Phaser.GameObjects.Sprite {
         }
 
         // Space Setup
-        console.assert(this.displayWidth / rows === this.displayHeight / cols, "Error: Inventory is not made of squares");
-        this.slotSize = this.displayWidth / rows;
+        console.assert(this.displayWidth / cols === this.displayHeight / rows, "Error: Inventory is not made of squares");
+        this.slotSize = this.displayWidth / cols;
     }
 }
