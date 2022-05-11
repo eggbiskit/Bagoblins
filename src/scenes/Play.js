@@ -44,5 +44,10 @@ class Play extends Phaser.Scene {
         keyOutput.on("down", () => {
             console.log("Push to Output");
         });
+
+        // Test item
+        this.testItem = new ItemStack(this.inventory, 1, 1, "item");
+        this.testItem.setOrigin(0.5);
+        this.testItem.setDepth(0.5);
     }
 }
