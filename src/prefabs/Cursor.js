@@ -31,6 +31,12 @@ class Cursor extends Phaser.GameObjects.Sprite {
             this[axisTerms.axis] += posChange;
             this.coordinates[axisTerms.axis] += increment;
         }
+
+        // Moving held stack
+        if(this.heldStack) {
+            this.heldStack.x = this.x;
+            this.heldStack.y = this.y;
+        }
     }
 
     pickUpStack() {
