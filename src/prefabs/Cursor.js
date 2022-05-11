@@ -11,6 +11,7 @@ class Cursor extends Phaser.GameObjects.Sprite {
             x: 0,
             y: 0
         }
+        this.heldStack = null;
     }
 
     /**
@@ -30,5 +31,19 @@ class Cursor extends Phaser.GameObjects.Sprite {
             this[axisTerms.axis] += posChange;
             this.coordinates[axisTerms.axis] += increment;
         }
+    }
+
+    pickUpStack() {
+        this.heldStack = this.inventory.getItem(this.coordinates.y, this.coordinates.x);
+        if(this.heldStack) {
+            console.log("Picked up Stack");
+        } else {
+            console.log("No Stack to Pick Up");
+        }
+    }
+
+    dropStack() {
+        console.log("Dropped Stack");
+        this.heldStack = this.inventory.mergeStacks(this.heldStack, this.coordinates.y, this.coordinates.x);
     }
 }

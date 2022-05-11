@@ -39,7 +39,11 @@ class Play extends Phaser.Scene {
             console.log("Pull from input");
         });
         keySelect.on("down", () => {
-            console.log("Select Item");
+            if(this.cursor.heldStack) {
+                this.cursor.dropStack();
+            } else {
+                this.cursor.pickUpStack();
+            }
         });
         keyOutput.on("down", () => {
             console.log("Push to Output");

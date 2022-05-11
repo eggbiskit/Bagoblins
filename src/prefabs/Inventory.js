@@ -5,10 +5,13 @@ class Inventory extends Phaser.GameObjects.Sprite {
         scene.add.existing(this);
 
         // Array Setup
-        this.contents = new Array();
         this.arrBounds = {
             cols: cols,
             rows: rows
+        }
+        this.contents = new Array(rows);
+        for(let i = 0; i < rows; i++) {
+            this.contents[i] = new Array(cols);
         }
 
         // Space Setup
@@ -33,5 +36,19 @@ class Inventory extends Phaser.GameObjects.Sprite {
             x: leftCol + this.slotSize * col,
             y: topRow + this.slotSize * row
         };
+    }
+
+    getItem(row, col) {
+        return this.contents[row][col];
+    }
+
+    mergeStacks(incomingStack, row, col) {
+        if(!this.contents[row][col]) {
+            // Put stack in spot
+            this.contents[incomingStack.coordinates.row][incomingStack.coordinates.col] = undefined;
+            this.contents[row][col] = incomingStack;
+            incomingStack.setSpot(row, col);
+            return null;
+        }
     }
 }
