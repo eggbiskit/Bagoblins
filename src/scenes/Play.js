@@ -20,7 +20,7 @@ class Play extends Phaser.Scene {
         this.inventory = new Inventory(this, 4, 5).setOrigin(0.5);
         this.cursor = new Cursor(this.inventory);
         this.cursor.setDepth(1);
-        this.cursor.setOrigin(0);
+        this.cursor.setOrigin(0.5);
 
         // Movement Setup
         keyLeft.on("down", () => {

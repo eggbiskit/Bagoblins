@@ -1,7 +1,8 @@
 class Cursor extends Phaser.GameObjects.Sprite {
     constructor(inventory) {
+        let initialPos = inventory.getSpaceCoords(0, 0);
         // Sprite Setup
-        super(inventory.scene, inventory.x - inventory.displayWidth / 2, inventory.y - inventory.displayHeight / 2, "cursor");
+        super(inventory.scene, initialPos.x, initialPos.y, "cursor");
         inventory.scene.add.existing(this);
 
         // Instance Variable Setup
