@@ -7,8 +7,8 @@ class Cursor extends Phaser.GameObjects.Sprite {
         // Instance Variable Setup
         this.inventory = inventory;
         this.coordinates = {
-            x: 0,
-            y: 0
+            x: 1,
+            y: 1
         }
     }
 
@@ -20,10 +20,21 @@ class Cursor extends Phaser.GameObjects.Sprite {
      */
     move(isVertical, isPositive) {
         let posChange = (isPositive) ? this.inventory.slotSize : -this.inventory.slotSize;
+        let increment = (isPositive) ? 1 : -1;
         if(isVertical) {
-            this.y += posChange;
+            if((this.coordinates.y == 1 && !isPositive) || (this.coordinates.y == this.inventory.arrBounds.rows && isPositive)) {
+                // Placeholder for tweens later maybe
+            } else {
+                this.y += posChange;
+                this.coordinates.y += increment;
+            }
         } else {
-            this.x += posChange;
+            if((this.coordinates.x == 1 && !isPositive) || (this.coordinates.x == this.inventory.arrBounds.cols && isPositive)) {
+                // Placeholder for tweens later maybe
+            } else {
+                this.x += posChange;
+                this.coordinates.x += increment;
+            }
         }
     }
 }
