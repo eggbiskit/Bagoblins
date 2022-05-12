@@ -7,7 +7,7 @@ class Load extends Phaser.Scene {
    preload() {
        this.load.image("inventory", "assets/sprites/Inventory.png");
        this.load.image("cursor", "assets/sprites/Cursor.png");
-       this.load.image("item", "assets/sprites/Item.png")
+       this.load.image("item", "assets/sprites/blackpotion.png")
    }
 
    create() {
