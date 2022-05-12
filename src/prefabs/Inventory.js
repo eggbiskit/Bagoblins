@@ -49,6 +49,20 @@ class Inventory extends Phaser.GameObjects.Sprite {
             this.contents[row][col] = incomingStack;
             incomingStack.setSpot(row, col);
             return null;
+        } else if(this.contents[row][col].name == incomingStack.name) {
+            // Merge
+            this.contents[row][col].curSize += incomingStack.curSize;
+            if(this.contents[row][col].curSize > this.contents[row][col].maxSize) {
+                incomingStack.curSize = this.contents[row][col].curSize - this.contents[row][col].maxSize;
+                this.contents[row][col].curSize = this.contents[row][col].maxSize;
+                return incomingStack;
+            } else {
+                return null;
+            }
+        } else {
+            // Can't Merge
+            console.log("Incompatible Stacks");
+            return incomingStack;
         }
     }
 }
