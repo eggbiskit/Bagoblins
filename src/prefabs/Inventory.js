@@ -42,6 +42,15 @@ class Inventory extends Phaser.GameObjects.Sprite {
         return this.contents[row][col];
     }
 
+    /**
+     * Merges a held or input stack with the stack at the position indicated by the cursor
+     * 
+     * @param {ItemStack} incomingStack – The held or input stack to be merged
+     * @param {number} row – The cursor's row
+     * @param {number} col – The cursor's col
+     * @param {boolean} fromInput – Whether or
+     * @returns 
+     */
     mergeStacks(incomingStack, row, col, fromInput = false) {
         if(!this.contents[row][col]) {
             // Put stack in spot
