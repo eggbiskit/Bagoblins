@@ -1,0 +1,11 @@
+{
+    "keybinds" : {
+        "left": ["LEFT"],
+        "right": ["RIGHT"],
+        "up": ["UP"],
+        "down": ["DOWN"],
+        "input": ["C"],
+        "select": ["X"],
+        "output": ["Z"]
+    }
+}
