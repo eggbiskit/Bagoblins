@@ -15,6 +15,13 @@ class InputTile extends IOTile {
     pull(cursor) {
         if(this.curItem) {
             this.curItem = this.scene.inventory.mergeStacks(this.curItem, cursor.coordinates.y, cursor.coordinates.x, true);
+            if(this.curItem) {
+                console.log("Pulled partial stack from input");
+            } else {
+                console.log("Pulled full stack from input");
+            }
+        } else {
+            console.log("No stack to pull");
         }
     }
 }
@@ -48,6 +55,7 @@ class OutputTile extends IOTile {
 
             // Check for empty stacks
             if(this.requestedItem.curSize == 0) {
+                console.log("Request Fulfilled");
                 this.requestedItem.setAlpha(1);
             }
             if(incomingStack.curSize == 0) {
