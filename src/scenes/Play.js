@@ -50,7 +50,7 @@ class Play extends Phaser.Scene {
             }
         });
         keyOutput.on("down", () => {
-            console.log("Push to Output");
+            this.inventory.pushStack(this.cursor.coordinates.y, this.cursor.coordinates.x, this.outputSpace);
         });
         
         // Test item
@@ -58,5 +58,11 @@ class Play extends Phaser.Scene {
         this.testItem.setOrigin(0.5);
         this.testItem.setDepth(0.5);
         this.inputSpace.curItem = this.testItem;
+
+        // Test request
+        this.testRequest = new ItemStack(this, {x: this.outputSpace.x, y: this.outputSpace.y}, -1, 1, "item");
+        this.testRequest.setOrigin(0.5);
+        this.testItem.setDepth(0.5);
+        this.outputSpace.requestedItem = this.testRequest;
     }
 }

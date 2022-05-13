@@ -82,4 +82,19 @@ class Inventory extends Phaser.GameObjects.Sprite {
             return incomingStack;
         }
     }
+
+    pushStack(row, col, outputSpace) {
+        let stack = this.getStack(row, col);
+        if(stack) {
+            stack = outputSpace.push(stack);
+            if(stack) {
+                this.contents[row][col] = stack;
+            } else {
+                this.contents[row][col].destroy();
+                this.contents[row][col] = undefined;
+            }
+        } else {
+            console.log("No stack to push")
+        }
+    }
 }
