@@ -1,15 +1,14 @@
 class ItemStack extends Phaser.GameObjects.Sprite {
-    constructor(scene, stackSize = 1, maxSize = 64, texture) {
-        let initialPos = scene.inventory.getSpaceCoords(0, 0);
+    constructor(scene, initialPos, stackSize = 1, maxSize = 64, texture) {
         super(scene, initialPos.x, initialPos.y, texture);
         scene.add.existing(this);
 
         this.inventory = scene.inventory;
         this.coordinates = {
-            row: 0,
-            col: 0
+            row: -1,
+            col: -1
         }
-        this.inventory.mergeStacks(this, 0, 0);
+
         this.name = texture;
         this.maxSize = maxSize;
         this.curSize = stackSize;

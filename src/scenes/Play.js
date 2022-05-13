@@ -54,7 +54,7 @@ class Play extends Phaser.Scene {
         this.outputSpace = new OutputTile(this, 15, game.config.height - 15).setOrigin(0.5);
         
         // Test item
-        this.testItem = new ItemStack(this, 1, 1, "item");
+        this.testItem = new ItemStack(this, {x: this.inputSpace.x, y: this.inputSpace.y}, 1, 1, "item");
         this.testItem.setOrigin(0.5);
         this.testItem.setDepth(0.5);
     }
