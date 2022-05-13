@@ -21,6 +21,10 @@ class Play extends Phaser.Scene {
         this.cursor = new Cursor(this.inventory);
         this.cursor.setDepth(1);
         this.cursor.setOrigin(0.5);
+        
+        // Input/Output setup
+        this.inputSpace = new InputTile(this, game.config.width - 15, game.config.height - 15).setOrigin(0.5);
+        this.outputSpace = new OutputTile(this, 15, game.config.height - 15).setOrigin(0.5);
 
         // Movement Setup
         keyLeft.on("down", () => {
@@ -36,7 +40,7 @@ class Play extends Phaser.Scene {
             this.cursor.move(true, true);
         });
         keyInput.on("down", () => {
-            console.log("Pull from input");
+            this.inputSpace.pull(this.cursor);
         });
         keySelect.on("down", () => {
             if(this.cursor.heldStack) {
@@ -49,13 +53,10 @@ class Play extends Phaser.Scene {
             console.log("Push to Output");
         });
         
-        // Input/Output
-        this.inputSpace = new InputTile(this, game.config.width - 15, game.config.height - 15).setOrigin(0.5);
-        this.outputSpace = new OutputTile(this, 15, game.config.height - 15).setOrigin(0.5);
-        
         // Test item
         this.testItem = new ItemStack(this, {x: this.inputSpace.x, y: this.inputSpace.y}, 1, 1, "item");
         this.testItem.setOrigin(0.5);
         this.testItem.setDepth(0.5);
+        this.inputSpace.curItem = this.testItem;
     }
 }

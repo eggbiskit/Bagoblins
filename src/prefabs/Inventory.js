@@ -42,10 +42,13 @@ class Inventory extends Phaser.GameObjects.Sprite {
         return this.contents[row][col];
     }
 
-    mergeStacks(incomingStack, row, col) {
+    mergeStacks(incomingStack, row, col, fromInput = false) {
         if(!this.contents[row][col]) {
             // Put stack in spot
-            this.contents[incomingStack.coordinates.row][incomingStack.coordinates.col] = undefined;
+            console.log(incomingStack.coordinates);
+            if(!fromInput) {
+                this.contents[incomingStack.coordinates.row][incomingStack.coordinates.col] = undefined;
+            }
             this.contents[row][col] = incomingStack;
             incomingStack.setSpot(row, col);
             return null;
