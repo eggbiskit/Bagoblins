@@ -64,5 +64,17 @@ class Play extends Phaser.Scene {
         this.testRequest.setOrigin(0.5);
         this.testItem.setDepth(0.5);
         this.outputSpace.requestedItem = this.testRequest;
+
+        // Temp tutorial Text
+        let textConfig = {
+            fontFamily: "Helvetica",
+            fontSize: "12px",
+            color: "#FFF",
+            align: "center"
+        };
+        let moveControls = this.add.text(game.config.width / 2, 15, "Use ↑, ↓, ←, & → to move", textConfig).setOrigin(0.5);
+        let inputControls = this.add.text(game.config.width - 20, game.config.height - 30, "Press\n'C' to\npull\nfrom\nthe\ninput", textConfig).setOrigin(0.5, 1);
+        let selectControls = this.add.text(game.config.width / 2, game.config.height - 15, "Press 'X' to grab an item\nPress 'X' again to drop it", textConfig).setOrigin(0.5);
+        let outputControls = this.add.text(20, game.config.height - 30, "Press\n'Z' to\npush\nto\nthe\noutput", textConfig).setOrigin(0.5, 1);
     }
 }
