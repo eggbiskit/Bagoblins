@@ -40,7 +40,7 @@ class Cursor extends Phaser.GameObjects.Sprite {
     }
 
     pickUpStack() {
-        this.heldStack = this.inventory.getItem(this.coordinates.y, this.coordinates.x);
+        this.heldStack = this.inventory.getStack(this.coordinates.y, this.coordinates.x);
         if(this.heldStack) {
             console.log("Picked up Stack");
         } else {

@@ -38,7 +38,12 @@ class Inventory extends Phaser.GameObjects.Sprite {
         };
     }
 
-    getItem(row, col) {
+    /**
+     * @param {*} row – The row of the stack to get
+     * @param {*} col – The col of the stack to get
+     * @returns the stack at the provided space (or undefined for an empty stack)
+     */
+    getStack(row, col) {
         return this.contents[row][col];
     }
 
@@ -49,7 +54,7 @@ class Inventory extends Phaser.GameObjects.Sprite {
      * @param {number} row – The cursor's row
      * @param {number} col – The cursor's col
      * @param {boolean} fromInput – Whether or
-     * @returns 
+     * @returns – What remains of the stack after the merge (or null for an empty stack)
      */
     mergeStacks(incomingStack, row, col, fromInput = false) {
         if(!this.contents[row][col]) {
