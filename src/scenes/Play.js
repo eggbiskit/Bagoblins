@@ -39,9 +39,12 @@ class Play extends Phaser.Scene {
         keyDown.on("down", () => {
             this.cursor.move(true, true);
         });
+        // C to pull from input
         keyInput.on("down", () => {
+            this.sound.play("temp_sfx");
             this.inputSpace.pull(this.cursor);
         });
+        // X to pick up, put down
         keySelect.on("down", () => {
             if(this.cursor.heldStack) {
                 this.cursor.dropStack();
@@ -49,7 +52,9 @@ class Play extends Phaser.Scene {
                 this.cursor.pickUpStack();
             }
         });
+        // Z to push to output
         keyOutput.on("down", () => {
+            this.sound.play("temp_sfx");
             this.inventory.pushStack(this.cursor.coordinates.y, this.cursor.coordinates.x, this.outputSpace);
         });
         

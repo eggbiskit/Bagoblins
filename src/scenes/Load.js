@@ -13,6 +13,10 @@ class Load extends Phaser.Scene {
        this.load.image("play_button", "assets/sprites/play_button.png");
        this.load.image("play_button_pressed", "assets/sprites/play_button_pressed.png");
 
+       // SFX Loading
+       // *temp sfx, replace later*
+       this.load.audio("temp_sfx", "assets/SFX/select.wav");
+
        // JSON loading
        this.load.json("gameSettings", "src/settings/GameSettings.json");
        itemSpecs = this.load.json("items", "src/settings/GameSettings.json");
