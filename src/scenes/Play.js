@@ -47,9 +47,13 @@ class Play extends Phaser.Scene {
         // X to pick up, put down
         keySelect.on("down", () => {
             if(this.cursor.heldStack) {
+                this.sound.play("temp_sfx");
                 this.cursor.dropStack();
             } else {
-                this.cursor.pickUpStack();
+                let pickedUp = this.cursor.pickUpStack();
+                if(pickedUp) {
+                    this.sound.play("temp_sfx");
+                }
             }
         });
         // Z to push to output
