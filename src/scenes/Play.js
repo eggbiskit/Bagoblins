@@ -69,7 +69,7 @@ class Play extends Phaser.Scene {
         this.inputSpace.curItem = this.testItem;
 
         // Test request
-        this.testRequest = this.outputSpace.createRequest(1, itemSpecs[0]);
+        this.testRequest = this.outputSpace.createRequest(1, 0);
 
         // Temp tutorial Text
         let textConfig = {
