@@ -17,8 +17,8 @@ class Cursor extends Phaser.GameObjects.Sprite {
     /**
      * Function that moves the cursor one tile in any direction
      * 
-     * @param {bool} isVertical – Whether or not the movement is vertical
-     * @param {bool} isPositive – Whether or not the movement is in a positive direction (down or right)
+     * @param {Boolean} isVertical – Whether or not the movement is vertical
+     * @param {Boolean} isPositive – Whether or not the movement is in a positive direction (down or right)
      */
     move(isVertical, isPositive) {
         let posChange = (isPositive) ? this.inventory.slotSize : -this.inventory.slotSize;
