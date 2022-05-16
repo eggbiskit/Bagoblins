@@ -69,10 +69,7 @@ class Play extends Phaser.Scene {
         this.inputSpace.curItem = this.testItem;
 
         // Test request
-        this.testRequest = new ItemStack(this, {x: this.outputSpace.x, y: this.outputSpace.y}, -1, 1, "item");
-        this.testRequest.setOrigin(0.5);
-        this.testItem.setDepth(0.5);
-        this.outputSpace.requestedItem = this.testRequest;
+        this.testRequest = this.outputSpace.createRequest(1, itemSpecs[0]);
 
         // Temp tutorial Text
         let textConfig = {
@@ -81,6 +78,7 @@ class Play extends Phaser.Scene {
             color: "#FFF",
             align: "center"
         };
+
         let moveControls = this.add.text(game.config.width / 2, 15, "Use ↑, ↓, ←, & → to move", textConfig).setOrigin(0.5);
         let inputControls = this.add.text(game.config.width - 20, game.config.height - 30, "Press\n'C' to\npull\nfrom\nthe\ninput", textConfig).setOrigin(0.5, 1);
         let selectControls = this.add.text(game.config.width / 2, game.config.height - 15, "Press 'X' to grab an item\nPress 'X' again to drop it", textConfig).setOrigin(0.5);

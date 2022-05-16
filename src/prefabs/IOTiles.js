@@ -33,6 +33,28 @@ class OutputTile extends IOTile {
     }
 
     /**
+     * 
+     * @param {Number} stackSize – The number of items requested (Must be POSITIVE)
+     * @param {Object} itemConfig – The configuration of the item stack requested
+     * @param {String} itemConfig.textureName – The name of the texture associated with the item
+     * @param {Number} itemConfig.maxSize – The maximum size of the requested item stack
+     * @returns 
+     */
+    createRequest(stackSize, itemConfig) {
+        if(this.requestedItem) {
+            console.warn("Attempted to create request when an unfulfilled request already exists");
+        } else {
+            console.assert(stackSize > 0, "Error: Invalid stack size");
+            console.assert(itemConfig.maxSize && itemConfig.textureName, "Error: Invalid item config");
+            this.requestedItem = new ItemStack(this.scene, {x: this.x, y: this.y}, -stackSize, itemConfig.maxSize, itemConfig.textureName);
+            this.requestedItem.setOrigin(0.5);
+            this.requestedItem.setDepth(0.5);
+        }
+
+        return this.requestedItem;
+    }
+
+    /**
      * Pushes an item in the inventory to the output
      * 
      * @param {ItemStack} incomingStack – The stack currently being pushed

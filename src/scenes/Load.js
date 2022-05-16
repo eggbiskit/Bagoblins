@@ -19,7 +19,7 @@ class Load extends Phaser.Scene {
 
        // JSON loading
        this.load.json("gameSettings", "src/settings/GameSettings.json");
-       itemSpecs = this.load.json("items", "src/settings/GameSettings.json");
+       this.load.json("items", "src/settings/items.json");
    }
 
    create() {
