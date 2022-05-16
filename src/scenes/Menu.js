@@ -6,7 +6,7 @@ class Menu extends Phaser.Scene {
     create() {
         console.log("Menu");
         
-        const playButton = this.add.image(100, 100, 'play_button')
+        const playButton = this.add.image(game.config.width / 2, game.config.height / 2 + 20, 'play_button')
         .setInteractive()
         // click button
         .on('pointerdown', () => {this.scene.start("play"); this.sound.play("temp_sfx");})
