@@ -12,7 +12,7 @@ class Menu extends Phaser.Scene {
         const playButton = this.add.image(game.config.width / 2, game.config.height / 2 + 80, 'play_button')
         .setInteractive()
         // click button
-        .on('pointerdown', () => {this.scene.start("play"); this.sound.play("temp_sfx");})
+        .on('pointerdown', () => {this.scene.start("tutorial"); this.sound.play("temp_sfx");})
         // pointer hovering on button
         .on('pointerover', () => playButton.setTexture('play_button_pressed'))
         // pointer not on button
