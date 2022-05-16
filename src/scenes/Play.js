@@ -62,7 +62,7 @@ class Play extends Phaser.Scene {
             this.inventory.pushStack(this.cursor.coordinates.y, this.cursor.coordinates.x, this.outputSpace);
         });
         
-        // Test item
+        // Item Generation
         this.inputGen = this.time.addEvent({
             delay: gameSettings.timings.item.headway * 1000,
             loop: true,
@@ -70,16 +70,28 @@ class Play extends Phaser.Scene {
             callback: () => {
                 if(!this.inputSpace.curItem) {
                     this.inputSpace.createItem(1, 0);
-                    console.log("Item Created");
                     this.sound.play("temp_sfx");
+                    console.log("Item Created");
                 } else {
                     console.warn("Death");
                 }
             }
         });
 
-        // Test request
-        this.testRequest = this.outputSpace.createRequest(1, 0);
+        // Request Generation
+        this.outputGen = this.time.addEvent({
+            delay: gameSettings.timings.request.headway * 1000,
+            loop: true,
+            callback: () => {
+                if(!this.outputSpace.requestedItem) {
+                    this.outputSpace.createRequest(1, 0);
+                    this.sound.play("temp_sfx");
+                    console.log("Request Created");
+                } else {
+                    console.warn("Death");
+                }
+            }
+        });
 
         // Temp tutorial Text
         let textConfig = {
