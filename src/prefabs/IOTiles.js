@@ -24,6 +24,30 @@ class InputTile extends IOTile {
             console.log("No stack to pull");
         }
     }
+
+    /**
+     * Creates a new item stack
+     * 
+     * @param {Number} stackSize – The number of items created
+     * @param {Number} itemIndex – The index within items.jzon containing the item specs
+     * @returns – The item currently in the input space
+     */
+    createItem(stackSize, itemIndex) {
+        if(this.curItem) {
+            console.warn("Attempted to create an item while the input has not been emptied");
+        } else {
+            console.assert(stackSize > 0, "Error: Invalid stack size");
+            
+            let itemConfig = itemSpecs[itemIndex];
+            console.assert(itemConfig.maxSize && itemConfig.textureName, "Error: Invalid item config");
+
+            this.curItem = new ItemStack(this.scene, {x: this.x, y: this.y}, stackSize, itemConfig.maxSize, itemConfig.textureName);
+            this.curItem.setOrigin(0.5);
+            this.curItem.setDepth(0.5);
+        }
+
+        return this.curItem;
+    }
 }
 
 class OutputTile extends IOTile {

@@ -63,10 +63,7 @@ class Play extends Phaser.Scene {
         });
         
         // Test item
-        this.testItem = new ItemStack(this, {x: this.inputSpace.x, y: this.inputSpace.y}, 1, 1, "item");
-        this.testItem.setOrigin(0.5);
-        this.testItem.setDepth(0.5);
-        this.inputSpace.curItem = this.testItem;
+        this.testItem = this.inputSpace.createItem(1, 0);
 
         // Test request
         this.testRequest = this.outputSpace.createRequest(1, 0);
