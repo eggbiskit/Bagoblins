@@ -37,11 +37,8 @@ class InputTile extends IOTile {
             console.warn("Attempted to create an item while the input has not been emptied");
         } else {
             console.assert(stackSize > 0, "Error: Invalid stack size");
-            
-            let itemConfig = itemSpecs[itemIndex];
-            console.assert(itemConfig.maxSize && itemConfig.textureName, "Error: Invalid item config");
 
-            this.curItem = new ItemStack(this.scene, {x: this.x, y: this.y}, stackSize, itemConfig.maxSize, itemConfig.textureName);
+            this.curItem = new ItemStack(this.scene, {x: this.x, y: this.y}, stackSize, itemIndex);
             this.curItem.setOrigin(0.5);
             this.curItem.setDepth(0.5);
         }
@@ -68,11 +65,8 @@ class OutputTile extends IOTile {
             console.warn("Attempted to create request when an unfulfilled request already exists");
         } else {
             console.assert(stackSize > 0, "Error: Invalid stack size");
-            
-            let itemConfig = itemSpecs[itemIndex];
-            console.assert(itemConfig.maxSize && itemConfig.textureName, "Error: Invalid item config");
 
-            this.requestedItem = new ItemStack(this.scene, {x: this.x, y: this.y}, -stackSize, itemConfig.maxSize, itemConfig.textureName);
+            this.requestedItem = new ItemStack(this.scene, {x: this.x, y: this.y}, -stackSize, itemIndex);
             this.requestedItem.setOrigin(0.5);
             this.requestedItem.setDepth(0.5);
         }
