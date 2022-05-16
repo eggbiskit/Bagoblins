@@ -63,7 +63,20 @@ class Play extends Phaser.Scene {
         });
         
         // Test item
-        this.testItem = this.inputSpace.createItem(1, 0);
+        this.inputGen = this.time.addEvent({
+            delay: gameSettings.timings.item.headway * 1000,
+            loop: true,
+            startAt: gameSettings.timings.item.delay * 1000,
+            callback: () => {
+                if(!this.inputSpace.curItem) {
+                    this.inputSpace.createItem(1, 0);
+                    console.log("Item Created");
+                    this.sound.play("temp_sfx");
+                } else {
+                    console.warn("Death");
+                }
+            }
+        });
 
         // Test request
         this.testRequest = this.outputSpace.createRequest(1, 0);

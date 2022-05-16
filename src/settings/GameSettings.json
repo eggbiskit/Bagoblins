@@ -8,7 +8,7 @@
         "select": ["X"],
         "output": ["Z"]
     },
-    "Timings": {
+    "timings": {
         "item": {
             "delay": 5,
             "headway": 10,
