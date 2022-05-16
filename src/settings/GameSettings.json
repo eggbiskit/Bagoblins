@@ -7,5 +7,23 @@
         "input": ["C"],
         "select": ["X"],
         "output": ["Z"]
+    },
+    "Timings": {
+        "item": {
+            "delay": 5,
+            "headway": 10,
+            "increase": {
+                "rate": 1.1,
+                "time": 30
+            }
+        },
+        "request": {
+            "delay": 30,
+            "headway": 15,
+            "increase": {
+                "rate": 1.15,
+                "time": 45
+            }
+        }
     }
 }
