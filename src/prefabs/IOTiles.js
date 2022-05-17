@@ -16,7 +16,7 @@ class InputTile extends IOTile {
         if(this.curItem) {
             this.curItem = this.scene.inventory.mergeStacks(this.curItem, cursor.coordinates.y, cursor.coordinates.x, true);
             if(this.curItem) {
-                console.log("Pulled partial stack from input");
+                console.log("Pulled partial or no stack from input");
             } else {
                 console.log("Pulled full stack from input");
             }
