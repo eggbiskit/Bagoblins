@@ -33,12 +33,15 @@ class Menu extends Phaser.Scene {
             frames: this.anims.generateFrameNames('menu_atlas', {      
                 prefix: 'goblin',
                 start: 1,
-                end: 2,
+                end: 5,
             }), 
-            frameRate: 1,
+            frameRate: 2,
             repeat: -1 
         });
         this.title.anims.play('goblinAni', true);
+
+        // potions animation
+
         
         // play button
         const playButton = this.add.image(game.config.width / 2, game.config.height / 2 + 80, 'play_button')
