@@ -1,0 +1,6 @@
+{"frames":{"title1":{"frame":{"x":0,"y":0,"w":66,"h":27},
+"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":66,"h":27},"sourceSize":{"w":66,"h":27}},
+"title2":{"frame":{"x":0,"y":28,"w":66,"h":27},
+"rotated":false,"trimmed":false,"spriteSourceSize":{"x":0,"y":0,"w":66,"h":27},"sourceSize":{"w":66,"h":27}}},
+"meta":{"app":"https://www.leshylabs.com/apps/sstool/","version":"Leshy SpriteSheet Tool v0.8.4",
+"image":"menu_sheet.png","size":{"w":66,"h":55},"scale":1}}
