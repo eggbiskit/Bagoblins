@@ -51,7 +51,11 @@ class Cursor extends Phaser.GameObjects.Sprite {
     }
 
     dropStack() {
-        console.log("Dropped Stack");
         this.heldStack = this.inventory.mergeStacks(this.heldStack, this.coordinates.y, this.coordinates.x);
+        if(this.heldStack) {
+            console.log("Did not drop stack");
+        } else {
+            console.log("Dropped Stack");
+        }
     }
 }
