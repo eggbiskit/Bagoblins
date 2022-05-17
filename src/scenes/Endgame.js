@@ -6,6 +6,6 @@ class Endgame extends Phaser.Scene {
     create() {
         console.log("End");
 
-        this.scene.play("menu");
+        this.scene.start("menu");
     }
 }

@@ -23,21 +23,23 @@ class Cursor extends Phaser.GameObjects.Sprite {
      * @param {Boolean} isPositive – Whether or not the movement is in a positive direction (down or right)
      */
     move(isVertical, isPositive) {
-        let posChange = (isPositive) ? this.inventory.slotSize : -this.inventory.slotSize;
-        let increment = (isPositive) ? 1 : -1;
-        let axisTerms = (isVertical) ? { axis: "y", tableJust: "rows" } : { axis: "x", tableJust: "cols" };
-        if ((this.coordinates[axisTerms.axis] == 0 && !isPositive)
-            || (this.coordinates[axisTerms.axis] == this.inventory.arrBounds[axisTerms.tableJust] - 1 && isPositive)) {
-            // Placeholder for tweens later maybe
-        } else {
-            this[axisTerms.axis] += posChange;
-            this.coordinates[axisTerms.axis] += increment;
-        }
+        if(!this.scene.endOGame) {
+            let posChange = (isPositive) ? this.inventory.slotSize : -this.inventory.slotSize;
+            let increment = (isPositive) ? 1 : -1;
+            let axisTerms = (isVertical) ? { axis: "y", tableJust: "rows" } : { axis: "x", tableJust: "cols" };
+            if ((this.coordinates[axisTerms.axis] == 0 && !isPositive)
+                || (this.coordinates[axisTerms.axis] == this.inventory.arrBounds[axisTerms.tableJust] - 1 && isPositive)) {
+                // Placeholder for tweens later maybe
+            } else {
+                this[axisTerms.axis] += posChange;
+                this.coordinates[axisTerms.axis] += increment;
+            }
 
-        // Moving held stack
-        if(this.heldStack) {
-            this.heldStack.x = this.x;
-            this.heldStack.y = this.y;
+            // Moving held stack
+            if(this.heldStack) {
+                this.heldStack.x = this.x;
+                this.heldStack.y = this.y;
+            }
         }
     }
 

@@ -19,6 +19,7 @@ class Play extends Phaser.Scene {
         // Game World Setup
         this.inventory = new Inventory(this, 4, 5).setOrigin(0.5);
         this.cursor = new Cursor(this.inventory);
+        this.endOGame = false;
         
         // Input/Output setup
         this.inputSpace = new InputTile(this, game.config.width - 15, game.config.height - 15).setOrigin(0.5);
@@ -71,7 +72,7 @@ class Play extends Phaser.Scene {
                     this.sound.play("temp_sfx");
                     console.log("Item Created");
                 } else {
-                    console.warn("Death");
+                    this.endGame(this.inputSpace);
                 }
             }
         });
@@ -86,7 +87,7 @@ class Play extends Phaser.Scene {
                     this.sound.play("temp_sfx");
                     console.log("Request Created");
                 } else {
-                    console.warn("Death");
+                    this.endGame(this.outputSpace);
                 }
             }
         });
@@ -103,5 +104,14 @@ class Play extends Phaser.Scene {
         let inputControls = this.add.text(game.config.width - 20, game.config.height - 30, "Press\n'C' to\npull\nfrom\nthe\ninput", textConfig).setOrigin(0.5, 1);
         let selectControls = this.add.text(game.config.width / 2, game.config.height - 15, "Press 'X' to grab an item\nPress 'X' again to drop it", textConfig).setOrigin(0.5);
         let outputControls = this.add.text(20, game.config.height - 30, "Press\n'Z' to\npush\nto\nthe\noutput", textConfig).setOrigin(0.5, 1);
+    }
+
+    endGame(cause) {
+        console.log(`Death from ${cause}`);
+        this.sound.play("temp_sfx");
+        this.time.delayedCall(1000, () => {
+            this.scene.start('end', { fadeIn: true });
+        });
+        this.endOGame = true;
     }
 }
