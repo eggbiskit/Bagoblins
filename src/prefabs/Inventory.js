@@ -57,7 +57,10 @@ class Inventory extends Phaser.GameObjects.Sprite {
      * @returns – What remains of the stack after the merge (or null for an empty stack)
      */
     mergeStacks(incomingStack, row, col, fromInput = false) {
-        if(!this.contents[row][col]) {
+        if(incomingStack.coordinates.row == row && incomingStack.coordinates.col == col) {
+            // Return stack to spot
+            return null
+        } else if(!this.contents[row][col]) {
             // Put stack in spot
             if(!fromInput) {
                 this.contents[incomingStack.coordinates.row][incomingStack.coordinates.col] = undefined;
