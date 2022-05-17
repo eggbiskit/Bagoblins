@@ -25,5 +25,12 @@
                 "time": 45
             }
         }
+    },
+    "depths": {
+        "background": 0,
+        "UI": 1,
+        "items": 2,
+        "heldItems": 2.5,
+        "cursor": 3
     }
 }
