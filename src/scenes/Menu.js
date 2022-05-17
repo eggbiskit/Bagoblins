@@ -5,24 +5,42 @@ class Menu extends Phaser.Scene {
 
     create() {
         console.log("Menu");
-        //const menuBg = this.add.image(game.config.width / 2, game.config.height / 2, 'menu_bg');
-        //menuBg.setScale(3);
+        
+        // bg
+        const menuBg = this.add.image(game.config.width / 2, game.config.height / 2, 'menu_bg');
+        menuBg.setScale(3);
 
+        // title animation
         this.title = this.add.sprite(game.config.width / 2, game.config.height / 5);
         this.title.setScale(3);
         this.anims.create({ 
             key: 'titleAni', 
-            frames: this.anims.generateFrameNames('title_atlas', {      
+            frames: this.anims.generateFrameNames('menu_atlas', {      
                 prefix: 'title',
                 start: 1,
                 end: 2,
             }), 
-            frameRate: 5,
+            frameRate: 4,
             repeat: -1 
         });
-
         this.title.anims.play('titleAni', true);
+
+        // goblin animation
+        this.title = this.add.sprite(game.config.width / 2, game.config.height - 70);
+        this.title.setScale(2);
+        this.anims.create({ 
+            key: 'goblinAni', 
+            frames: this.anims.generateFrameNames('menu_atlas', {      
+                prefix: 'goblin',
+                start: 1,
+                end: 2,
+            }), 
+            frameRate: 1,
+            repeat: -1 
+        });
+        this.title.anims.play('goblinAni', true);
         
+        // play button
         const playButton = this.add.image(game.config.width / 2, game.config.height / 2 + 80, 'play_button')
         .setInteractive()
         // click button
