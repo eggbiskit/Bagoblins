@@ -2,6 +2,8 @@ class IOTile extends Phaser.GameObjects.Sprite {
     constructor(scene, posX, posY) {
         super(scene, posX, posY, "tile");
         scene.add.existing(this);
+        this.setOrigin(0.5);
+        this.setDepth(0);
         this.scene = scene;
     }
 }
@@ -39,8 +41,6 @@ class InputTile extends IOTile {
             console.assert(stackSize > 0, "Error: Invalid stack size");
 
             this.curItem = new ItemStack(this.scene, {x: this.x, y: this.y}, stackSize, itemIndex);
-            this.curItem.setOrigin(0.5);
-            this.curItem.setDepth(0.5);
         }
 
         return this.curItem;
@@ -67,8 +67,6 @@ class OutputTile extends IOTile {
             console.assert(stackSize > 0, "Error: Invalid stack size");
 
             this.requestedItem = new ItemStack(this.scene, {x: this.x, y: this.y}, -stackSize, itemIndex);
-            this.requestedItem.setOrigin(0.5);
-            this.requestedItem.setDepth(0.5);
         }
 
         return this.requestedItem;

@@ -3,6 +3,8 @@ class Inventory extends Phaser.GameObjects.Sprite {
         // Sprite Setup
         super(scene, game.config.width / 2, game.config.height / 2, "inventory");
         scene.add.existing(this);
+        this.setOrigin(0.5);
+        this.setDepth(0);
 
         // Array Setup
         this.arrBounds = {

@@ -4,6 +4,8 @@ class Cursor extends Phaser.GameObjects.Sprite {
         // Sprite Setup
         super(inventory.scene, initialPos.x, initialPos.y, "cursor");
         inventory.scene.add.existing(this);
+        this.setDepth(gameSettings.depths.cursor);
+        this.setOrigin(0.5);
 
         // Instance Variable Setup
         this.inventory = inventory;

@@ -7,6 +7,8 @@ class ItemStack extends Phaser.GameObjects.Sprite {
         // Adding sprite to scene
         super(scene, initialPos.x, initialPos.y, itemConfig.textureName);
         scene.add.existing(this);
+        this.setOrigin(0.5);
+        this.setDepth(0.5);
 
         // Setting parameters
         this.inventory = scene.inventory;

@@ -19,8 +19,6 @@ class Play extends Phaser.Scene {
         // Game World Setup
         this.inventory = new Inventory(this, 4, 5).setOrigin(0.5);
         this.cursor = new Cursor(this.inventory);
-        this.cursor.setDepth(1);
-        this.cursor.setOrigin(0.5);
         
         // Input/Output setup
         this.inputSpace = new InputTile(this, game.config.width - 15, game.config.height - 15).setOrigin(0.5);
