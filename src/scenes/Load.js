@@ -1,44 +1,44 @@
 class Load extends Phaser.Scene {
 
-   constructor() {
-       super("load");
-   }
+    constructor() {
+        super("load");
+    }
 
-   preload() {
-       // Image Loading
-       this.load.image("inventory", "assets/sprites/Inventory.png");
-       this.load.image("tile", "assets/sprites/slot.png");
-       this.load.image("cursor", "assets/sprites/Cursor.png");
-       this.load.image("menu_bg", "assets/sprites/menu_bg.png");
-       this.load.image("tutorial", "assets/sprites/tutorial.png");
+    preload() {
+        // Image Loading
+        this.load.image("inventory", "assets/sprites/Inventory.png");
+        this.load.image("tile", "assets/sprites/slot.png");
+        this.load.image("cursor", "assets/sprites/Cursor.png");
+        this.load.image("menu_bg", "assets/sprites/menu_bg.png");
+        this.load.image("tutorial", "assets/sprites/tutorial.png");
 
-       // Item image loading
-      this.load.image("blackPotion", "assets/sprites/blackpotion.png");
-      this.load.image("greenPotion", "assets/sprites/greenpotion.png");
+        // Item image loading
+        this.load.image("blackPotion", "assets/sprites/blackpotion.png");
+        this.load.image("greenPotion", "assets/sprites/greenpotion.png");
 
-       // texture atlas
-       this.load.atlas('menu_atlas', 'assets/sprites/menu_sheet.png', 'assets/sprites/menu.json');
-       this.load.atlas('play_atlas', 'assets/sprites/play_sheet.png', 'assets/sprites/play.json');
+        // texture atlas
+        this.load.atlas('menu_atlas', 'assets/sprites/menu_sheet.png', 'assets/sprites/menu.json');
+        this.load.atlas('play_atlas', 'assets/sprites/play_sheet.png', 'assets/sprites/play.json');
 
-       // Font loading
-       this.load.bitmapFont('pixel_font', 'assets/font/pixel.png', 'assets/font/pixel.xml');
+        // Font loading
+        this.load.bitmapFont('pixel_font', 'assets/font/pixel.png', 'assets/font/pixel.xml');
 
-       // SFX Loading
-       // *temp sfx, replace later*
-       this.load.audio("temp_sfx", "assets/SFX/select.wav");
+        // SFX Loading
+        // *temp sfx, replace later*
+        this.load.audio("temp_sfx", "assets/SFX/select.wav");
 
-       // JSON loading
-       this.load.json("gameSettings", "src/settings/GameSettings.json");
-       this.load.json("items", "src/settings/items.json");
-       this.load.json('tutorial', 'assets/json/tutorial.json');
-   }
+        // JSON loading
+        this.load.json("gameSettings", "src/settings/GameSettings.json");
+        this.load.json("items", "src/settings/items.json");
+        this.load.json('tutorial', 'assets/json/tutorial.json');
+    }
 
-   create() {
-       console.log("load");
+    create() {
+        console.log("load");
 
-       gameSettings = this.cache.json.get("gameSettings");
-       itemSpecs = this.cache.json.get("items");
-       
-       this.scene.start("menu");
-   }
+        gameSettings = this.cache.json.get("gameSettings");
+        itemSpecs = this.cache.json.get("items");
+
+        this.scene.start("menu");
+    }
 }

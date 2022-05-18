@@ -20,7 +20,7 @@ class Play extends Phaser.Scene {
         this.inventory = new Inventory(this, 4, 5).setOrigin(0.5);
         this.cursor = new Cursor(this.inventory);
         this.endOGame = false;
-        
+
         // Input/Output setup
         this.inputSpace = new InputTile(this, game.config.width - 15, game.config.height - 15).setOrigin(0.5);
         this.outputSpace = new OutputTile(this, 15, game.config.height - 15).setOrigin(0.5);
@@ -45,12 +45,12 @@ class Play extends Phaser.Scene {
         });
         // X to pick up, put down
         keySelect.on("down", () => {
-            if(this.cursor.heldStack) {
+            if (this.cursor.heldStack) {
                 this.sound.play("temp_sfx");
                 this.cursor.dropStack();
             } else {
                 let pickedUp = this.cursor.pickUpStack();
-                if(pickedUp) {
+                if (pickedUp) {
                     this.sound.play("temp_sfx");
                 }
             }
@@ -60,14 +60,14 @@ class Play extends Phaser.Scene {
             this.sound.play("temp_sfx");
             this.inventory.pushStack(this.cursor.coordinates.y, this.cursor.coordinates.x, this.outputSpace);
         });
-        
+
         // Item Generation
         this.inputGen = this.time.addEvent({
             delay: gameSettings.timings.item.headway * 1000,
             loop: true,
             startAt: gameSettings.timings.item.delay * 1000,
             callback: () => {
-                if(!this.inputSpace.curItem) {
+                if (!this.inputSpace.curItem) {
                     let itemIndex = Math.floor(Math.random() * itemSpecs.length);
                     let stackSize = Math.ceil(Math.random() * itemSpecs[itemIndex].maxSize);
                     this.inputSpace.createItem(stackSize, itemIndex);
@@ -84,7 +84,7 @@ class Play extends Phaser.Scene {
             delay: gameSettings.timings.request.headway * 1000,
             loop: true,
             callback: () => {
-                if(!this.outputSpace.requestedItem) {
+                if (!this.outputSpace.requestedItem) {
                     let itemIndex = Math.floor(Math.random() * itemSpecs.length);
                     let stackSize = Math.ceil(Math.random() * itemSpecs[itemIndex].maxSize);
                     this.outputSpace.createRequest(stackSize, itemIndex);

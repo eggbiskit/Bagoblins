@@ -23,7 +23,7 @@ class Cursor extends Phaser.GameObjects.Sprite {
      * @param {Boolean} isPositive – Whether or not the movement is in a positive direction (down or right)
      */
     move(isVertical, isPositive) {
-        if(!this.scene.endOGame) {
+        if (!this.scene.endOGame) {
             let posChange = (isPositive) ? this.inventory.slotSize : -this.inventory.slotSize;
             let increment = (isPositive) ? 1 : -1;
             let axisTerms = (isVertical) ? { axis: "y", tableJust: "rows" } : { axis: "x", tableJust: "cols" };
@@ -36,7 +36,7 @@ class Cursor extends Phaser.GameObjects.Sprite {
             }
 
             // Moving held stack
-            if(this.heldStack) {
+            if (this.heldStack) {
                 this.heldStack.x = this.x;
                 this.heldStack.y = this.y;
                 this.heldStack.positionText();
@@ -46,7 +46,7 @@ class Cursor extends Phaser.GameObjects.Sprite {
 
     pickUpStack() {
         this.heldStack = this.inventory.getStack(this.coordinates.y, this.coordinates.x);
-        if(this.heldStack) {
+        if (this.heldStack) {
             this.heldStack.setDepth(gameSettings.depths.heldItems);
             console.log("Picked up Stack");
             return true;
@@ -59,7 +59,7 @@ class Cursor extends Phaser.GameObjects.Sprite {
     dropStack() {
         this.heldStack.setDepth(gameSettings.depths.items);
         this.heldStack = this.inventory.mergeStacks(this.heldStack, this.coordinates.y, this.coordinates.x);
-        if(this.heldStack) {
+        if (this.heldStack) {
             this.heldStack.setDepth(gameSettings.depths.heldItems);
             console.log("Did not drop stack");
         } else {

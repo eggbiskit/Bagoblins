@@ -6,8 +6,8 @@ const config = {
    autoCenter: true,
    physics: {
       default: "arcade"
-  },
-  scene: [Load, Menu, Tutorial, Play, Endgame]
+   },
+   scene: [Load, Menu, Tutorial, Play, Endgame]
 };
 
 let game = new Phaser.Game(config);

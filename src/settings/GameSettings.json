@@ -1,5 +1,5 @@
 {
-    "keybinds" : {
+    "keybinds": {
         "left": "LEFT",
         "right": "RIGHT",
         "up": "UP",
@@ -11,7 +11,7 @@
     },
     "offsetDenoms": {
         "UIDist": 30,
-        "itemText": 4 
+        "itemText": 4
     },
     "timings": {
         "item": {
