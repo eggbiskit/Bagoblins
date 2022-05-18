@@ -51,7 +51,7 @@ class Menu extends Phaser.Scene {
         keySpace = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes[gameSettings.keybinds.space]);
 
         this.play = this.add.sprite(game.config.width / 2, game.config.height / 5 + 150);
-        this.play.setScale(1);
+        this.play.setScale(1.0);
         this.anims.create({ 
             key: 'playAni', 
             frames: this.anims.generateFrameNames('menu_atlas', {      
