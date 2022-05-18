@@ -8,18 +8,14 @@ class Load extends Phaser.Scene {
        // Image Loading
        this.load.image("inventory", "assets/sprites/Inventory.png");
        this.load.image("tile", "assets/sprites/slot.png");
-       this.load.image("cursor", "assets/sprites/Cursor.png");
        this.load.image("item", "assets/sprites/blackpotion.png");
-       this.load.image("play_button", "assets/sprites/play_button.png");
-       this.load.image("play_button_pressed", "assets/sprites/play_button_pressed.png");
-       this.load.image("ok_button", "assets/sprites/ok_button.png");
-       this.load.image("menu", "assets/sprites/menu.png");
+       this.load.image("cursor", "assets/sprites/Cursor.png");
        this.load.image("menu_bg", "assets/sprites/menu_bg.png");
        this.load.image("tutorial", "assets/sprites/tutorial.png");
 
        // texture atlas
        this.load.atlas('menu_atlas', 'assets/sprites/menu_sheet.png', 'assets/sprites/menu.json');
-
+       this.load.atlas('play_atlas', 'assets/sprites/play_sheet.png', 'assets/sprites/play.json');
 
        // SFX Loading
        // *temp sfx, replace later*
