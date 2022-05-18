@@ -12,7 +12,7 @@ class Menu extends Phaser.Scene {
 
         // title animation
         this.title = this.add.sprite(game.config.width / 2, game.config.height / 5);
-        this.title.setScale(3);
+        this.title.setScale(2);
         this.anims.create({ 
             key: 'titleAni', 
             frames: this.anims.generateFrameNames('menu_atlas', {      
@@ -24,6 +24,11 @@ class Menu extends Phaser.Scene {
             repeat: -1 
         });
         this.title.anims.play('titleAni', true);
+
+        // potions animation
+        this.potions = this.add.sprite(game.config.width / 2, game.config.height / 5 + 104, 'menu_atlas', 'potions');
+        this.potions.setScale(2);
+
 
         // goblin animation
         this.title = this.add.sprite(game.config.width / 2, game.config.height - 70);
@@ -40,11 +45,8 @@ class Menu extends Phaser.Scene {
         });
         this.title.anims.play('goblinAni', true);
 
-        // potions animation
-
-        
         // play button
-        const playButton = this.add.image(game.config.width / 2, game.config.height / 2 + 80, 'play_button')
+        const playButton = this.add.image(game.config.width / 2, game.config.height / 2 + 85, 'play_button')
         .setInteractive()
         // click button
         .on('pointerdown', () => {this.scene.start("tutorial"); this.sound.play("temp_sfx");})
