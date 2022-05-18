@@ -87,6 +87,7 @@ class OutputTile extends IOTile {
         if(incomingStack.name == this.requestedItem.name) {
             if(incomingStack.curSize >= this.requestedItem.curSize) {
                 incomingStack.curSize += this.requestedItem.curSize;
+                incomingStack.updateText();
                 this.requestedItem.curSize = 0;
             } else {
                 this.requestedItem.curSize += incomingStack.curSize;
@@ -100,10 +101,13 @@ class OutputTile extends IOTile {
                 this.requestedItem = null;
             }
             if(incomingStack.curSize == 0) {
+                incomingStack.deconstructor();
                 return null;
             }
         } else {
             console.log("Wrong item was attempted to be pushed");
         }
+
+        return incomingStack;
     }
 }

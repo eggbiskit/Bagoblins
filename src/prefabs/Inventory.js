@@ -81,6 +81,10 @@ class Inventory extends Phaser.GameObjects.Sprite {
                 this.contents[row][col].updateText();
                 return incomingStack;
             } else {
+                if(!fromInput) {
+                    this.contents[incomingStack.coordinates.row][incomingStack.coordinates.col] = undefined;
+                }
+                incomingStack.deconstructor();
                 return null;
             }
         } else {
@@ -98,7 +102,6 @@ class Inventory extends Phaser.GameObjects.Sprite {
             if(stack) {
                 this.contents[row][col] = stack;
             } else {
-                this.contents[row][col].deconstructor();
                 this.contents[row][col] = undefined;
             }
         } else {
