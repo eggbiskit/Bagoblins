@@ -17,6 +17,9 @@ class Load extends Phaser.Scene {
        this.load.atlas('menu_atlas', 'assets/sprites/menu_sheet.png', 'assets/sprites/menu.json');
        this.load.atlas('play_atlas', 'assets/sprites/play_sheet.png', 'assets/sprites/play.json');
 
+       // Font loading
+       this.load.bitmapFont('pixel_font', 'assets/font/pixel.png', 'assets/font/pixel.xml');
+
        // SFX Loading
        // *temp sfx, replace later*
        this.load.audio("temp_sfx", "assets/SFX/select.wav");
@@ -24,6 +27,7 @@ class Load extends Phaser.Scene {
        // JSON loading
        this.load.json("gameSettings", "src/settings/GameSettings.json");
        this.load.json("items", "src/settings/items.json");
+       this.load.json('tutorial', 'assets/json/tutorial.json');
    }
 
    create() {
