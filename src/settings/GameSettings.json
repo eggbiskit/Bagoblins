@@ -6,7 +6,8 @@
         "down": "DOWN",
         "input": "C",
         "select": "X",
-        "output": "Z"
+        "output": "Z",
+        "space": "SPACE"
     },
     "timings": {
         "item": {
