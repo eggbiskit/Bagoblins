@@ -40,8 +40,13 @@ class Play extends Phaser.Scene {
         });
         // C to pull from input
         keyInput.on("down", () => {
-            this.sound.play("temp_sfx");
-            this.inputSpace.pull(this.cursor);
+            if(!this.cursor.heldStack) {
+                this.sound.play("temp_sfx");
+                this.inputSpace.pull(this.cursor);
+            } else {
+                this.sound.play("temp_sfx");
+                console.warn("Cannot pull or push while holding an item");
+            }
         });
         // X to pick up, put down
         keySelect.on("down", () => {
@@ -57,8 +62,13 @@ class Play extends Phaser.Scene {
         });
         // Z to push to output
         keyOutput.on("down", () => {
-            this.sound.play("temp_sfx");
-            this.inventory.pushStack(this.cursor.coordinates.y, this.cursor.coordinates.x, this.outputSpace);
+            if(!this.cursor.heldStack) {
+                this.sound.play("temp_sfx");
+                this.inventory.pushStack(this.cursor.coordinates.y, this.cursor.coordinates.x, this.outputSpace);
+            } else {
+                this.sound.play("temp_sfx");
+                console.warn("Cannot pull or push while holding an item");
+            }
         });
 
         // Item Generation
