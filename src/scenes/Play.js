@@ -68,7 +68,9 @@ class Play extends Phaser.Scene {
             startAt: gameSettings.timings.item.delay * 1000,
             callback: () => {
                 if(!this.inputSpace.curItem) {
-                    this.inputSpace.createItem(1, 0);
+                    let itemIndex = Math.floor(Math.random() * itemSpecs.length);
+                    let stackSize = Math.ceil(Math.random() * itemSpecs[itemIndex].maxSize);
+                    this.inputSpace.createItem(stackSize, itemIndex);
                     this.sound.play("temp_sfx");
                     console.log("Item Created");
                 } else {
@@ -83,7 +85,9 @@ class Play extends Phaser.Scene {
             loop: true,
             callback: () => {
                 if(!this.outputSpace.requestedItem) {
-                    this.outputSpace.createRequest(1, 0);
+                    let itemIndex = Math.floor(Math.random() * itemSpecs.length);
+                    let stackSize = Math.ceil(Math.random() * itemSpecs[itemIndex].maxSize);
+                    this.outputSpace.createRequest(stackSize, itemIndex);
                     this.sound.play("temp_sfx");
                     console.log("Request Created");
                 } else {
