@@ -39,6 +39,7 @@ class Cursor extends Phaser.GameObjects.Sprite {
             if(this.heldStack) {
                 this.heldStack.x = this.x;
                 this.heldStack.y = this.y;
+                this.heldStack.positionText();
             }
         }
     }

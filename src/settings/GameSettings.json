@@ -9,6 +9,10 @@
         "output": "Z",
         "space": "SPACE"
     },
+    "offsetDenoms": {
+        "UIDist": 30,
+        "itemText": 4 
+    },
     "timings": {
         "item": {
             "delay": 5,
@@ -33,5 +37,13 @@
         "items": 2,
         "heldItems": 2.5,
         "cursor": 3
+    },
+    "textConfigs": {
+        "item": {
+            "fontFamily": "Courier",
+            "fontSize": "12px",
+            "color": "#FFF",
+            "align": "center"
+        }
     }
 }

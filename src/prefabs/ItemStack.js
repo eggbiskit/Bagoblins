@@ -25,6 +25,12 @@ class ItemStack extends Phaser.GameObjects.Sprite {
             // Stack is a request
             this.setAlpha(0.5);
         }
+
+        // Adding stack text
+        this.textOffset = this.width / gameSettings.offsetDenoms.itemText;
+        this.stackText = scene.add.text(this.textOffset + this.x, this.textOffset + this.y, Math.abs(this.curSize), gameSettings.textConfigs.item)
+        this.stackText.setDepth(12);
+        this.stackText.setOrigin(0.5, 0.375);
     }
 
     setSpot(row, col) {
@@ -33,5 +39,11 @@ class ItemStack extends Phaser.GameObjects.Sprite {
         this.coordinates.col = col;
         this.x = pos.x;
         this.y = pos.y;
+        this.positionText();
+    }
+
+    positionText() {
+        this.stackText.x = this.x + this.textOffset;
+        this.stackText.y = this.y + this.textOffset;
     }
 }
