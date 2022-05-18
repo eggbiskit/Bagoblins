@@ -33,6 +33,11 @@ class ItemStack extends Phaser.GameObjects.Sprite {
         this.stackText.setOrigin(0.5, 0.375);
     }
 
+    deconstructor() {
+        this.stackText.destroy();
+        this.destroy();
+    }
+
     setSpot(row, col) {
         let pos = this.inventory.getSpaceCoords(row, col);
         this.coordinates.row = row;
@@ -45,5 +50,9 @@ class ItemStack extends Phaser.GameObjects.Sprite {
     positionText() {
         this.stackText.x = this.x + this.textOffset;
         this.stackText.y = this.y + this.textOffset;
+    }
+
+    updateText() {
+        this.stackText.text = this.curSize;
     }
 }

@@ -43,7 +43,7 @@
             "fontFamily": "Courier",
             "fontSize": "12px",
             "color": "#FFF",
-            "align": "center"
+            "align": "right"
         }
     }
 }

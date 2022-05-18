@@ -96,7 +96,7 @@ class OutputTile extends IOTile {
             // Check for empty stacks
             if(this.requestedItem.curSize == 0) {
                 console.log("Request Fulfilled");
-                this.requestedItem.destroy();
+                this.requestedItem.deconstructor();
                 this.requestedItem = null;
             }
             if(incomingStack.curSize == 0) {

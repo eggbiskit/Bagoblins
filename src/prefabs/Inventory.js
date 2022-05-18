@@ -73,9 +73,12 @@ class Inventory extends Phaser.GameObjects.Sprite {
         } else if(this.contents[row][col].name == incomingStack.name) {
             // Merge
             this.contents[row][col].curSize += incomingStack.curSize;
+            this.contents[row][col].updateText();
             if(this.contents[row][col].curSize > this.contents[row][col].maxSize) {
                 incomingStack.curSize = this.contents[row][col].curSize - this.contents[row][col].maxSize;
+                incomingStack.updateText();
                 this.contents[row][col].curSize = this.contents[row][col].maxSize;
+                this.contents[row][col].updateText();
                 return incomingStack;
             } else {
                 return null;
@@ -95,7 +98,7 @@ class Inventory extends Phaser.GameObjects.Sprite {
             if(stack) {
                 this.contents[row][col] = stack;
             } else {
-                this.contents[row][col].destroy();
+                this.contents[row][col].deconstructor();
                 this.contents[row][col] = undefined;
             }
         } else {
