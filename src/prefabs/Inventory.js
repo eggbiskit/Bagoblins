@@ -16,6 +16,8 @@ class Inventory extends Phaser.GameObjects.Sprite {
             this.contents[i] = new Array(cols);
         }
 
+        // TODO: Create a count of inventory items that the output can pull from (prevents output from making an impossible request)
+
         // Space Setup
         console.assert(this.displayWidth / cols === this.displayHeight / rows, "Error: Inventory is not made of squares");
         this.slotSize = this.displayWidth / cols;

@@ -85,12 +85,13 @@ class OutputTile extends IOTile {
         }
 
         if(incomingStack.name == this.requestedItem.name) {
-            if(incomingStack.curSize >= this.requestedItem.curSize) {
+            if(incomingStack.curSize >= Math.abs(this.requestedItem.curSize)) {
                 incomingStack.curSize += this.requestedItem.curSize;
                 incomingStack.updateText();
                 this.requestedItem.curSize = 0;
             } else {
                 this.requestedItem.curSize += incomingStack.curSize;
+                this.requestedItem.updateText();
                 incomingStack.curSize = 0
             }
 

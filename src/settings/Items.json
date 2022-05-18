@@ -1,6 +1,10 @@
 [
     {
-        "textureName": "item",
+        "textureName": "blackPotion",
         "maxSize": 4
+    },
+    {
+        "textureName": "greenPotion",
+        "maxSize": 16
     }
 ]
