@@ -53,6 +53,6 @@ class ItemStack extends Phaser.GameObjects.Sprite {
     }
 
     updateText() {
-        this.stackText.text = this.curSize;
+        this.stackText.text = Math.abs(this.curSize);
     }
 }
