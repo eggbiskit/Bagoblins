@@ -85,8 +85,17 @@ class Play extends Phaser.Scene {
             loop: true,
             callback: () => {
                 if (!this.outputSpace.requestedItem) {
-                    let itemIndex = Math.floor(Math.random() * itemSpecs.length);
-                    let stackSize = Math.ceil(Math.random() * itemSpecs[itemIndex].maxSize);
+                    let itemIndex;
+                    do {
+                        itemIndex = Math.floor(Math.random() * itemSpecs.length);
+                    } while(this.inventory.itemCount[itemSpecs[itemIndex].textureName] <= 0);
+                    
+                    let maxStackSize = itemSpecs[itemIndex].maxSize;
+                    let countInInventory = this.inventory.itemCount[itemSpecs[itemIndex].textureName];
+
+                    console.log(countInInventory);
+                    let maxRequestSize = (maxStackSize < countInInventory) ? maxStackSize : countInInventory;
+                    let stackSize = Math.ceil(Math.random() * maxRequestSize);
                     this.outputSpace.createRequest(stackSize, itemIndex);
                     this.sound.play("temp_sfx");
                     console.log("Request Created");

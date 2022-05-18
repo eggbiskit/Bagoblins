@@ -16,10 +16,14 @@ class InputTile extends IOTile {
 
     pull(cursor) {
         if (this.curItem) {
+            let startingSize = this.curItem.curSize;
+            let name = this.curItem.name;
             this.curItem = this.scene.inventory.mergeStacks(this.curItem, cursor.coordinates.y, cursor.coordinates.x, true);
             if (this.curItem) {
+                this.scene.inventory.itemCount[name] += this.curItem.curSize;
                 console.log("Pulled partial or no stack from input");
             } else {
+                this.scene.inventory.itemCount[name] += startingSize;
                 console.log("Pulled full stack from input");
             }
         } else {

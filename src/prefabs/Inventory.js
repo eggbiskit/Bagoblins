@@ -16,7 +16,11 @@ class Inventory extends Phaser.GameObjects.Sprite {
             this.contents[i] = new Array(cols);
         }
 
-        // TODO: Create a count of inventory items that the output can pull from (prevents output from making an impossible request)
+        // Log of all items in inventory
+        this.itemCount = {};
+        for(let item of itemSpecs) {
+            this.itemCount[item.textureName] = 0;
+        }
 
         // Space Setup
         console.assert(this.displayWidth / cols === this.displayHeight / rows, "Error: Inventory is not made of squares");
@@ -98,13 +102,17 @@ class Inventory extends Phaser.GameObjects.Sprite {
 
     pushStack(row, col, outputSpace) {
         let stack = this.getStack(row, col);
+        let name = stack.name;
+        let size = stack.curSize;
         if (stack) {
             console.log("Pushed stack to output");
             stack = outputSpace.push(stack);
             if (stack) {
                 this.contents[row][col] = stack;
+                this.itemCount[name] -= stack.curSize;
             } else {
                 this.contents[row][col] = undefined;
+                this.itemCount[name] -= size;
             }
         } else {
             console.log("No stack to push")
