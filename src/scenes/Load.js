@@ -10,6 +10,7 @@ class Load extends Phaser.Scene {
         this.load.image("tile", "assets/sprites/slot.png");
         this.load.image("cursor", "assets/sprites/Cursor.png");
         this.load.image("menu_bg", "assets/sprites/menu_bg.png");
+        this.load.image("play_bg", "assets/sprites/play_bg.png");
         this.load.image("tutorial", "assets/sprites/tutorial.png");
 
         // Item image loading

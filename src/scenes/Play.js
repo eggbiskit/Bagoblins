@@ -17,13 +17,17 @@ class Play extends Phaser.Scene {
         keyOutput = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes[gameSettings.keybinds.output]);
 
         // Game World Setup
-        const playBg = this.add.image(game.config.width / 2, game.config.height / 2, 'menu_bg');
+        const playBg = this.add.image(game.config.width / 2, game.config.height / 2, 'play_bg');
         playBg.setScale(3);
         this.inventory = new Inventory(this, 3, 4).setOrigin(0.5);
         this.cursor = new Cursor(this.inventory);
         this.endOGame = false;
 
         // Input/Output setup
+        const in_box = this.add.image(game.config.width - 15, game.config.height - 15, 'play_atlas', 'in_box');
+        in_box.setScale(1);
+        const out_box = this.add.image(15, game.config.height - 15, 'play_atlas', 'out_box');
+        out_box.setScale(1);
         this.inputSpace = new InputTile(this, game.config.width - 15, game.config.height - 15).setOrigin(0.5);
         this.outputSpace = new OutputTile(this, 15, game.config.height - 15).setOrigin(0.5);
 
@@ -116,19 +120,6 @@ class Play extends Phaser.Scene {
                 }
             }
         });
-
-        // Temp tutorial Text
-        let textConfig = {
-            fontFamily: "Helvetica",
-            fontSize: "12px",
-            color: "#FFF",
-            align: "center"
-        };
-
-        let moveControls = this.add.text(game.config.width / 2, 15, "Use ↑, ↓, ←, & → to move", textConfig).setOrigin(0.5);
-        let inputControls = this.add.text(game.config.width - 20, game.config.height - 30, "Press\n'C' to\npull\nfrom\nthe\ninput", textConfig).setOrigin(0.5, 1);
-        let selectControls = this.add.text(game.config.width / 2, game.config.height - 15, "Press 'X' to grab an item\nPress 'X' again to drop it", textConfig).setOrigin(0.5);
-        let outputControls = this.add.text(20, game.config.height - 30, "Press\n'Z' to\npush\nto\nthe\noutput", textConfig).setOrigin(0.5, 1);
     }
 
     endGame(cause) {

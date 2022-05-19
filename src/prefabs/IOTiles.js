@@ -1,6 +1,6 @@
 class IOTile extends Phaser.GameObjects.Sprite {
     constructor(scene, posX, posY) {
-        super(scene, posX, posY, "tile");
+        super(scene, posX, posY);
         scene.add.existing(this);
         this.setOrigin(0.5);
         this.setDepth(gameSettings.depths.UI);
