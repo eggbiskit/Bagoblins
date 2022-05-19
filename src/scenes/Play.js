@@ -17,6 +17,8 @@ class Play extends Phaser.Scene {
         keyOutput = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes[gameSettings.keybinds.output]);
 
         // Game World Setup
+        const playBg = this.add.image(game.config.width / 2, game.config.height / 2, 'menu_bg');
+        playBg.setScale(3);
         this.inventory = new Inventory(this, 3, 4).setOrigin(0.5);
         this.cursor = new Cursor(this.inventory);
         this.endOGame = false;
