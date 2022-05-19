@@ -12,11 +12,15 @@ class Inventory extends Phaser.GameObjects.Sprite {
             rows: rows
         }
         this.contents = new Array(rows);
-        for(let i = 0; i < rows; i++) {
+        for (let i = 0; i < rows; i++) {
             this.contents[i] = new Array(cols);
         }
 
-        // TODO: Create a count of inventory items that the output can pull from (prevents output from making an impossible request)
+        // Log of all items in inventory
+        this.itemCount = {};
+        for(let item of itemSpecs) {
+            this.itemCount[item.textureName] = 0;
+        }
 
         // Space Setup
         console.assert(this.displayWidth / cols === this.displayHeight / rows, "Error: Inventory is not made of squares");
@@ -61,29 +65,29 @@ class Inventory extends Phaser.GameObjects.Sprite {
      * @returns – What remains of the stack after the merge (or null for an empty stack)
      */
     mergeStacks(incomingStack, row, col, fromInput = false) {
-        if(incomingStack.coordinates.row == row && incomingStack.coordinates.col == col) {
+        if (incomingStack.coordinates.row == row && incomingStack.coordinates.col == col) {
             // Return stack to spot
             return null
-        } else if(!this.contents[row][col]) {
+        } else if (!this.contents[row][col]) {
             // Put stack in spot
-            if(!fromInput) {
+            if (!fromInput) {
                 this.contents[incomingStack.coordinates.row][incomingStack.coordinates.col] = undefined;
             }
             this.contents[row][col] = incomingStack;
             incomingStack.setSpot(row, col);
             return null;
-        } else if(this.contents[row][col].name == incomingStack.name) {
+        } else if (this.contents[row][col].name == incomingStack.name) {
             // Merge
             this.contents[row][col].curSize += incomingStack.curSize;
             this.contents[row][col].updateText();
-            if(this.contents[row][col].curSize > this.contents[row][col].maxSize) {
+            if (this.contents[row][col].curSize > this.contents[row][col].maxSize) {
                 incomingStack.curSize = this.contents[row][col].curSize - this.contents[row][col].maxSize;
                 incomingStack.updateText();
                 this.contents[row][col].curSize = this.contents[row][col].maxSize;
                 this.contents[row][col].updateText();
                 return incomingStack;
             } else {
-                if(!fromInput) {
+                if (!fromInput) {
                     this.contents[incomingStack.coordinates.row][incomingStack.coordinates.col] = undefined;
                 }
                 incomingStack.deconstructor();
@@ -98,13 +102,17 @@ class Inventory extends Phaser.GameObjects.Sprite {
 
     pushStack(row, col, outputSpace) {
         let stack = this.getStack(row, col);
-        if(stack) {
+        let name = stack.name;
+        let size = stack.curSize;
+        if (stack) {
             console.log("Pushed stack to output");
             stack = outputSpace.push(stack);
-            if(stack) {
+            if (stack) {
                 this.contents[row][col] = stack;
+                this.itemCount[name] -= stack.curSize;
             } else {
                 this.contents[row][col] = undefined;
+                this.itemCount[name] -= size;
             }
         } else {
             console.log("No stack to push")

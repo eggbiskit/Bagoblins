@@ -17,10 +17,10 @@ class Play extends Phaser.Scene {
         keyOutput = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes[gameSettings.keybinds.output]);
 
         // Game World Setup
-        this.inventory = new Inventory(this, 4, 5).setOrigin(0.5);
+        this.inventory = new Inventory(this, 3, 4).setOrigin(0.5);
         this.cursor = new Cursor(this.inventory);
         this.endOGame = false;
-        
+
         // Input/Output setup
         this.inputSpace = new InputTile(this, game.config.width - 15, game.config.height - 15).setOrigin(0.5);
         this.outputSpace = new OutputTile(this, 15, game.config.height - 15).setOrigin(0.5);
@@ -40,34 +40,44 @@ class Play extends Phaser.Scene {
         });
         // C to pull from input
         keyInput.on("down", () => {
-            this.sound.play("temp_sfx");
-            this.inputSpace.pull(this.cursor);
+            if(!this.cursor.heldStack) {
+                this.sound.play("temp_sfx");
+                this.inputSpace.pull(this.cursor);
+            } else {
+                this.sound.play("temp_sfx");
+                console.warn("Cannot pull or push while holding an item");
+            }
         });
         // X to pick up, put down
         keySelect.on("down", () => {
-            if(this.cursor.heldStack) {
+            if (this.cursor.heldStack) {
                 this.sound.play("temp_sfx");
                 this.cursor.dropStack();
             } else {
                 let pickedUp = this.cursor.pickUpStack();
-                if(pickedUp) {
+                if (pickedUp) {
                     this.sound.play("temp_sfx");
                 }
             }
         });
         // Z to push to output
         keyOutput.on("down", () => {
-            this.sound.play("temp_sfx");
-            this.inventory.pushStack(this.cursor.coordinates.y, this.cursor.coordinates.x, this.outputSpace);
+            if(!this.cursor.heldStack) {
+                this.sound.play("temp_sfx");
+                this.inventory.pushStack(this.cursor.coordinates.y, this.cursor.coordinates.x, this.outputSpace);
+            } else {
+                this.sound.play("temp_sfx");
+                console.warn("Cannot pull or push while holding an item");
+            }
         });
-        
+
         // Item Generation
         this.inputGen = this.time.addEvent({
             delay: gameSettings.timings.item.headway * 1000,
             loop: true,
             startAt: gameSettings.timings.item.delay * 1000,
             callback: () => {
-                if(!this.inputSpace.curItem) {
+                if (!this.inputSpace.curItem) {
                     let itemIndex = Math.floor(Math.random() * itemSpecs.length);
                     let stackSize = Math.ceil(Math.random() * itemSpecs[itemIndex].maxSize);
                     this.inputSpace.createItem(stackSize, itemIndex);
@@ -84,9 +94,18 @@ class Play extends Phaser.Scene {
             delay: gameSettings.timings.request.headway * 1000,
             loop: true,
             callback: () => {
-                if(!this.outputSpace.requestedItem) {
-                    let itemIndex = Math.floor(Math.random() * itemSpecs.length);
-                    let stackSize = Math.ceil(Math.random() * itemSpecs[itemIndex].maxSize);
+                if (!this.outputSpace.requestedItem) {
+                    let itemIndex;
+                    do {
+                        itemIndex = Math.floor(Math.random() * itemSpecs.length);
+                    } while(this.inventory.itemCount[itemSpecs[itemIndex].textureName] <= 0);
+                    
+                    let maxStackSize = itemSpecs[itemIndex].maxSize;
+                    let countInInventory = this.inventory.itemCount[itemSpecs[itemIndex].textureName];
+
+                    console.log(countInInventory);
+                    let maxRequestSize = (maxStackSize < countInInventory) ? maxStackSize : countInInventory;
+                    let stackSize = Math.ceil(Math.random() * maxRequestSize);
                     this.outputSpace.createRequest(stackSize, itemIndex);
                     this.sound.play("temp_sfx");
                     console.log("Request Created");
