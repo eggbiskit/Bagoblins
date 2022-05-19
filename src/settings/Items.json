@@ -6,5 +6,13 @@
     {
         "textureName": "greenPotion",
         "maxSize": 16
+    },
+    {
+        "textureName": "bluePotion",
+        "maxSize": 12
+    },
+    {
+        "textureName": "purplePotion",
+        "maxSize": 8
     }
 ]
