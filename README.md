@@ -14,6 +14,5 @@ Grace Ho
 [FontStruct](https://fontstruct.com/)  
 [SnowB BMF Bitmap Generator](https://snowb.org/)  
 [Leshy SpriteSheet Tool](https://www.leshylabs.com/apps/sstool/)  
-[Dialogging](https://github.com/nathanaltice/Dialogging)  
 
 ## External Sound Effects

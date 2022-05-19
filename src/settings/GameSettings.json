@@ -40,9 +40,9 @@
     },
     "textConfigs": {
         "item": {
-            "fontFamily": "Courier",
-            "fontSize": "12px",
-            "color": "#FFF",
+            "fontFamily": "pixel",
+            "fontSize": "5px",
+            "color": "#F9BB44",
             "align": "right"
         }
     }

@@ -19,7 +19,6 @@ class Load extends Phaser.Scene {
         this.load.image("bluePotion", "assets/sprites/bluepotion.png");
         this.load.image("purplePotion", "assets/sprites/purplepotion.png");
 
-
         // texture atlas
         this.load.atlas('menu_atlas', 'assets/sprites/menu_sheet.png', 'assets/sprites/menu.json');
         this.load.atlas('play_atlas', 'assets/sprites/play_sheet.png', 'assets/sprites/play.json');
@@ -34,7 +33,6 @@ class Load extends Phaser.Scene {
         // JSON loading
         this.load.json("gameSettings", "src/settings/GameSettings.json");
         this.load.json("items", "src/settings/Items.json");
-        this.load.json('tutorial', 'assets/json/tutorial.json');
     }
 
     create() {
