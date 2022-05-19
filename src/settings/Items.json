@@ -1,18 +1,18 @@
 [
     {
         "textureName": "blackPotion",
-        "maxSize": 4
+        "maxSize": 10
     },
     {
         "textureName": "greenPotion",
-        "maxSize": 16
+        "maxSize": 10
     },
     {
         "textureName": "bluePotion",
-        "maxSize": 12
+        "maxSize": 10
     },
     {
         "textureName": "purplePotion",
-        "maxSize": 8
+        "maxSize": 10
     }
 ]
