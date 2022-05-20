@@ -64,6 +64,7 @@ class Menu extends Phaser.Scene {
         });
         this.play.anims.play('playAni', true);
         keySpace.on("down", () => {
+            this.sound.play("temp_sfx");
             this.scene.start('tutorial');
         });
     }

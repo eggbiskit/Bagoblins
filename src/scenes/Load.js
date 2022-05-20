@@ -28,6 +28,7 @@ class Load extends Phaser.Scene {
 
         // SFX Loading
         // *temp sfx, replace later*
+        this.load.audio("temp_sfx", "assets/SFX/select.wav");
         this.load.audio("input_pull", "assets/SFX/select.wav");
         this.load.audio("drop_stack", "assets/SFX/select.wav");
         this.load.audio("pick_up_stack", "assets/SFX/select.wav");
