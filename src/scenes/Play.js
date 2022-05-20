@@ -92,10 +92,12 @@ class Play extends Phaser.Scene {
         });
 
         // Item Generation
+        let inputDelay = gameSettings.timings.item.headway * 1000;
         this.inputGen = this.time.addEvent({
-            delay: gameSettings.timings.item.headway * 1000,
+            delay: inputDelay,
+            startAt: inputDelay,
             loop: true,
-            startAt: gameSettings.timings.item.delay * 1000,
+            paused: true,
             callback: () => {
                 if (!this.inputSpace.curItem) {
                     let itemIndex = Math.floor(Math.random() * itemSpecs.length);
@@ -108,11 +110,15 @@ class Play extends Phaser.Scene {
                 }
             }
         });
+        this.time.delayedCall(gameSettings.timings.item.delay * 1000, () => { console.log("input timer begin"); this.inputGen.paused = false });
 
         // Request Generation
+        let outputDelay = gameSettings.timings.request.headway * 1000;
         this.outputGen = this.time.addEvent({
-            delay: gameSettings.timings.request.headway * 1000,
+            delay: outputDelay,
+            startAt: outputDelay,
             loop: true,
+            paused: true,
             callback: () => {
                 if (!this.outputSpace.requestedItem) {
                     let itemIndex, countInInventory;
@@ -144,6 +150,7 @@ class Play extends Phaser.Scene {
                 }
             }
         });
+        this.time.delayedCall(gameSettings.timings.request.delay * 1000, () => { console.log("output timer begin"); this.outputGen.paused = false });
     }
 
     endGame(cause) {
