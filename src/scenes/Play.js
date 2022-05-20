@@ -41,6 +41,10 @@ class Play extends Phaser.Scene {
 
         this.add.image(83, 130, 'memo');                                     // output box visual
         this.outputSpace = new OutputTile(this, 83, 130).setOrigin(0.5);     // output item
+        this.outTimerFrame = this.add.rectangle(68, 160, 30, 5, 0xAAAAAA);  // Timer bar background
+        this.outTimerFrame.setOrigin(0, 0.5);
+        this.outputTimer = this.add.rectangle(68, 160, 30, 5, 0xFF0000);    // Timer bar
+        this.outputTimer.setOrigin(0, 0.5);
 
         // Instruction Text (must type in caps)
         /* Temp text; remove when tutorial is complete */
@@ -179,5 +183,14 @@ class Play extends Phaser.Scene {
             curInputTimer = this.inputGen;
         }
         this.inputTimer.width = curInputTimer.getOverallProgress() * this.inTimerFrame.width;
+
+        // Update input timer
+        let curOutputTimer;
+        if(this.outputGen.paused) {
+            curOutputTimer = this.outputDelay;
+        } else {
+            curOutputTimer = this.outputGen;
+        }
+        this.outputTimer.width = curOutputTimer.getOverallProgress() * this.outTimerFrame.width;
     }
 }
