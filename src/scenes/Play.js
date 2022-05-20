@@ -17,8 +17,14 @@ class Play extends Phaser.Scene {
         keyOutput = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes[gameSettings.keybinds.output]);
 
         // Game World Setup
+        // bg elements
         const playBg = this.add.image(game.config.width / 2, game.config.height / 2, 'play_bg');
         playBg.setScale(3);
+        this.add.image(40, 30, 'shelves');
+        this.add.image(20, 70, 'board');
+        this.add.image(80, 70, 'invoice');
+
+
         this.inventory = new Inventory(this, 3, 4).setOrigin(0.5);
         this.cursor = new Cursor(this.inventory);
         this.endOGame = false;
@@ -26,10 +32,10 @@ class Play extends Phaser.Scene {
         // Input/Output setup
         const in_box = this.add.image(game.config.width - 15, game.config.height - 15, 'play_atlas', 'in_box');
         in_box.setScale(1);
-        const out_box = this.add.image(15, game.config.height - 15, 'play_atlas', 'out_box');
+        const out_box = this.add.image(30, 70, 'memo');
         out_box.setScale(1);
         this.inputSpace = new InputTile(this, game.config.width - 15, game.config.height - 15).setOrigin(0.5);
-        this.outputSpace = new OutputTile(this, 15, game.config.height - 15).setOrigin(0.5);
+        this.outputSpace = new OutputTile(this, 30, 70).setOrigin(0.5);
 
         // Instruction Text (must type in caps)
         this.add.bitmapText(game.config.width / 3, game.config.height - 10, 'pixel_font', 'C TO STOCK', 5);
