@@ -20,27 +20,26 @@ class Play extends Phaser.Scene {
         // bg elements
         const playBg = this.add.image(game.config.width / 2, game.config.height / 2, 'play_bg');
         playBg.setScale(3);
-        this.add.image(40, 30, 'shelves');
-        this.add.image(20, 70, 'board');
-        this.add.image(80, 70, 'invoice');
-
+        this.add.image(40, 40, 'frame');
+        this.add.image(30, 130, 'board');   // output board
+        this.add.image(170, 130, 'board');  // input board
+        
 
         this.inventory = new Inventory(this, 3, 4).setOrigin(0.5);
         this.cursor = new Cursor(this.inventory);
         this.endOGame = false;
 
         // Input/Output setup
-        const in_box = this.add.image(game.config.width - 15, game.config.height - 15, 'play_atlas', 'in_box');
-        in_box.setScale(1);
-        const out_box = this.add.image(30, 70, 'memo');
-        out_box.setScale(1);
-        this.inputSpace = new InputTile(this, game.config.width - 15, game.config.height - 15).setOrigin(0.5);
-        this.outputSpace = new OutputTile(this, 30, 70).setOrigin(0.5);
+        this.add.image(170, 120, 'invoice');                                // input box visual
+        this.inputSpace = new InputTile(this, 170, 123).setOrigin(0.5);     // input item
+
+        this.add.image(30, 120, 'memo');                                     // output box visual
+        this.outputSpace = new OutputTile(this, 30, 120).setOrigin(0.5);     // output item
 
         // Instruction Text (must type in caps)
-        this.add.bitmapText(game.config.width / 3, game.config.height - 10, 'pixel_font', 'C TO STOCK', 5);
-        this.add.bitmapText(game.config.width / 3, game.config.height - 20, 'pixel_font', 'X TO GRAB/UNGRAB', 5);
-        this.add.bitmapText(game.config.width / 3, game.config.height - 30, 'pixel_font', 'Z TO FULFILL ORDER', 5);
+        this.add.bitmapText(20, game.config.height - 10, 'pixel_font', 'C TO STOCK', 5);
+        this.add.bitmapText(20, game.config.height - 20, 'pixel_font', 'X TO GRAB/UNGRAB, STACK MAX 10 POTIONS', 5);
+        this.add.bitmapText(20, game.config.height - 30, 'pixel_font', 'Z TO FULFILL ORDER', 5);
 
         // Movement Setup
         keyLeft.on("down", () => {
