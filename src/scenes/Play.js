@@ -52,32 +52,34 @@ class Play extends Phaser.Scene {
         // C to pull from input
         keyInput.on("down", () => {
             if(!this.cursor.heldStack) {
-                this.sound.play("temp_sfx");
+                this.sound.play("input_pull");
                 this.inputSpace.pull(this.cursor);
             } else {
-                this.sound.play("temp_sfx");
+                this.sound.play("wrong");
                 console.warn("Cannot pull or push while holding an item");
             }
         });
         // X to pick up, put down
         keySelect.on("down", () => {
             if (this.cursor.heldStack) {
-                this.sound.play("temp_sfx");
+                this.sound.play("drop_stack");
                 this.cursor.dropStack();
             } else {
                 let pickedUp = this.cursor.pickUpStack();
                 if (pickedUp) {
-                    this.sound.play("temp_sfx");
+                    this.sound.play("pick_up_stack");
+                } else {
+                    this.sound.play("wrong");
                 }
             }
         });
         // Z to push to output
         keyOutput.on("down", () => {
             if(!this.cursor.heldStack) {
-                this.sound.play("temp_sfx");
+                this.sound.play("output_push");
                 this.inventory.pushStack(this.cursor.coordinates.y, this.cursor.coordinates.x, this.outputSpace);
             } else {
-                this.sound.play("temp_sfx");
+                this.sound.play("wrong");
                 console.warn("Cannot pull or push while holding an item");
             }
         });
@@ -92,7 +94,7 @@ class Play extends Phaser.Scene {
                     let itemIndex = Math.floor(Math.random() * itemSpecs.length);
                     let stackSize = Math.ceil(Math.random() * itemSpecs[itemIndex].maxSize);
                     this.inputSpace.createItem(stackSize, itemIndex);
-                    this.sound.play("temp_sfx");
+                    this.sound.play("create");
                     console.log("Item Created");
                 } else {
                     this.endGame(this.inputSpace);
@@ -118,7 +120,7 @@ class Play extends Phaser.Scene {
                     let maxRequestSize = (maxStackSize < countInInventory) ? maxStackSize : countInInventory;
                     let stackSize = Math.ceil(Math.random() * maxRequestSize);
                     this.outputSpace.createRequest(stackSize, itemIndex);
-                    this.sound.play("temp_sfx");
+                    this.sound.play("request");
                     console.log("Request Created");
                 } else {
                     this.endGame(this.outputSpace);
@@ -129,7 +131,7 @@ class Play extends Phaser.Scene {
 
     endGame(cause) {
         console.log(`Death from ${cause}`);
-        this.sound.play("temp_sfx");
+        this.sound.play("death");
         this.time.delayedCall(1000, () => {
             this.scene.start('end', { fadeIn: true });
         });
