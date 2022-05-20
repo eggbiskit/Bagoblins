@@ -31,6 +31,11 @@ class Play extends Phaser.Scene {
         this.inputSpace = new InputTile(this, game.config.width - 15, game.config.height - 15).setOrigin(0.5);
         this.outputSpace = new OutputTile(this, 15, game.config.height - 15).setOrigin(0.5);
 
+        // Instruction Text (must type in caps)
+        this.add.bitmapText(game.config.width / 3, game.config.height - 10, 'pixel_font', 'C TO STOCK', 5);
+        this.add.bitmapText(game.config.width / 3, game.config.height - 20, 'pixel_font', 'X TO GRAB/UNGRAB', 5);
+        this.add.bitmapText(game.config.width / 3, game.config.height - 30, 'pixel_font', 'Z TO FULFILL ORDER', 5);
+
         // Movement Setup
         keyLeft.on("down", () => {
             this.cursor.move(false, false);

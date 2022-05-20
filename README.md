@@ -10,7 +10,8 @@ Grace Ho
 
 [Breadstick Bonanza](https://github.com/jwdicker/BreadstickBonanza)  
 [Rocket Patrol Extensions](https://github.com/jwdicker/RocketPatrolExtensions)  
-[Phaser 3 Docs](https://newdocs.phaser.io/)  
+[Phaser 3 Docs](https://newdocs.phaser.io/) 
+[Pixel Art Maker](http://pixelartmaker.com/)
 [FontStruct](https://fontstruct.com/)  
 [SnowB BMF Bitmap Generator](https://snowb.org/)  
 [Leshy SpriteSheet Tool](https://www.leshylabs.com/apps/sstool/)  
