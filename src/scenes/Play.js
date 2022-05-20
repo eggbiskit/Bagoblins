@@ -20,10 +20,12 @@ class Play extends Phaser.Scene {
         // bg elements
         const playBg = this.add.image(game.config.width / 2, game.config.height / 2, 'play_bg');
         playBg.setScale(3);
-        this.add.image(40, 40, 'frame');
+        this.add.image(45, 40, 'frame');    // 3rd person POV
+        this.add.image(40, 40, 'frame_goblin_idle');
+        this.add.image(55, 60, 'frame_shelf');
+        this.add.image(25, 62, 'frame_candles');
         this.add.image(30, 130, 'board');   // output board
         this.add.image(170, 130, 'board');  // input board
-        
 
         this.inventory = new Inventory(this, 3, 4).setOrigin(0.5);
         this.cursor = new Cursor(this.inventory);
