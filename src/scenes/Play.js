@@ -19,24 +19,24 @@ class Play extends Phaser.Scene {
         // Game World Setup
         // bg elements
         const playBg = this.add.image(game.config.width / 2, game.config.height / 2, 'play_bg');
-        playBg.setScale(3);
+        playBg.setScale(5);
         this.add.image(45, 40, 'frame');    // 3rd person POV
         this.add.image(40, 40, 'frame_goblin_idle');
         this.add.image(55, 60, 'frame_shelf');
         this.add.image(25, 62, 'frame_candles');
-        this.add.image(30, 130, 'board');   // output board
-        this.add.image(170, 130, 'board');  // input board
+        this.add.image(80, 130, 'board');   // output board
+        this.add.image(240, 130, 'board');  // input board
 
         this.inventory = new Inventory(this, 3, 4).setOrigin(0.5);
         this.cursor = new Cursor(this.inventory);
         this.endOGame = false;
 
         // Input/Output setup
-        this.add.image(170, 120, 'invoice');                                // input box visual
-        this.inputSpace = new InputTile(this, 170, 123).setOrigin(0.5);     // input item
+        this.add.image(240, 130, 'invoice');                                // input box visual
+        this.inputSpace = new InputTile(this, 240, 130).setOrigin(0.5);     // input item
 
-        this.add.image(30, 120, 'memo');                                     // output box visual
-        this.outputSpace = new OutputTile(this, 30, 120).setOrigin(0.5);     // output item
+        this.add.image(83, 130, 'memo');                                     // output box visual
+        this.outputSpace = new OutputTile(this, 83, 130).setOrigin(0.5);     // output item
 
         // Instruction Text (must type in caps)
         this.add.bitmapText(20, game.config.height - 10, 'pixel_font', 'C TO STOCK', 5);
