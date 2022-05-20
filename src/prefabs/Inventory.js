@@ -46,6 +46,15 @@ class Inventory extends Phaser.GameObjects.Sprite {
         };
     }
 
+    isEmpty() {
+        for(let elem in this.itemCount) {
+            if(this.itemCount[elem] != 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     /**
      * @param {*} row – The row of the stack to get
      * @param {*} col – The col of the stack to get

@@ -108,15 +108,25 @@ class Play extends Phaser.Scene {
             loop: true,
             callback: () => {
                 if (!this.outputSpace.requestedItem) {
-                    let itemIndex;
-                    do {
-                        itemIndex = Math.floor(Math.random() * itemSpecs.length);
-                    } while(this.inventory.itemCount[itemSpecs[itemIndex].textureName] <= 0);
+                    let itemIndex, countInInventory;
+                    if(this.inventory.isEmpty()) {
+                        // Fail-safe to avoid infinite loop
+                        if(this.inputSpace.curItem) {
+                            itemIndex = itemSpecs.findIndex(elem => elem.textureName == this.inputSpace.curItem.name);
+                            countInInventory = this.inputSpace.curItem.curSize;
+                        } else {
+                            console.error("Error: Request made before items spawned");
+                            this.endGame("Shitty Game Design");
+                        }
+                    } else {
+                        do {
+                            itemIndex = Math.floor(Math.random() * itemSpecs.length);
+                        } while(this.inventory.itemCount[itemSpecs[itemIndex].textureName] <= 0);
+                        countInInventory = this.inventory.itemCount[itemSpecs[itemIndex].textureName];
+                    }
                     
                     let maxStackSize = itemSpecs[itemIndex].maxSize;
-                    let countInInventory = this.inventory.itemCount[itemSpecs[itemIndex].textureName];
 
-                    console.log(countInInventory);
                     let maxRequestSize = (maxStackSize < countInInventory) ? maxStackSize : countInInventory;
                     let stackSize = Math.ceil(Math.random() * maxRequestSize);
                     this.outputSpace.createRequest(stackSize, itemIndex);
