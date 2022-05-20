@@ -39,6 +39,7 @@ class Play extends Phaser.Scene {
         this.outputSpace = new OutputTile(this, 83, 130).setOrigin(0.5);     // output item
 
         // Instruction Text (must type in caps)
+        /* Temp text; remove when tutorial is complete */
         this.add.bitmapText(20, game.config.height - 10, 'pixel_font', 'C TO STOCK', 5);
         this.add.bitmapText(20, game.config.height - 20, 'pixel_font', 'X TO GRAB/UNGRAB, STACK MAX 10 POTIONS', 5);
         this.add.bitmapText(20, game.config.height - 30, 'pixel_font', 'Z TO FULFILL ORDER', 5);
