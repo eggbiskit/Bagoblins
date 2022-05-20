@@ -102,10 +102,11 @@ class Inventory extends Phaser.GameObjects.Sprite {
 
     pushStack(row, col, outputSpace) {
         let stack = this.getStack(row, col);
-        let name = stack.name;
-        let size = stack.curSize;
+
         if (stack) {
             console.log("Pushed stack to output");
+            let name = stack.name;
+            let size = stack.curSize;
             stack = outputSpace.push(stack);
             if (stack) {
                 this.contents[row][col] = stack;
