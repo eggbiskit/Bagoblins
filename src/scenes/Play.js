@@ -142,6 +142,7 @@ class Play extends Phaser.Scene {
     endGame(cause) {
         console.log(`Death from ${cause}`);
         this.sound.play("death");
+        this.time.removeAllEvents();
         this.time.delayedCall(1000, () => {
             this.scene.start('end', { fadeIn: true });
         });
