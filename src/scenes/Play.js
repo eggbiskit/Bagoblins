@@ -34,6 +34,10 @@ class Play extends Phaser.Scene {
         // Input/Output setup
         this.add.image(240, 130, 'invoice');                                // input box visual
         this.inputSpace = new InputTile(this, 240, 130).setOrigin(0.5);     // input item
+        this.inTimerFrame = this.add.rectangle(225, 160, 30, 5, 0xAAAAAA);  // Timer bar background
+        this.inTimerFrame.setOrigin(0, 0.5);
+        this.inputTimer = this.add.rectangle(225, 160, 30, 5, 0xFF0000);    // Timer bar
+        this.inputTimer.setOrigin(0, 0.5);
 
         this.add.image(83, 130, 'memo');                                     // output box visual
         this.outputSpace = new OutputTile(this, 83, 130).setOrigin(0.5);     // output item
@@ -111,7 +115,7 @@ class Play extends Phaser.Scene {
                 }
             }
         });
-        this.time.delayedCall(gameSettings.timings.item.delay * 1000, () => { console.log("input timer begin"); this.inputGen.paused = false });
+        this.inputDelay = this.time.delayedCall(gameSettings.timings.item.delay * 1000, () => { console.log("input timer begin"); this.inputGen.paused = false });
 
         // Request Generation
         let outputDelay = gameSettings.timings.request.headway * 1000;
@@ -151,7 +155,9 @@ class Play extends Phaser.Scene {
                 }
             }
         });
-        this.time.delayedCall(gameSettings.timings.request.delay * 1000, () => { console.log("output timer begin"); this.outputGen.paused = false });
+        this.outputDelay = this.time.delayedCall(gameSettings.timings.request.delay * 1000, () => { console.log("output timer begin"); this.outputGen.paused = false });
+
+        this.startingTime = this.time.now;
     }
 
     endGame(cause) {
@@ -162,5 +168,16 @@ class Play extends Phaser.Scene {
             this.scene.start('end', { fadeIn: true });
         });
         this.endOGame = true;
+    }
+
+    update() {
+        // Update input timer
+        let curInputTimer;
+        if(this.inputGen.paused) {
+            curInputTimer = this.inputDelay;
+        } else {
+            curInputTimer = this.inputGen;
+        }
+        this.inputTimer.width = curInputTimer.getOverallProgress() * this.inTimerFrame.width;
     }
 }
