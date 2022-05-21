@@ -8,11 +8,6 @@ class Load extends Phaser.Scene {
         // Image Loading
         // menu scene assets -> move to spritesheet
         this.load.image("menu_bg", "assets/sprites/menu_bg.png");
-        //this.load.image("deco_shelves", "assets/sprites/deco_shelves.png");
-        // tutorial scene assets -> move to spritesheet
-        this.load.image("tutorial", "assets/sprites/tutorial.png");
-        this.load.image("clipboard", "assets/sprites/clipboard.png");
-        this.load.image("overview", "assets/sprites/tut_overview.png");
 
         // play scene assets -> move to spritesheet
         this.load.image("inventory", "assets/sprites/4x3inventory.png");
@@ -68,6 +63,6 @@ class Load extends Phaser.Scene {
         gameSettings = this.cache.json.get("gameSettings");
         itemSpecs = this.cache.json.get("items");
 
-        this.scene.start("menu");
+        this.scene.start("tutorial");
     }
 }
