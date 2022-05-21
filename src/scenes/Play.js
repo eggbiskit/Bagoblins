@@ -132,7 +132,7 @@ class Play extends Phaser.Scene {
                     this.sound.play("create");
                     console.log("Item Created");
                 } else {
-                    this.endGame(this.inputSpace);
+                    //this.endGame(this.inputSpace);
                 }
             }
         });
@@ -172,7 +172,7 @@ class Play extends Phaser.Scene {
                     this.sound.play("request");
                     console.log("Request Created");
                 } else {
-                    this.endGame(this.outputSpace);
+                    //this.endGame(this.outputSpace);
                 }
             }
         });
@@ -214,7 +214,7 @@ class Play extends Phaser.Scene {
         let elapsed = this.time.now - this.startTime;
         let mins = this.formatTimeText(Math.floor(elapsed / 60000));
         let secs = this.formatTimeText(Math.floor(elapsed / 1000) - mins * 60);
-        let mills = this.formatTimeText(Math.floor(elapsed / 10) - secs * 100);
+        let mills = this.formatTimeText(Math.floor(elapsed / 10) - secs * 100 - mins * 6000);
 
         this.runtimeClock.setText(`${mins}:${secs}:${mills}`);
     }
