@@ -6,12 +6,7 @@ class Play extends Phaser.Scene {
 
     create() {
         console.log("play");
-        //console.log("b4 scene stuff")
-        //this.scene.pause();
-        //this.scene.play("tutorial");
-        //this.scene.resume("tutorial");
-        //console.log("b4 play.js")
-
+ 
         // Input Setup
         keyLeft = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes[gameSettings.keybinds.left]);
         keyRight = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes[gameSettings.keybinds.right]);
@@ -23,12 +18,10 @@ class Play extends Phaser.Scene {
 
         // Game World Setup
         // bg elements
-        const playBg = this.add.image(game.config.width / 2, game.config.height / 2, 'play_bg');
-        playBg.setScale(5);
+        const playBg = this.add.image(game.config.width / 2, game.config.height / 2, 'play_bg').setScale(5);
         this.add.image(45, 40, 'frame');    // 3rd person POV
         const goblin_idle = this.add.image(40, 40, 'frame_goblin_idle');
-        const goblin_work = this.add.image(47, 55, 'frame_goblin_work'); 
-        goblin_work.setVisible(false);      // goblin not working at start
+        const goblin_work = this.add.image(47, 55, 'frame_goblin_work').setVisible(false);
         this.add.image(55, 60, 'frame_shelf');
         this.add.image(25, 62, 'frame_candles');
         this.add.image(80, 130, 'board');   // output board
@@ -42,25 +35,15 @@ class Play extends Phaser.Scene {
         this.endOGame = false;
 
         // Input/Output setup
-        this.add.image(240, 130, 'invoice');                                // input box visual
-        this.inputSpace = new InputTile(this, 240, 133).setOrigin(0.5);     // input item
-        this.inTimerFrame = this.add.rectangle(225, 160, 30, 5, 0xAAAAAA);  // Timer bar background
-        this.inTimerFrame.setOrigin(0, 0.5);
-        this.inputTimer = this.add.rectangle(225, 160, 30, 5, 0xFF0000);    // Timer bar
-        this.inputTimer.setOrigin(0, 0.5);
+        this.add.image(240, 130, 'invoice');                                                  // input box visual
+        this.inputSpace = new InputTile(this, 240, 133).setOrigin(0.5);                       // input item
+        this.inTimerFrame = this.add.rectangle(225, 160, 30, 5, 0xAAAAAA).setOrigin(0, 0.5);  // Timer bar background
+        this.inputTimer = this.add.rectangle(225, 160, 30, 5, 0xFF0000).setOrigin(0, 0.5);    // Timer bar
 
-        this.add.image(83, 130, 'memo');                                    // output box visual
-        this.outputSpace = new OutputTile(this, 83, 130).setOrigin(0.5);    // output item
-        this.outTimerFrame = this.add.rectangle(68, 160, 30, 5, 0xAAAAAA);  // Timer bar background
-        this.outTimerFrame.setOrigin(0, 0.5);
-        this.outputTimer = this.add.rectangle(68, 160, 30, 5, 0xFF0000);    // Timer bar
-        this.outputTimer.setOrigin(0, 0.5);
-
-        // Instruction Text (must type in caps)
-        /* Temp text; remove when tutorial is complete */
-        this.add.bitmapText(20, game.config.height - 10, 'pixel_font', 'C TO STOCK', 5);
-        this.add.bitmapText(20, game.config.height - 20, 'pixel_font', 'X TO GRAB/UNGRAB, STACK MAX 10 POTIONS', 5);
-        this.add.bitmapText(20, game.config.height - 30, 'pixel_font', 'Z TO FULFILL ORDER', 5);
+        this.add.image(83, 130, 'memo');                                                      // output box visual
+        this.outputSpace = new OutputTile(this, 83, 130).setOrigin(0.5);                      // output item
+        this.outTimerFrame = this.add.rectangle(68, 160, 30, 5, 0xAAAAAA).setOrigin(0, 0.5);  // Timer bar background
+        this.outputTimer = this.add.rectangle(68, 160, 30, 5, 0xFF0000).setOrigin(0, 0.5);    // Timer bar
 
         // Movement Setup  
         keyLeft.on("down", () => {
