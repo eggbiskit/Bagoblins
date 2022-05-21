@@ -72,7 +72,7 @@ class Tutorial extends Phaser.Scene {
             repeat: -1
         });
         this.play.anims.play('playAni', true);
-        
+
         keySpace.on("down", () => {
             this.ak.anims.play('akAni');
             this.add.bitmapText(130, 105, 'pixel_font', 'ARROW KEYS TO', 5);
@@ -80,11 +80,8 @@ class Tutorial extends Phaser.Scene {
             this.x.anims.play('xAni');
             this.add.bitmapText(101, 152, 'pixel_font', 'X TO GRAB AND UNGRAB POTIONS', 5);
             this.add.bitmapText(112, 159, 'pixel_font', 'STACK UP TO  +10+  POTIONS', 5);
-            this.secSpace = true;
-        });
-
-        if(this.secSpace) {
             this.scene.start("play");
-        }
+
+        });
     }
 }

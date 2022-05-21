@@ -63,6 +63,6 @@ class Load extends Phaser.Scene {
         gameSettings = this.cache.json.get("gameSettings");
         itemSpecs = this.cache.json.get("items");
 
-        this.scene.start("tutorial");
+        this.scene.start("menu");
     }
 }
