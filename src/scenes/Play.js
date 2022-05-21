@@ -216,7 +216,7 @@ class Play extends Phaser.Scene {
         }
         this.inputTimer.width = curInputTimer.getOverallProgress() * this.inTimerFrame.width;
 
-        // Update input timer
+        // Update output timer
         let curOutputTimer;
         if(this.outputGen.paused) {
             curOutputTimer = this.outputDelay;
