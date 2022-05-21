@@ -6,6 +6,11 @@ class Play extends Phaser.Scene {
 
     create() {
         console.log("play");
+        //console.log("b4 scene stuff")
+        //this.scene.pause();
+        //this.scene.play("tutorial");
+        //this.scene.resume("tutorial");
+        //console.log("b4 play.js")
 
         // Input Setup
         keyLeft = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes[gameSettings.keybinds.left]);

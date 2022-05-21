@@ -11,6 +11,9 @@ class Load extends Phaser.Scene {
         //this.load.image("deco_shelves", "assets/sprites/deco_shelves.png");
         // tutorial scene assets -> move to spritesheet
         this.load.image("tutorial", "assets/sprites/tutorial.png");
+        this.load.image("clipboard", "assets/sprites/clipboard.png");
+        this.load.image("overview", "assets/sprites/tut_overview.png");
+
         // play scene assets -> move to spritesheet
         this.load.image("inventory", "assets/sprites/4x3inventory.png");
         this.load.image("deco_inventory", "assets/sprites/deco_inventory.png");
@@ -36,6 +39,7 @@ class Load extends Phaser.Scene {
 
         // Texture Atlas Loading
         this.load.atlas('menu_atlas', 'assets/sprites/menu_sheet.png', 'assets/sprites/menu.json');
+        this.load.atlas('tutorial_atlas', 'assets/sprites/tutorial_sheet.png', 'assets/sprites/tutorial.json');
         this.load.atlas('play_atlas', 'assets/sprites/play_sheet.png', 'assets/sprites/play.json');
 
         // Font loading
