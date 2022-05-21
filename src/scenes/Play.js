@@ -22,19 +22,14 @@ class Play extends Phaser.Scene {
         playBg.setScale(5);
         this.add.image(45, 40, 'frame');    // 3rd person POV
         const goblin_idle = this.add.image(40, 40, 'frame_goblin_idle');
-        const goblin_work = this.add.image(47, 55, 'frame_goblin_work');
-        this.anims.create({
-            key: 'workAnim', 
-            frames: [{key: 'goblin_work'}],
-            frameRate: 1,
-            repeat: -1
-        });
+        const goblin_work = this.add.image(47, 55, 'frame_goblin_work'); 
         goblin_work.setVisible(false);      // goblin not working at start
         this.add.image(55, 60, 'frame_shelf');
         this.add.image(25, 62, 'frame_candles');
         this.add.image(80, 130, 'board');   // output board
         this.add.image(240, 130, 'board');  // input board
 
+        this.add.image(game.config.width / 2 + 1, game.config.height / 2 + 27, 'deco_inventory');
         this.inventory = new Inventory(this, 3, 4).setOrigin(0.5);
         this.cursor = new Cursor(this.inventory);
         this.endOGame = false;
