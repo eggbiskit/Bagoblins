@@ -21,7 +21,15 @@ class Play extends Phaser.Scene {
         const playBg = this.add.image(game.config.width / 2, game.config.height / 2, 'play_bg');
         playBg.setScale(5);
         this.add.image(45, 40, 'frame');    // 3rd person POV
-        this.add.image(40, 40, 'frame_goblin_idle');
+        const goblin_idle = this.add.image(40, 40, 'frame_goblin_idle');
+        const goblin_work = this.add.image(47, 55, 'frame_goblin_work');
+        this.anims.create({
+            key: 'workAnim', 
+            frames: [{key: 'goblin_work'}],
+            frameRate: 1,
+            repeat: -1
+        });
+        goblin_work.setVisible(false);      // goblin not working at start
         this.add.image(55, 60, 'frame_shelf');
         this.add.image(25, 62, 'frame_candles');
         this.add.image(80, 130, 'board');   // output board
@@ -33,14 +41,14 @@ class Play extends Phaser.Scene {
 
         // Input/Output setup
         this.add.image(240, 130, 'invoice');                                // input box visual
-        this.inputSpace = new InputTile(this, 240, 130).setOrigin(0.5);     // input item
+        this.inputSpace = new InputTile(this, 240, 133).setOrigin(0.5);     // input item
         this.inTimerFrame = this.add.rectangle(225, 160, 30, 5, 0xAAAAAA);  // Timer bar background
         this.inTimerFrame.setOrigin(0, 0.5);
         this.inputTimer = this.add.rectangle(225, 160, 30, 5, 0xFF0000);    // Timer bar
         this.inputTimer.setOrigin(0, 0.5);
 
-        this.add.image(83, 130, 'memo');                                     // output box visual
-        this.outputSpace = new OutputTile(this, 83, 130).setOrigin(0.5);     // output item
+        this.add.image(83, 130, 'memo');                                    // output box visual
+        this.outputSpace = new OutputTile(this, 83, 130).setOrigin(0.5);    // output item
         this.outTimerFrame = this.add.rectangle(68, 160, 30, 5, 0xAAAAAA);  // Timer bar background
         this.outTimerFrame.setOrigin(0, 0.5);
         this.outputTimer = this.add.rectangle(68, 160, 30, 5, 0xFF0000);    // Timer bar
@@ -55,15 +63,39 @@ class Play extends Phaser.Scene {
         // Movement Setup
         keyLeft.on("down", () => {
             this.cursor.move(false, false);
+            goblin_idle.setVisible(false);   // hide idle state for work state
+            goblin_work.setVisible(true);
+        });
+        keyLeft.on("up", () => {
+            goblin_idle.setVisible(true);    // on key up reset to idle state
+            goblin_work.setVisible(false);
         });
         keyRight.on("down", () => {
             this.cursor.move(false, true);
+            goblin_idle.setVisible(false);
+            goblin_work.setVisible(true);
+        });
+        keyRight.on("up", () => {
+            goblin_idle.setVisible(true);   
+            goblin_work.setVisible(false);
         });
         keyUp.on("down", () => {
             this.cursor.move(true, false);
+            goblin_idle.setVisible(false);
+            goblin_work.setVisible(true);
+        });
+        keyUp.on("up", () => {
+            goblin_idle.setVisible(true);   
+            goblin_work.setVisible(false);
         });
         keyDown.on("down", () => {
             this.cursor.move(true, true);
+            goblin_idle.setVisible(false);
+            goblin_work.setVisible(true);
+        });
+        keyDown.on("up", () => {
+            goblin_idle.setVisible(true);
+            goblin_work.setVisible(false);
         });
         // C to pull from input
         keyInput.on("down", () => {
