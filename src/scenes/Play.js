@@ -33,6 +33,8 @@ class Play extends Phaser.Scene {
         this.add.image(25, 62, 'frame_candles');
         this.add.image(80, 130, 'board');   // output board
         this.add.image(240, 130, 'board');  // input board
+        this.add.rectangle(game.config.width / 2, 20, 75, 20, 0xAAAAAA).setOrigin(0.5); // Runtime clock background
+        this.runtimeClock = this.add.bitmapText(game.config.width / 2, 20, 'pixel_font', '00:00:00', 10).setOrigin(0.5);
 
         this.add.image(game.config.width / 2 + 1, game.config.height / 2 + 27, 'deco_inventory');
         this.inventory = new Inventory(this, 3, 4).setOrigin(0.5);
@@ -60,7 +62,7 @@ class Play extends Phaser.Scene {
         this.add.bitmapText(20, game.config.height - 20, 'pixel_font', 'X TO GRAB/UNGRAB, STACK MAX 10 POTIONS', 5);
         this.add.bitmapText(20, game.config.height - 30, 'pixel_font', 'Z TO FULFILL ORDER', 5);
 
-        // Movement Setup
+        // Movement Setup  
         keyLeft.on("down", () => {
             this.cursor.move(false, false);
             goblin_idle.setVisible(false);   // hide idle state for work state
@@ -193,7 +195,7 @@ class Play extends Phaser.Scene {
         });
         this.outputDelay = this.time.delayedCall(gameSettings.timings.request.delay * 1000, () => { console.log("output timer begin"); this.outputGen.paused = false });
 
-        this.startingTime = this.time.now;
+        this.startTime = this.time.now;
     }
 
     endGame(cause) {
@@ -224,5 +226,17 @@ class Play extends Phaser.Scene {
             curOutputTimer = this.outputGen;
         }
         this.outputTimer.width = curOutputTimer.getOverallProgress() * this.outTimerFrame.width;
+
+        // Update runtime timer
+        let elapsed = this.time.now - this.startTime;
+        let mins = this.formatTimeText(Math.floor(elapsed / 60000));
+        let secs = this.formatTimeText(Math.floor(elapsed / 1000) - mins * 60);
+        let mills = this.formatTimeText(Math.floor(elapsed / 10) - secs * 100);
+
+        this.runtimeClock.setText(`${mins}:${secs}:${mills}`);
+    }
+
+    formatTimeText(time) {
+        return (time < 10) ? `0${time}` : time;
     }
 }
