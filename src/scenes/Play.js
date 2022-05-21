@@ -20,10 +20,10 @@ class Play extends Phaser.Scene {
         // bg elements
         const playBg = this.add.image(game.config.width / 2, game.config.height / 2, 'play_bg').setScale(5);
         this.add.image(45, 40, 'frame');    // 3rd person POV
-        const goblin_idle = this.add.image(40, 40, 'frame_goblin_idle');
-        const goblin_work = this.add.image(47, 55, 'frame_goblin_work').setVisible(false);
-        this.add.image(55, 60, 'frame_shelf');
-        this.add.image(25, 62, 'frame_candles');
+        const goblin_idle = this.add.image(40, 43, 'frame_goblin_idle');
+        const goblin_work = this.add.image(47, 57, 'frame_goblin_work').setVisible(false);
+        this.add.image(55, 62 , 'frame_shelf');
+        this.add.image(25, 64, 'frame_candles');
         this.add.image(80, 130, 'board');   // output board
         this.add.image(240, 130, 'board');  // input board
         this.add.rectangle(game.config.width / 2, 20, 75, 20, 0xAAAAAA).setOrigin(0.5); // Runtime clock background
