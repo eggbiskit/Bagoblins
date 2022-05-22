@@ -178,7 +178,7 @@ class Play extends Phaser.Scene {
         });
         this.outputDelay = this.time.delayedCall(gameSettings.timings.request.delay * 1000, () => { console.log("output timer begin"); this.outputGen.paused = false });
 
-        this.startTime = this.time.now;
+        this.startTime;
     }
 
     endGame(cause) {
@@ -192,6 +192,11 @@ class Play extends Phaser.Scene {
     }
 
     update() {
+        // Sets startTime to time at first update
+        if(!this.startTime) {
+            this.startTime = this.time.now;
+        }
+
         // Update input timer
         let curInputTimer;
         if(this.inputGen.paused) {
