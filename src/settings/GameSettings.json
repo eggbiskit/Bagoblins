@@ -40,10 +40,10 @@
     },
     "textConfigs": {
         "item": {
-            "fontFamily": "pixel",
-            "fontSize": "5px",
-            "color": "#F9BB44",
-            "align": "right"
+            "font": "pixel_font",
+            "size": 8,
+            "align": 2,
+            "dropShadowColor": "#000"
         }
     }
 }
