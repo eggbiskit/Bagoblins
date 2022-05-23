@@ -150,7 +150,7 @@ class Play extends Phaser.Scene {
                     } while (itemSpecs[itemIndex].unlockLvl > this.playerLevel);
 
                     // Getting item stack size
-                    let stackSize = Math.ceil(Math.random() * (itemSpecs[itemIndex].maxSize * gameSettings.levelUp.stackSizePortions[this.playerLevel]));
+                    let stackSize = Math.ceil(Math.random() * (itemSpecs[itemIndex].maxSize * gameSettings.levelUp.stackSizePortions[this.playerLevel - itemSpecs[itemIndex].unlockLvl]));
 
                     // Creating the item
                     this.inputSpace.createItem(stackSize, itemIndex);
