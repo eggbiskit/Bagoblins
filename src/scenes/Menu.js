@@ -7,8 +7,7 @@ class Menu extends Phaser.Scene {
         console.log("Menu");
 
         // bg
-        const menuBg = this.add.image(game.config.width / 2, game.config.height / 2, 'menu_bg');
-        menuBg.setScale(3);
+        const menuBg = this.add.image(game.config.width / 2, game.config.height / 2, 'menu_atlas', 'menu_bg').setScale(3);
 
         // title animation
         this.title = this.add.sprite(game.config.width / 2, game.config.height / 5);

@@ -2,7 +2,7 @@ class Cursor extends Phaser.GameObjects.Sprite {
     constructor(inventory) {
         let initialPos = inventory.getSpaceCoords(0, 0);
         // Sprite Setup
-        super(inventory.scene, initialPos.x, initialPos.y, "cursor");
+        super(inventory.scene, initialPos.x, initialPos.y,'play_atlas', 'cursor');
         inventory.scene.add.existing(this);
         this.setDepth(gameSettings.depths.cursor);
         this.setOrigin(0.5);
