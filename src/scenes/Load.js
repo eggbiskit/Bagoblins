@@ -39,6 +39,7 @@ class Load extends Phaser.Scene {
 
         // Font loading
         this.load.bitmapFont('pixel_font', 'assets/font/pixel.png', 'assets/font/pixel.xml');
+        this.load.bitmapFont('pixel_gold', 'assets/font/pixel_gold.png', 'assets/font/pixel_gold.xml');
 
         // SFX Loading
         // *temp sfx, replace later*

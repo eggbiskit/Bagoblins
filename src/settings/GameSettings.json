@@ -40,8 +40,8 @@
     },
     "textConfigs": {
         "item": {
-            "font": "pixel_font",
-            "size": 8,
+            "font": "pixel_gold",
+            "size": 5,
             "align": 2,
             "dropShadowColor": "#000"
         }
