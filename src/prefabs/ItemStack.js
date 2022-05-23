@@ -3,6 +3,10 @@ class ItemStack extends Phaser.GameObjects.Sprite {
         // Getting item info
         let itemConfig = itemSpecs[configIntex];
         console.assert(itemConfig.maxSize && itemConfig.textureName, "Error: Invalid item config index");
+        if(itemConfig.maxSize < stackSize) {
+            console.error("Error: Invalid Stack Size");
+            stackSize = itemConfig.maxSize;
+        }
 
         // Adding sprite to scene
         super(scene, initialPos.x, initialPos.y, itemConfig.textureName);
