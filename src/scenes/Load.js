@@ -8,6 +8,10 @@ class Load extends Phaser.Scene {
         // Image Loading
         // menu scene assets -> move to spritesheet
         this.load.image("menu_bg", "assets/sprites/menu_bg.png");
+        // tutorial assets
+        this.load.image("tut_potion_c", "assets/sprites/tut_potion_c.png");
+        this.load.image("tut_potion_z", "assets/sprites/tut_potion_z.png");
+
 
         // play scene assets -> move to spritesheet
         this.load.image("inventory", "assets/sprites/4x3inventory.png");
