@@ -29,7 +29,8 @@
                 "rate": 1.25,
                 "time": 45
             }
-        }
+        },
+        "leveling": 30
     },
     "depths": {
         "background": 0,
@@ -45,5 +46,20 @@
             "align": 2,
             "dropShadowColor": "#000"
         }
+    },
+    "levelUp": {
+        "stackSizePortions": [
+            0.1,
+            0.2,
+            0.3,
+            0.4,
+            0.5,
+            0.6,
+            0.7,
+            0.8,
+            0.9,
+            1.0
+        ],
+        "maxLevel": 9
     }
 }
