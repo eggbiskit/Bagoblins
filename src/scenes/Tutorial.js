@@ -12,14 +12,14 @@ class Tutorial extends Phaser.Scene {
         const overview = this.add.image(game.config.width / 2, 40 , 'tutorial_atlas', 'tut_overview').setScale(2); 
 
         // c key
-        this.add.image(160, 75, 'invoice');
-        this.add.image(160, 79, 'tut_potion_c');
+        this.add.image(160, 75, 'tutorial_atlas', 'bg_invoice');
+        this.add.image(160, 79, 'tutorial_atlas', 'tut_potion_c');
         this.add.bitmapText(111, 105, 'pixel_font', 'C TO RECIEVE INVOICE ORDER', 5);
 
         // z key
-        this.add.image(160, 135, 'memo').setScale(1.5);
+        this.add.image(160, 135, 'tutorial_atlas', 'memo').setScale(1.5);
         this.add.bitmapText(150, 120, 'pixel_gold', 'ORDER', 5);
-        this.add.image(161, 138, 'tut_potion_z').alpha = 0.5;
+        this.add.image(161, 138, 'tutorial_atlas', 'tut_potion_z').alpha = 0.5;
         this.add.bitmapText(117, 160, 'pixel_font', 'Z', 5);
         this.add.bitmapText(123, 160, 'pixel_font', 'TO SEND OUT DELIVERIES', 5);
 
