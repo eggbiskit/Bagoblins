@@ -17,12 +17,18 @@ class Load extends Phaser.Scene {
         this.load.image("play_bg", "assets/sprites/play_bg.png");
         this.load.image("shelves", "assets/sprites/bg_shelves.png");
         this.load.image("board", "assets/sprites/bg_board.png");
+        this.load.image("big_drawers", "assets/sprites/big_drawers.png");
+        this.load.image("small_drawers", "assets/sprites/small_drawers.png");
+        this.load.image("table", "assets/sprites/table.png");
+
         this.load.image("invoice", "assets/sprites/bg_invoice.png");
         this.load.image("frame", "assets/sprites/frame.png");
         this.load.image("frame_shelf", "assets/sprites/frame_shelf.png");
         this.load.image("frame_candles", "assets/sprites/frame_candles.png");
         this.load.image("frame_goblin_idle", "assets/sprites/frame_goblin_idle.png");
         this.load.image("frame_goblin_work", "assets/sprites/frame_goblin_work.png");
+        this.load.image("frame_goblin_c", "assets/sprites/frame_goblin_c.png");
+        this.load.image("timer_frame", "assets/sprites/timer_frame.png");
         this.load.image("notes", "assets/sprites/notes.png");
         this.load.image("memo", "assets/sprites/memo.png");
 

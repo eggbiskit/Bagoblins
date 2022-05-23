@@ -19,16 +19,23 @@ class Play extends Phaser.Scene {
         // Game World Setup
         // bg elements
         const playBg = this.add.image(game.config.width / 2, game.config.height / 2, 'menu_bg').setScale(3);
+        this.add.image(0, 180, 'table').setScale(2);  
+        this.add.image(160, 180, 'table').setScale(2); 
+        this.add.image(200, 180, 'table').setScale(2);  
+        //this.add.image(100, 100, 'board');
         this.add.image(45, 40, 'frame');    // 3rd person POV
         const goblin_idle = this.add.image(40, 43, 'frame_goblin_idle');
         const goblin_work = this.add.image(47, 57, 'frame_goblin_work').setVisible(false);
-        const goblin_c = this.add.image(47, 57, 'frame_goblin_c').setVisible(false);
+        const goblin_c = this.add.image(42, 40, 'frame_goblin_c').setVisible(false);
         this.add.image(55, 62 , 'frame_shelf');
         this.add.image(25, 64, 'frame_candles');
-        this.add.image(80, 130, 'board');   // output board
-        this.add.image(240, 130, 'board');  // input board
-        this.add.rectangle(game.config.width / 2, 20, 75, 20, 0xAAAAAA).setOrigin(0.5); // Runtime clock background
-        this.runtimeClock = this.add.bitmapText(game.config.width / 2, 20, 'pixel_gold', '00:00:00', 10).setOrigin(0.5);
+        this.add.image(240, 130, 'small_drawers').setScale(1);
+        this.add.image(240, 130, 'big_drawers').setScale(1);
+
+        this.add.image(game.config.width / 2 - 1, 23, 'timer_frame').setOrigin(0.5); // Runtime clock background
+        this.add.bitmapText(139, 9, 'pixel_gold', 'IT HAS BEEN', 5);
+        this.add.bitmapText(126, 29, 'pixel_gold','SINCE AN ACCIDENT', 5);
+        this.runtimeClock = this.add.bitmapText(game.config.width / 2, 21, 'pixel_gold', '00:00:00', 10).setOrigin(0.5);
         this.startTime;
 
         this.add.image(game.config.width / 2 + 1, game.config.height / 2 + 27, 'deco_inventory');
@@ -37,15 +44,16 @@ class Play extends Phaser.Scene {
         this.endOGame = false;
 
         // Input/Output setup
-        this.add.image(240, 130, 'invoice');                                                  // input box visual
-        this.inputSpace = new InputTile(this, 240, 133).setOrigin(0.5);                       // input item
-        this.inTimerFrame = this.add.rectangle(225, 160, 30, 5, 0xAAAAAA).setOrigin(0, 0.5);  // Timer bar background
-        this.inputTimer = this.add.rectangle(225, 160, 30, 5, 0xFF0000).setOrigin(0, 0.5);    // Timer bar
+        this.add.image(280, 130, 'invoice');                                                  // input box visual
+        this.inputSpace = new InputTile(this, 280, 133).setOrigin(0.5);                       // input item
+        this.inTimerFrame = this.add.rectangle(270, 160, 30, 5, 0xAAAAAA).setOrigin(0, 0.5);  // Timer bar background
+        this.inputTimer = this.add.rectangle(270, 160, 30, 5, 0xFF0000).setOrigin(0, 0.5);    // Timer bar
 
-        this.add.image(83, 130, 'memo');                                                      // output box visual
-        this.outputSpace = new OutputTile(this, 83, 130).setOrigin(0.5);                      // output item
-        this.outTimerFrame = this.add.rectangle(68, 160, 30, 5, 0xAAAAAA).setOrigin(0, 0.5);  // Timer bar background
-        this.outputTimer = this.add.rectangle(68, 160, 30, 5, 0xFF0000).setOrigin(0, 0.5);    // Timer bar
+        this.add.image(55, 130, 'memo').setScale(2);                                          // output box visual
+        this.outputSpace = new OutputTile(this, 63, 130).setOrigin(0.5);                      // output item
+        this.add.bitmapText(46, 110, 'pixel_gold', 'ORDER', 5);
+        this.outTimerFrame = this.add.rectangle(46, 160, 30, 5, 0xAAAAAA).setOrigin(0, 0.5);  // Timer bar background
+        this.outputTimer = this.add.rectangle(46, 160, 30, 5, 0xFF0000).setOrigin(0, 0.5);    // Timer bar
 
         // Movement Setup  
         keyLeft.on("down", () => {
@@ -57,6 +65,7 @@ class Play extends Phaser.Scene {
             this.time.addEvent({ delay: 2000, callback: () => { goblin_work.setVisible(false); }, loop: true });
             this.time.addEvent({ delay: 2000, callback: () => { goblin_idle.setVisible(true); }, loop: true });
         });
+
         keyRight.on("down", () => {
             this.cursor.move(false, true);
             goblin_idle.setVisible(false);
@@ -89,7 +98,8 @@ class Play extends Phaser.Scene {
 
         // C to pull from input
         keyInput.on("down", () => {
-            goblin_c.setVisible(true);
+            goblin_idle.setVisible(false);
+            goblin_work.setVisible(true);
             if(!this.cursor.heldStack) {
                 this.sound.play("input_pull");
                 this.inputSpace.pull(this.cursor);
@@ -98,6 +108,7 @@ class Play extends Phaser.Scene {
                 console.warn("Cannot pull or push while holding an item");
             }
         });
+
         // X to pick up, put down
         keySelect.on("down", () => {
             if (this.cursor.heldStack) {
