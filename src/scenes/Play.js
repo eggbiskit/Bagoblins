@@ -22,7 +22,7 @@ class Play extends Phaser.Scene {
         this.add.image(0, 180, 'play_atlas', 'table').setScale(2);  
         this.add.image(160, 180, 'play_atlas', 'table').setScale(2); 
         this.add.image(200, 180, 'play_atlas', 'table').setScale(2);  
-        //this.add.image(100, 100, 'board');
+        this.add.image(8, 120, 'play_atlas', 'bg_board');
         this.add.image(45, 40, 'play_atlas', 'frame');    // 3rd person POV
         const goblin_idle = this.add.image(40, 43, 'play_atlas', 'frame_goblin_idle');
         const goblin_work = this.add.image(47, 57, 'play_atlas', 'frame_goblin_work').setVisible(false);
@@ -49,9 +49,9 @@ class Play extends Phaser.Scene {
         this.inTimerFrame = this.add.rectangle(270, 160, 30, 5, 0xAAAAAA).setOrigin(0, 0.5);  // Timer bar background
         this.inputTimer = this.add.rectangle(270, 160, 30, 5, 0xFF0000).setOrigin(0, 0.5);    // Timer bar
 
-        this.add.image(55, 130, 'play_atlas', 'memo').setScale(2);                                          // output box visual
+        //this.add.image(55, 130, 'play_atlas', 'memo').setScale(2);                                          // output box visual
         this.outputSpace = new OutputTile(this, 63, 130).setOrigin(0.5);                      // output item
-        this.add.bitmapText(46, 110, 'pixel_gold', 'ORDER', 5);
+        this.add.bitmapText(46, 110, 'pixel_gold', 'ORDERS', 5);
         this.outTimerFrame = this.add.rectangle(46, 160, 30, 5, 0xAAAAAA).setOrigin(0, 0.5);  // Timer bar background
         this.outputTimer = this.add.rectangle(46, 160, 30, 5, 0xFF0000).setOrigin(0, 0.5);    // Timer bar
 
@@ -143,16 +143,8 @@ class Play extends Phaser.Scene {
             paused: true,
             callback: () => {
                 if (!this.inputSpace.curItem) {
-                    // Getting item index
-                    let itemIndex;
-                    do {
-                        itemIndex = Math.floor(Math.random() * itemSpecs.length);
-                    } while (itemSpecs[itemIndex].unlockLvl > this.playerLevel);
-
-                    // Getting item stack size
-                    let stackSize = Math.ceil(Math.random() * (itemSpecs[itemIndex].maxSize * gameSettings.levelUp.stackSizePortions[this.playerLevel]));
-
-                    // Creating the item
+                    let itemIndex = Math.floor(Math.random() * itemSpecs.length);
+                    let stackSize = Math.ceil(Math.random() * itemSpecs[itemIndex].maxSize);
                     this.inputSpace.createItem(stackSize, itemIndex);
                     this.sound.play("create");
                     console.log("Item Created");
@@ -161,6 +153,7 @@ class Play extends Phaser.Scene {
                 }
             }
         });
+        this.inputDelay = this.time.delayedCall(gameSettings.timings.item.delay * 1000, () => { console.log("input timer begin"); this.inputGen.paused = false });
 
         // Request Generation
         let outputDelay = gameSettings.timings.request.headway * 1000;
@@ -179,7 +172,7 @@ class Play extends Phaser.Scene {
                             countInInventory = this.inputSpace.curItem.curSize;
                         } else {
                             console.error("Error: Request made before items spawned");
-                            this.endGame("Sh*tty Game Design");
+                            this.endGame("Shitty Game Design");
                         }
                     } else {
                         do {
@@ -229,17 +222,8 @@ class Play extends Phaser.Scene {
         this.outputDelay = this.time.delayedCall(gameSettings.timings.request.delay * 1000, () => { 
             console.log("output timer begin");
             this.outputGen.paused = false;
-            this.requestCurve.paused = false;
+            this.requestCurve.paused = false 
         });
-
-        // Increasing player level
-        // (Dependency on stack size increase and item unlocks)
-        this.playerLevel = 0;
-        this.levelUp = this.time.addEvent({
-            delay: gameSettings.timings.leveling * 1000,
-            repeat: gameSettings.levelUp.maxLevel,
-            callback: () => {console.warn("Level Up"); this.playerLevel++}
-        })
     }
 
     endGame(cause) {
