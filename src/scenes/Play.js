@@ -144,7 +144,10 @@ class Play extends Phaser.Scene {
             callback: () => {
                 if (!this.inputSpace.curItem) {
                     // Getting item index
-                    let itemIndex = Math.floor(Math.random() * itemSpecs.length);
+                    let itemIndex;
+                    do {
+                        itemIndex = Math.floor(Math.random() * itemSpecs.length);
+                    } while (itemSpecs[itemIndex].unlockLvl > this.playerLevel);
 
                     // Getting item stack size
                     let stackSize = Math.ceil(Math.random() * (itemSpecs[itemIndex].maxSize * gameSettings.levelUp.stackSizePortions[this.playerLevel]));
@@ -235,7 +238,7 @@ class Play extends Phaser.Scene {
         this.levelUp = this.time.addEvent({
             delay: gameSettings.timings.leveling * 1000,
             repeat: gameSettings.levelUp.maxLevel,
-            callback: () => {console.log("Level Up"); this.playerLevel++}
+            callback: () => {console.warn("Level Up"); this.playerLevel++}
         })
     }
 

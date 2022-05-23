@@ -1,18 +1,22 @@
 [
     {
         "textureName": "blackPotion",
-        "maxSize": 10
+        "maxSize": 10,
+        "unlockLvl": 0
     },
     {
         "textureName": "greenPotion",
-        "maxSize": 10
+        "maxSize": 10,
+        "unlockLvl": 1
     },
     {
         "textureName": "bluePotion",
-        "maxSize": 10
+        "maxSize": 10,
+        "unlockLvl": 2
     },
     {
         "textureName": "purplePotion",
-        "maxSize": 10
+        "maxSize": 10,
+        "unlockLvl": 3
     }
 ]
