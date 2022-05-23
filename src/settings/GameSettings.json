@@ -18,7 +18,7 @@
             "delay": 5,
             "headway": 10,
             "increase": {
-                "rate": 1.1,
+                "rate": 1.5,
                 "time": 30
             }
         },
@@ -26,7 +26,7 @@
             "delay": 30,
             "headway": 15,
             "increase": {
-                "rate": 1.15,
+                "rate": 1.25,
                 "time": 45
             }
         }

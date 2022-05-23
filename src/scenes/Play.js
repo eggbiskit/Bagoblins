@@ -28,6 +28,7 @@ class Play extends Phaser.Scene {
         this.add.image(240, 130, 'board');  // input board
         this.add.rectangle(game.config.width / 2, 20, 75, 20, 0xAAAAAA).setOrigin(0.5); // Runtime clock background
         this.runtimeClock = this.add.bitmapText(game.config.width / 2, 20, 'pixel_font', '00:00:00', 10).setOrigin(0.5);
+        this.startTime;
 
         this.add.image(game.config.width / 2 + 1, game.config.height / 2 + 27, 'deco_inventory');
         this.inventory = new Inventory(this, 3, 4).setOrigin(0.5);
@@ -176,9 +177,37 @@ class Play extends Phaser.Scene {
                 }
             }
         });
-        this.outputDelay = this.time.delayedCall(gameSettings.timings.request.delay * 1000, () => { console.log("output timer begin"); this.outputGen.paused = false });
 
-        this.startTime;
+        // Diffuculty Curve Stuff
+        // Speed up item generation
+        this.itemCurve = this.time.addEvent({
+            delay: gameSettings.timings.item.increase.time * 1000,
+            paused: true,
+            loop: true,
+            callback: () => { this.inputGen.delay /= gameSettings.timings.item.increase.rate; console.warn("Item Spawn speed up"); }
+        });
+
+        // Speed up request generation
+        this.requestCurve = this.time.addEvent({
+            delay: gameSettings.timings.request.increase.time * 1000,
+            paused: true,
+            loop: true,
+            callback: () => { this.outputGen.delay /= gameSettings.timings.request.increase.rate; console.warn("Request speed up"); }
+        });
+
+        // Begin item spawning
+        this.inputDelay = this.time.delayedCall(gameSettings.timings.item.delay * 1000, () => {
+            console.log("input timer begin");
+            this.inputGen.paused = false;
+            this.itemCurve.paused = false;
+        });
+
+        // Begin the requests
+        this.outputDelay = this.time.delayedCall(gameSettings.timings.request.delay * 1000, () => { 
+            console.log("output timer begin");
+            this.outputGen.paused = false;
+            this.requestCurve.paused = false 
+        });
     }
 
     endGame(cause) {
