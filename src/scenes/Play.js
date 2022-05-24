@@ -24,7 +24,7 @@ class Play extends Phaser.Scene {
         this.add.image(240, 180, 'play_atlas', 'table').setScale(2);  
         
         this.add.image(276, 40, 'play_atlas', 'frame');              // 3rd person POV
-        this.add.image(45, 40, 'play_atlas', 'frame_customer');      // show customers
+        this.add.image(44, 40, 'play_atlas', 'frame_customer');      // show customers
         const goblin_idle = this.add.image(268, 42, 'play_atlas', 'frame_goblin_idle');
         const goblin_work = this.add.image(281, 56, 'play_atlas', 'frame_goblin_work').setVisible(false);
         const customer = this.add.image(45, 50, 'play_atlas', 'frame_customer1').setVisible(false);
@@ -43,7 +43,8 @@ class Play extends Phaser.Scene {
         this.runtimeClock = this.add.bitmapText(game.config.width / 2, 21, 'pixel_gold', '00:00:00', 10).setOrigin(0.5);
         this.startTime;
 
-        this.add.image(game.config.width / 2, game.config.height / 2 + 27, 'play_atlas', 'deco_inventory');
+        this.add.image(game.config.width / 2, game.config.height / 2 + 26, 'play_atlas', 'deco_inventory');
+        this.add.image(game.config.width / 2, 65, 'play_atlas', 'deco_inventory_top');
         this.inventory = new Inventory(this, 3, 4).setOrigin(0.5);
         this.cursor = new Cursor(this.inventory);
         this.endOGame = false;
@@ -58,7 +59,6 @@ class Play extends Phaser.Scene {
         this.outputSpace = new OutputTile(this, 44, 121).setOrigin(0.5);                      // output item
         this.outTimerFrame = this.add.rectangle(46, 160, 30, 5, 0xAAAAAA).setOrigin(0, 0.5);  // Timer bar background
         this.outputTimer = this.add.rectangle(46, 160, 30, 5, 0xFF0000).setOrigin(0, 0.5);    // Timer bar
-
 
         // Movement Setup  
         keyLeft.on("down", () => {
