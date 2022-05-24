@@ -28,7 +28,7 @@ class Menu extends Phaser.Scene {
 
 
         // potions animation
-        this.potions = this.add.sprite(game.config.width / 2, game.config.height / 5 + 104, 'menu_atlas', 'potions');
+        this.potions = this.add.sprite(game.config.width / 2 - 1, game.config.height / 5 + 100, 'menu_atlas', 'potions');
         this.potions.setScale(2);
 
         // goblin animation
