@@ -49,15 +49,16 @@ class Play extends Phaser.Scene {
         this.endOGame = false;
 
         // Input/Output setup
-        this.add.image(45, 125, 'play_atlas', 'bg_invoice');                                 // input box visual
-        this.inputSpace = new InputTile(this, 44, 127).setOrigin(0.5);                       // input item
-        this.inTimerFrame = this.add.rectangle(46, 160, 30, 5, 0xAAAAAA).setOrigin(0, 0.5);  // Timer bar background
-        this.inputTimer = this.add.rectangle(46, 160, 30, 5, 0xFF0000).setOrigin(0, 0.5);    // Timer bar
+        this.add.image(295, 120, 'play_atlas', 'bg_invoice');                                 // input box visual
+        this.inputSpace = new InputTile(this, 294, 123).setOrigin(0.5);                       // input item
+        this.inTimerFrame = this.add.rectangle(270, 160, 30, 5, 0xAAAAAA).setOrigin(0, 0.5);  // Timer bar background
+        this.inputTimer = this.add.rectangle(270, 160, 30, 5, 0xFF0000).setOrigin(0, 0.5);    // Timer bar
 
-        this.add.image(285, 125, 'play_atlas', 'bg_orders');                                   // output box visual
-        this.outputSpace = new OutputTile(this, 285, 123).setOrigin(0.5);                      // output item
-        this.outTimerFrame = this.add.rectangle(270, 160, 30, 5, 0xAAAAAA).setOrigin(0, 0.5);  // Timer bar background
-        this.outputTimer = this.add.rectangle(270, 160, 30, 5, 0xFF0000).setOrigin(0, 0.5);    // Timer bar
+        this.add.image(45, 125, 'play_atlas', 'bg_orders');                                   // output box visual
+        this.outputSpace = new OutputTile(this, 44, 121).setOrigin(0.5);                      // output item
+        this.outTimerFrame = this.add.rectangle(46, 160, 30, 5, 0xAAAAAA).setOrigin(0, 0.5);  // Timer bar background
+        this.outputTimer = this.add.rectangle(46, 160, 30, 5, 0xFF0000).setOrigin(0, 0.5);    // Timer bar
+
 
         // Movement Setup  
         keyLeft.on("down", () => {
