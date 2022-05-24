@@ -4,7 +4,7 @@ class Tutorial2 extends Phaser.Scene {
    }
 
    create() {
-       console.log("Tutorial");
+       console.log("Tutorial pg 2");
 
        // assets
        const playBg = this.add.image(game.config.width / 2, game.config.height / 2, 'tutorial_atlas', 'menu_bg').setScale(3); 
