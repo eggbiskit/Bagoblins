@@ -132,10 +132,10 @@ class Play extends Phaser.Scene {
         });
         // Z to push to output
         keyOutput.on("down", () => {
-            goblin_idle.setVisible(false);
-            goblin_work.setVisible(false);
-            customer.setVisible(false);
             if(!this.cursor.heldStack) {
+                goblin_idle.setVisible(false);
+                goblin_work.setVisible(false);
+                customer.setVisible(false);
                 this.sound.play("output_push");
                 this.inventory.pushStack(this.cursor.coordinates.y, this.cursor.coordinates.x, this.outputSpace);
             } else {
