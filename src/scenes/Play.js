@@ -161,7 +161,6 @@ class Play extends Phaser.Scene {
                 }
             }
         });
-        this.inputDelay = this.time.delayedCall(gameSettings.timings.item.delay * 1000, () => { console.log("input timer begin"); this.inputGen.paused = false });
 
         // Request Generation
         let outputDelay = gameSettings.timings.request.headway * 1000;
@@ -180,7 +179,7 @@ class Play extends Phaser.Scene {
                             countInInventory = this.inputSpace.curItem.curSize;
                         } else {
                             console.error("Error: Request made before items spawned");
-                            this.endGame("Shitty Game Design");
+                            this.endGame("Sh*tty Game Design");
                         }
                     } else {
                         do {
@@ -230,8 +229,17 @@ class Play extends Phaser.Scene {
         this.outputDelay = this.time.delayedCall(gameSettings.timings.request.delay * 1000, () => { 
             console.log("output timer begin");
             this.outputGen.paused = false;
-            this.requestCurve.paused = false 
+            this.requestCurve.paused = false;
         });
+
+        // Increasing player level
+        // (Dependency on stack size increase and item unlocks)
+        this.playerLevel = 0;
+        this.levelUp = this.time.addEvent({
+            delay: gameSettings.timings.leveling * 1000,
+            repeat: gameSettings.levelUp.maxLevel,
+            callback: () => {console.warn("Level Up"); this.playerLevel++}
+        })
     }
 
     endGame(cause) {
