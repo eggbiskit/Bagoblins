@@ -26,7 +26,6 @@ class Menu extends Phaser.Scene {
         this.desc = this.add.sprite(game.config.width / 2, game.config.height / 5 + 25, 'menu_atlas', 'desc');
         this.desc.setScale(1);
 
-
         // potions animation
         this.potions = this.add.sprite(game.config.width / 2 - 1, game.config.height / 5 + 100, 'menu_atlas', 'potions');
         this.potions.setScale(2);
