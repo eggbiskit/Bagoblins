@@ -4,9 +4,6 @@ const config = {
    height: 200,
    zoom: 3,
    autoCenter: true,
-   physics: {
-      default: "arcade"
-   },
    scene: [Load, Menu, Tutorial, Tutorial2, Play, Endgame]
 };
 
