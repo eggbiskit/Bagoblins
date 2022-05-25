@@ -167,7 +167,7 @@ class Play extends Phaser.Scene {
                     this.sound.play("create");
                     console.log("Item Created");
                 } else {
-                    //this.endGame(this.inputSpace);
+                    this.endGame("Input filled up");
                 }
             }
         });
@@ -207,7 +207,7 @@ class Play extends Phaser.Scene {
                     console.log("Request Created");
                     customer.setVisible(true);
                 } else {
-                    //this.endGame(this.outputSpace);
+                    this.endGame("Output filled up");
                 }
             }
         });
