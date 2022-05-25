@@ -261,15 +261,21 @@ class Play extends Phaser.Scene {
         console.log(`Death from ${cause}`);
         this.sound.play("death");
         this.time.removeAllEvents();
- 
+        this.time.delayedCall(1000, () => {
             this.scene.start('end');
-
+            this.startTime = undefined;
+        });
         this.endOGame = true;
     }
 
     update() {
+        if(this.endOGame) {
+            return;
+        }
+
         // Sets startTime to time at first update
         if(!this.startTime) {
+            console.log(this.startTime);
             this.startTime = this.time.now;
         }
 
