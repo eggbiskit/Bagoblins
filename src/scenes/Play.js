@@ -17,32 +17,34 @@ class Play extends Phaser.Scene {
         keyOutput = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes[gameSettings.keybinds.output]);
 
         // Game World Setup
-        // bg elements
+        // Background assets
         const playBg = this.add.image(game.config.width / 2, game.config.height / 2, 'play_atlas', 'menu_bg').setScale(3);
-        this.add.image(0, 180, 'play_atlas', 'table').setScale(2);  
-        this.add.image(160, 180, 'play_atlas', 'table').setScale(2); 
-        this.add.image(240, 180, 'play_atlas', 'table').setScale(2);  
-        
-        this.add.image(276, 40, 'play_atlas', 'frame');              // 3rd person POV
-        this.add.image(44, 40, 'play_atlas', 'frame_customer');      // show customers
-        const goblin_idle = this.add.image(268, 42, 'play_atlas', 'frame_goblin_idle');
-        const goblin_work = this.add.image(281, 56, 'play_atlas', 'frame_goblin_work').setVisible(false);
-        const customer = this.add.image(45, 50, 'play_atlas', 'frame_customer1').setVisible(false);
-        this.add.image(289, 62, 'play_atlas', 'frame_shelf');
-        this.add.image(255, 64, 'play_atlas', 'frame_candles');
-        // this.add.image(250, 130, 'play_atlas', 'big_drawers');
-        // this.add.image(261, 156, 'play_atlas', 'small_drawers');
-        this.add.image(70, 56, 'play_atlas', 'frame_order_tablets');
-        this.add.image(25, 61, 'play_atlas', 'frame_order_tablet');
-        //this.add.image(0, 34, 'play_atlas', 'frame_speech1');
+        this.add.image(0, 183, 'play_atlas', 'table').setScale(2);  
+        this.add.image(160, 183, 'play_atlas', 'table').setScale(2); 
+        this.add.image(240, 183, 'play_atlas', 'table').setScale(2);  
+        this.add.image(40, 174, 'play_atlas', 'notes');  
+        this.add.image(70, 150, 'play_atlas', 'coffee_mug');  
+        this.add.image(20, 175, 'play_atlas', 'pencil');  
 
+        // Frame assets
+        this.add.image(276, 38, 'play_atlas', 'frame');              // 3rd person POV
+        this.add.image(44, 38, 'play_atlas', 'frame_customer');      // show customers
+        const goblin_idle = this.add.image(268, 40, 'play_atlas', 'frame_goblin_idle');
+        const goblin_work = this.add.image(281, 53, 'play_atlas', 'frame_goblin_work').setVisible(false);
+        const customer = this.add.image(45, 48, 'play_atlas', 'frame_customer1').setVisible(false);
+        this.add.image(289, 58, 'play_atlas', 'frame_shelf');
+        this.add.image(255, 60, 'play_atlas', 'frame_candles');
+        this.add.image(68, 54, 'play_atlas', 'frame_order_tablets');
+        this.add.image(23, 57, 'play_atlas', 'frame_order_tablet');
 
+        // Timer assets
         this.add.image(game.config.width / 2 - 1, 23, 'play_atlas', 'timer_frame').setOrigin(0.5); // Runtime clock background
         this.add.bitmapText(139, 9, 'pixel_gold', 'IT HAS BEEN', 5);
         this.add.bitmapText(126, 29, 'pixel_gold','SINCE AN ACCIDENT', 5);
         this.runtimeClock = this.add.bitmapText(game.config.width / 2, 21, 'pixel_gold', '00:00:00', 10).setOrigin(0.5);
         this.startTime;
 
+        // Inventory assets
         this.add.image(game.config.width / 2, game.config.height / 2 + 26, 'play_atlas', 'deco_inventory');
         this.add.image(game.config.width / 2, 65, 'play_atlas', 'deco_inventory_top');
         this.inventory = new Inventory(this, 3, 4).setOrigin(0.5);
@@ -50,15 +52,17 @@ class Play extends Phaser.Scene {
         this.endOGame = false;
 
         // Input/Output setup
-        this.add.image(280, 120, 'play_atlas', 'bg_invoice');                                 // input box visual
-        this.inputSpace = new InputTile(this, 279, 123).setOrigin(0.5);                       // input item
-        this.inTimerFrame = this.add.rectangle(270, 160, 30, 5, 0xAAAAAA).setOrigin(0, 0.5);  // Timer bar background
-        this.inputTimer = this.add.rectangle(270, 160, 30, 5, 0xFF0000).setOrigin(0, 0.5);    // Timer bar
+        this.add.image(280, 110, 'play_atlas', 'bg_invoice');                                 // input box visual
+        this.inputSpace = new InputTile(this, 279, 113).setOrigin(0.5);                       // input item
+        this.inTimerFrame = this.add.image(283, 150, 'play_atlas', 'deco_progress_bar');      // Timer bar background
+        this.inTimerFrame = this.add.image(283, 150, 'play_atlas', 'progress_bar');          
+        this.inputTimer = this.add.rectangle(259, 150, 30, 4, 0xFFAA3B).setOrigin(0, 0.5);    // Timer bar
 
-        this.add.image(45, 125, 'play_atlas', 'bg_orders');                                   // output box visual
-        this.outputSpace = new OutputTile(this, 44, 121).setOrigin(0.5);                      // output item
-        this.outTimerFrame = this.add.rectangle(46, 160, 30, 5, 0xAAAAAA).setOrigin(0, 0.5);  // Timer bar background
-        this.outputTimer = this.add.rectangle(46, 160, 30, 5, 0xFF0000).setOrigin(0, 0.5);    // Timer bar
+        this.add.image(45, 115, 'play_atlas', 'bg_orders');                                   // output box visual
+        this.outputSpace = new OutputTile(this, 44, 111).setOrigin(0.5);                      // output item
+        this.outTimerFrame = this.add.image(46, 150, 'play_atlas', 'deco_progress_bar');      // Timer bar background
+        this.outTimerFrame = this.add.image(46, 150, 'play_atlas', 'progress_bar');          
+        this.outputTimer = this.add.rectangle(22, 150, 30, 4, 0xFFAA3B).setOrigin(0, 0.5);    // Timer bar
 
         // Movement Setup  
         keyLeft.on("down", () => {
@@ -257,9 +261,9 @@ class Play extends Phaser.Scene {
         console.log(`Death from ${cause}`);
         this.sound.play("death");
         this.time.removeAllEvents();
-        this.time.delayedCall(1000, () => {
-            this.scene.start('end', { fadeIn: true });
-        });
+ 
+            this.scene.start('end');
+
         this.endOGame = true;
     }
 
