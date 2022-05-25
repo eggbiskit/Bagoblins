@@ -15,5 +15,7 @@ Grace Ho
 [FontStruct](https://fontstruct.com/)  
 [SnowB BMF Bitmap Generator](https://snowb.org/)  
 [Leshy SpriteSheet Tool](https://www.leshylabs.com/apps/sstool/)  
+[CSS Units](https://www.w3schools.com/cssref/css_units.asp)  
+[“vertically center canvas” Code Answer](https://www.codegrepper.com/code-examples/css/vertically+center+canvas)  
 
 ## External Sound Effects
