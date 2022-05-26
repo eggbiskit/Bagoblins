@@ -6,12 +6,19 @@ class Endgame extends Phaser.Scene {
     create() {
         console.log("End");
 
+        // fade in
+        this.cameras.main.fadeIn(1000, 0, 0, 0);
+        this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
+            this.time.delayedCall(1000, () => {
+                this.scene.start('tutorial')
+            });
+        });
+
         // bg
         const menuBg = this.add.image(game.config.width / 2, game.config.height / 2, 'menu_atlas', 'menu_bg').setScale(3);
         this.add.image(0, 180, 'play_atlas', 'table').setScale(2);  
         this.add.image(160, 180, 'play_atlas', 'table').setScale(2); 
         this.add.image(240, 180, 'play_atlas', 'table').setScale(2); 
-        this.add.image(game.config.width / 2, game.config.height / 2 + 27, 'play_atlas', 'deco_inventory');
 
         this.add.image(game.config.width/2, game.config.height/2, 'menu_atlas', 'pinkslip');
         this.add.bitmapText(game.config.width/2 - 40, 70, 'pixel_font', 'EMPLOYEE: __GOBLIN__', 5);
@@ -39,7 +46,13 @@ class Endgame extends Phaser.Scene {
         
         keySpace.on("down", () => {
             this.sound.play("temp_sfx");
-            this.scene.start("menu");
+            // fade out
+            this.input.keyboard.once('keydown-SPACE', () => {
+                this.cameras.main.fadeOut(1000, 0, 0, 0);
+            });
+            this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
+                this.scene.start('menu');
+            });
         });
     }
 }

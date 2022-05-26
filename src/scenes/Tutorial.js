@@ -6,6 +6,14 @@ class Tutorial extends Phaser.Scene {
     create() {
         console.log("Tutorial pg 1");
 
+        // fade in
+        this.cameras.main.fadeIn(1000, 0, 0, 0);
+        this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
+            this.time.delayedCall(1000, () => {
+                this.scene.start('tutorial')
+            });
+        });
+
         // assets
         const playBg = this.add.image(game.config.width / 2, game.config.height / 2, 'tutorial_atlas', 'menu_bg').setScale(3); 
         const clipb = this.add.image(game.config.width / 2, game.config.height / 2 - 4, 'tutorial_atlas', 'clipboard').setScale(2);

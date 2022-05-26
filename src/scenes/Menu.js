@@ -63,7 +63,14 @@ class Menu extends Phaser.Scene {
         this.play.anims.play('playAni', true);
         keySpace.on("down", () => {
             this.sound.play("temp_sfx");
-            this.scene.start('tutorial');
+            // fade out
+            // SRC: https://blog.ourcade.co/posts/2020/phaser-3-fade-out-scene-transition/
+            this.input.keyboard.once('keydown-SPACE', () => {
+                this.cameras.main.fadeOut(1000, 0, 0, 0);
+            });
+            this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
+                this.scene.start('tutorial');
+            });
         });
     }
 }
