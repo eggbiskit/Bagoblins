@@ -23,8 +23,14 @@ class Play extends Phaser.Scene {
         this.add.image(160, 183, 'play_atlas', 'table').setScale(2); 
         this.add.image(240, 183, 'play_atlas', 'table').setScale(2);  
         this.add.image(40, 174, 'play_atlas', 'notes');  
+        this.add.image(295, 177, 'play_atlas', 'paper');  
         this.add.image(70, 150, 'play_atlas', 'coffee_mug');  
-        this.add.image(20, 175, 'play_atlas', 'pencil');  
+        this.add.image(20, 175, 'play_atlas', 'pencil');
+        this.add.image(280, 168, 'play_atlas', 'pencil2'); 
+        this.add.image(255, 170, 'play_atlas', 'dice'); 
+        this.add.image(12, 153, 'play_atlas', 'potions1');  
+        this.add.image(305, 158, 'play_atlas', 'potions3');
+        this.add.rectangle(0, 0, 1000, 1000, 0x466E58).alpha = 0.27; // tint bg objects
 
         // Frame assets
         this.add.image(276, 38, 'play_atlas', 'frame');              // 3rd person POV
@@ -107,8 +113,6 @@ class Play extends Phaser.Scene {
 
         // C to pull from input
         keyInput.on("down", () => {
-            goblin_idle.setVisible(false);
-            goblin_work.setVisible(true);
             if(!this.cursor.heldStack) {
                 this.sound.play("input_pull");
                 this.inputSpace.pull(this.cursor);
@@ -120,8 +124,6 @@ class Play extends Phaser.Scene {
 
         // X to pick up, put down
         keySelect.on("down", () => {
-            goblin_idle.setVisible(false);
-            goblin_work.setVisible(true);
             if (this.cursor.heldStack) {
                 this.sound.play("drop_stack");
                 this.cursor.dropStack();
@@ -137,8 +139,6 @@ class Play extends Phaser.Scene {
         // Z to push to output
         keyOutput.on("down", () => {
             if(!this.cursor.heldStack) {
-                goblin_idle.setVisible(false);
-                goblin_work.setVisible(false);
                 customer.setVisible(false);
                 this.sound.play("output_push");
                 this.inventory.pushStack(this.cursor.coordinates.y, this.cursor.coordinates.x, this.outputSpace);
