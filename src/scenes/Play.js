@@ -254,7 +254,11 @@ class Play extends Phaser.Scene {
             delay: gameSettings.timings.leveling * 1000,
             repeat: gameSettings.levelUp.maxLevel,
             callback: () => {console.warn("Level Up"); this.playerLevel++}
-        })
+        });
+
+        // Background music
+        this.soundtrack = this.sound.add("BGM", { loop: true, volume: 0.25 });
+        this.soundtrack.play();
     }
 
     endGame(cause) {
@@ -266,6 +270,7 @@ class Play extends Phaser.Scene {
             this.startTime = undefined;
         });
         this.endOGame = true;
+        this.soundtrack.stop();
     }
 
     update() {
