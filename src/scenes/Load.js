@@ -5,6 +5,20 @@ class Load extends Phaser.Scene {
     }
 
     preload() {
+        // loading bar
+        // see: https://rexrainbow.github.io/phaser3-rex-notes/docs/site/loader/
+        let loadingBar = this.add.graphics();
+        let UIDistance = game.config.width / 15;
+        let loadX = {
+            min: UIDistance,
+            max: game.config.width - 2 * UIDistance
+        }
+        this.load.on('progress', (value) => {
+            loadingBar.clear();                                 // reset fill/line style
+            loadingBar.fillStyle(0xFFFFFF, 1);                  // (color, alpha)
+            loadingBar.fillRect(loadX.min, game.config.height / 2, loadX.max * value, 5);  // (x, y, w, h)
+        });
+
         // Item image loading
         this.load.image("blackPotion", "assets/sprites/blackpotion.png");
         this.load.image("greenPotion", "assets/sprites/greenpotion.png");
@@ -43,6 +57,9 @@ class Load extends Phaser.Scene {
         gameSettings = this.cache.json.get("gameSettings");
         itemSpecs = this.cache.json.get("items");
 
-        this.scene.start("menu");
+        this.cameras.main.fadeOut(1000, 0, 0, 0);
+        this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
+            this.scene.start('menu');
+        });
     }
 }
