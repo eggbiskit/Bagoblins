@@ -64,8 +64,8 @@ class Play extends Phaser.Scene {
         this.inTimerFrame = this.add.image(283, 150, 'play_atlas', 'progress_bar');          
         this.inputTimer = this.add.rectangle(259, 150, 30, 4, 0xFFAA3B).setOrigin(0, 0.5);    // Timer bar
 
-        this.add.image(45, 115, 'play_atlas', 'bg_orders');                                   // output box visual
-        this.outputSpace = new OutputTile(this, 44, 111).setOrigin(0.5);                      // output item
+        this.add.image(45, 110, 'play_atlas', 'bg_orders');                                   // output box visual
+        this.outputSpace = new OutputTile(this, 44, 106).setOrigin(0.5);                      // output item
         this.outTimerFrame = this.add.image(46, 150, 'play_atlas', 'deco_progress_bar');      // Timer bar background
         this.outTimerFrame = this.add.image(46, 150, 'play_atlas', 'progress_bar');          
         this.outputTimer = this.add.rectangle(22, 150, 30, 4, 0xFFAA3B).setOrigin(0, 0.5);    // Timer bar

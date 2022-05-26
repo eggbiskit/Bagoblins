@@ -16,9 +16,20 @@ class Endgame extends Phaser.Scene {
 
         // bg
         const menuBg = this.add.image(game.config.width / 2, game.config.height / 2, 'menu_atlas', 'menu_bg').setScale(3);
-        this.add.image(0, 180, 'play_atlas', 'table').setScale(2);  
-        this.add.image(160, 180, 'play_atlas', 'table').setScale(2); 
-        this.add.image(240, 180, 'play_atlas', 'table').setScale(2); 
+        this.add.image(0, 183, 'play_atlas', 'table').setScale(2);  
+        this.add.image(160, 183, 'play_atlas', 'table').setScale(2); 
+        this.add.image(240, 183, 'play_atlas', 'table').setScale(2);  
+        this.add.image(40, 174, 'play_atlas', 'notes');  
+        this.add.image(295, 177, 'play_atlas', 'paper');  
+        this.add.image(70, 150, 'play_atlas', 'coffee_mug');  
+        this.add.image(20, 175, 'play_atlas', 'pencil');
+        this.add.image(280, 168, 'play_atlas', 'pencil2'); 
+        this.add.image(255, 170, 'play_atlas', 'dice'); 
+        this.add.image(12, 153, 'play_atlas', 'potions1');  
+        this.add.image(305, 158, 'play_atlas', 'potions3');
+        this.add.image(game.config.width / 2, game.config.height / 2 + 26, 'play_atlas', 'deco_inventory');
+        this.add.image(game.config.width / 2, 65, 'play_atlas', 'deco_inventory_top');
+        this.add.rectangle(0, 0, 1000, 1000, 0x466E58).alpha = 0.27; // tint bg objects
 
         this.add.image(game.config.width/2, game.config.height/2, 'menu_atlas', 'pinkslip');
         this.add.bitmapText(game.config.width/2 - 40, 70, 'pixel_font', 'EMPLOYEE: __GOBLIN__', 5);
