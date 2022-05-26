@@ -21,6 +21,7 @@ class Cursor extends Phaser.GameObjects.Sprite {
      * 
      * @param {Boolean} isVertical – Whether or not the movement is vertical
      * @param {Boolean} isPositive – Whether or not the movement is in a positive direction (down or right)
+     * @returns Whether or not the cursor moved
      */
     move(isVertical, isPositive) {
         if (!this.scene.endOGame) {
@@ -30,6 +31,7 @@ class Cursor extends Phaser.GameObjects.Sprite {
             if ((this.coordinates[axisTerms.axis] == 0 && !isPositive)
                 || (this.coordinates[axisTerms.axis] == this.inventory.arrBounds[axisTerms.tableJust] - 1 && isPositive)) {
                 // Placeholder for tweens later maybe
+                return false;
             } else {
                 this[axisTerms.axis] += posChange;
                 this.coordinates[axisTerms.axis] += increment;
@@ -41,7 +43,9 @@ class Cursor extends Phaser.GameObjects.Sprite {
                 this.heldStack.y = this.y;
                 this.heldStack.positionText();
             }
+            return true;
         }
+        return false;
     }
 
     pickUpStack() {
