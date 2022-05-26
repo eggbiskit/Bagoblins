@@ -38,13 +38,15 @@ class Load extends Phaser.Scene {
         // *temp sfx, replace later*
         this.load.audio("temp_sfx", "assets/SFX/select.wav");
         this.load.audio("input_pull", "assets/SFX/select.wav");
-        this.load.audio("drop_stack", "assets/SFX/select.wav");
-        this.load.audio("pick_up_stack", "assets/SFX/select.wav");
+        this.load.audio("drop_stack", "assets/SFX/potion.wav");
+        this.load.audio("pick_up_stack", "assets/SFX/potion.wav");
         this.load.audio("output_push", "assets/SFX/select.wav");
-        this.load.audio("create", "assets/SFX/select.wav");
-        this.load.audio("request", "assets/SFX/select.wav");
+        this.load.audio("create", "assets/SFX/appear.wav");
+        this.load.audio("request", "assets/SFX/request.wav");
         this.load.audio("wrong", "assets/SFX/select.wav");
         this.load.audio("death", "assets/SFX/select.wav");
+        this.load.audio("move", "assets/SFX/move.wav");
+        this.load.audio("BGM", "assets/music/newtheme.wav");
 
         // JSON loading
         this.load.json("gameSettings", "src/settings/GameSettings.json");
