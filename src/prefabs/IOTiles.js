@@ -1,6 +1,6 @@
 class IOTile extends Phaser.GameObjects.Sprite {
     constructor(scene, posX, posY) {
-        super(scene, posX, posY, "tile");
+        super(scene, posX, posY);
         scene.add.existing(this);
         this.setOrigin(0.5);
         this.setDepth(gameSettings.depths.UI);
@@ -102,6 +102,7 @@ class OutputTile extends IOTile {
             // Check for empty stacks
             if (this.requestedItem.curSize == 0) {
                 console.log("Request Fulfilled");
+                orderTotal++;
                 this.requestedItem.deconstructor();
                 this.requestedItem = null;
             }

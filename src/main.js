@@ -1,13 +1,14 @@
 const config = {
    type: Phaser.CANVAS,
-   width: 200,
-   height: 200,
-   zoom: 4,
-   autoCenter: true,
-   physics: {
-      default: "arcade"
+   scale: {
+      mode: Phaser.Scale.FIT,
+      parent: "game-canvas",
+      width: 320,
+      height: 200,
+      zoom: 3,
+      autoCenter: Phaser.Scale.Center.CENTER_BOTH
    },
-   scene: [Load, Menu, Tutorial, Play, Endgame]
+   scene: [Load, Menu, Tutorial, Tutorial2, Play, Endgame]
 };
 
 let game = new Phaser.Game(config);
@@ -17,3 +18,6 @@ let keyLeft, keyRight, keyUp, keyDown, keySelect, keyInput, keyOutput, keySpace;
 // Game setting JSON files
 let gameSettings;
 let itemSpecs;
+
+// Global var
+let orderTotal = 0;

@@ -1,7 +1,7 @@
 class Inventory extends Phaser.GameObjects.Sprite {
     constructor(scene, rows, cols) {
         // Sprite Setup
-        super(scene, game.config.width / 2, game.config.height / 2, "inventory");
+        super(scene, game.config.width / 2, game.config.height / 2 + 30, 'play_atlas', '4x3inventory');
         scene.add.existing(this);
         this.setOrigin(0.5);
         this.setDepth(gameSettings.depths.UI);
@@ -44,6 +44,15 @@ class Inventory extends Phaser.GameObjects.Sprite {
             x: leftCol + this.slotSize * col,
             y: topRow + this.slotSize * row
         };
+    }
+
+    isEmpty() {
+        for(let elem in this.itemCount) {
+            if(this.itemCount[elem] != 0) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
@@ -102,10 +111,11 @@ class Inventory extends Phaser.GameObjects.Sprite {
 
     pushStack(row, col, outputSpace) {
         let stack = this.getStack(row, col);
-        let name = stack.name;
-        let size = stack.curSize;
+
         if (stack) {
             console.log("Pushed stack to output");
+            let name = stack.name;
+            let size = stack.curSize;
             stack = outputSpace.push(stack);
             if (stack) {
                 this.contents[row][col] = stack;

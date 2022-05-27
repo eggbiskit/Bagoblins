@@ -3,6 +3,10 @@ class ItemStack extends Phaser.GameObjects.Sprite {
         // Getting item info
         let itemConfig = itemSpecs[configIntex];
         console.assert(itemConfig.maxSize && itemConfig.textureName, "Error: Invalid item config index");
+        if(itemConfig.maxSize < stackSize) {
+            console.error("Error: Invalid Stack Size");
+            stackSize = itemConfig.maxSize;
+        }
 
         // Adding sprite to scene
         super(scene, initialPos.x, initialPos.y, itemConfig.textureName);
@@ -28,7 +32,8 @@ class ItemStack extends Phaser.GameObjects.Sprite {
 
         // Adding stack text
         this.textOffset = this.width / gameSettings.offsetDenoms.itemText;
-        this.stackText = scene.add.text(this.textOffset + this.x, this.textOffset + this.y, Math.abs(this.curSize), gameSettings.textConfigs.item)
+        let txtCfg = gameSettings.textConfigs.item;
+        this.stackText = scene.add.bitmapText(this.textOffset + this.x, this.textOffset + this.y, txtCfg.font, Math.abs(this.curSize), txtCfg.size, txtCfg.align);
         this.stackText.setDepth(12);
         this.stackText.setOrigin(0.5, 0.375);
     }

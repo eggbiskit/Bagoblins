@@ -6,9 +6,16 @@ class Menu extends Phaser.Scene {
     create() {
         console.log("Menu");
 
+        // fade in
+        this.cameras.main.fadeIn(1000, 0, 0, 0);
+        this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
+            this.time.delayedCall(1000, () => {
+                this.scene.start('tutorial')
+            });
+        });
+
         // bg
-        const menuBg = this.add.image(game.config.width / 2, game.config.height / 2, 'menu_bg');
-        menuBg.setScale(3);
+        const menuBg = this.add.image(game.config.width / 2, game.config.height / 2, 'menu_atlas', 'menu_bg').setScale(3);
 
         // title animation
         this.title = this.add.sprite(game.config.width / 2, game.config.height / 5);
@@ -27,9 +34,8 @@ class Menu extends Phaser.Scene {
         this.desc = this.add.sprite(game.config.width / 2, game.config.height / 5 + 25, 'menu_atlas', 'desc');
         this.desc.setScale(1);
 
-
         // potions animation
-        this.potions = this.add.sprite(game.config.width / 2, game.config.height / 5 + 104, 'menu_atlas', 'potions');
+        this.potions = this.add.sprite(game.config.width / 2 - 1, game.config.height / 5 + 100, 'menu_atlas', 'potions');
         this.potions.setScale(2);
 
         // goblin animation
@@ -64,7 +70,18 @@ class Menu extends Phaser.Scene {
         });
         this.play.anims.play('playAni', true);
         keySpace.on("down", () => {
-            this.scene.start('tutorial');
+            if (!this.fading) {
+                this.sound.play("temp_sfx");
+                // fade out
+                this.input.keyboard.once('keydown-SPACE', () => {
+                    this.cameras.main.fadeOut(1000, 0, 0, 0);
+                    this.fading = true;
+                });
+                this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
+                    this.fading = false;
+                    this.scene.start('tutorial');
+                });
+            }
         });
     }
 }

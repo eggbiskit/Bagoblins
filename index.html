@@ -8,16 +8,33 @@
    <link rel="icon" type="image/png" href="./assets/favicon.png" />
 </head>
 <body>
-   <script src = "./lib/phaser.js"></script>
-   <script src="./src/prefabs/ItemStack.js"></script>
-   <script src="./src/prefabs/Inventory.js"></script>
-   <script src="./src/prefabs/IOTiles.js"></script>
-   <script src="./src/prefabs/Cursor.js"></script>
+   <script src = "./lib/phaser.min.js"></script>
+   <script src = "./src/prefabs/ItemStack.js"></script>
+   <script src = "./src/prefabs/Inventory.js"></script>
+   <script src = "./src/prefabs/IOTiles.js"></script>
+   <script src = "./src/prefabs/Cursor.js"></script>
    <script src = "./src/scenes/Load.js"></script>
-   <script src="./src/scenes/Menu.js"></script>
-   <script src="./src/scenes/Tutorial.js"></script>
+   <script src = "./src/scenes/Menu.js"></script>
+   <script src = "./src/scenes/Tutorial.js"></script>
+   <script src = "./src/scenes/Tutorial2.js"></script>
    <script src = "./src/scenes/Play.js"></script>
-   <script src="./src/scenes/Endgame.js"></script>
+   <script src = "./src/scenes/Endgame.js"></script>
    <script src = "./src/main.js"></script>
+
+   <div id="game-canvas"></div>
+
+   <style>
+      #game-canvas {
+         /* Scaling */
+         width: 95vw;
+         height: 90vh;
+
+         /* Centering */
+         position: absolute;
+         top: 50%;
+         left: 50%;
+         transform: translate(-50%, -50%);      
+      }
+   </style>
 </body>
 </html>

@@ -18,7 +18,7 @@
             "delay": 5,
             "headway": 10,
             "increase": {
-                "rate": 1.1,
+                "rate": 1.5,
                 "time": 30
             }
         },
@@ -26,10 +26,11 @@
             "delay": 30,
             "headway": 15,
             "increase": {
-                "rate": 1.15,
+                "rate": 1.25,
                 "time": 45
             }
-        }
+        },
+        "leveling": 30
     },
     "depths": {
         "background": 0,
@@ -40,10 +41,25 @@
     },
     "textConfigs": {
         "item": {
-            "fontFamily": "Courier",
-            "fontSize": "12px",
-            "color": "#FFF",
-            "align": "right"
+            "font": "pixel_gold",
+            "size": 5,
+            "align": 2,
+            "dropShadowColor": "#000"
         }
+    },
+    "levelUp": {
+        "stackSizePortions": [
+            0.1,
+            0.2,
+            0.3,
+            0.4,
+            0.5,
+            0.6,
+            0.7,
+            0.8,
+            0.9,
+            1.0
+        ],
+        "maxLevel": 9
     }
 }
