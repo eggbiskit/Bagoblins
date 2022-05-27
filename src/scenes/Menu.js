@@ -78,6 +78,7 @@ class Menu extends Phaser.Scene {
                     this.fading = true;
                 });
                 this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
+                    this.fading = false;
                     this.scene.start('tutorial');
                 });
             }
