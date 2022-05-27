@@ -35,8 +35,8 @@ class Play extends Phaser.Scene {
         // Frame assets
         this.add.image(276, 38, 'play_atlas', 'frame');              // 3rd person POV
         this.add.image(44, 38, 'play_atlas', 'frame_customer');      // show customers
-        const goblin_idle = this.add.image(268, 40, 'play_atlas', 'frame_goblin_idle');
-        const goblin_work = this.add.image(281, 53, 'play_atlas', 'frame_goblin_work').setVisible(false);
+        this.goblin_idle = this.add.image(268, 40, 'play_atlas', 'frame_goblin_idle');
+        this.goblin_work = this.add.image(281, 53, 'play_atlas', 'frame_goblin_work').setVisible(false);
         const customer = this.add.image(45, 48, 'play_atlas', 'frame_customer1').setVisible(false);
         this.add.image(289, 58, 'play_atlas', 'frame_shelf');
         this.add.image(255, 60, 'play_atlas', 'frame_candles');
@@ -251,13 +251,13 @@ class Play extends Phaser.Scene {
 
     moveCursor(isVertical, isPositive) {
         this.cursor.move(isVertical, isPositive);
-        goblin_idle.setVisible(false);
-        goblin_work.setVisible(true);
+        this.goblin_idle.setVisible(false);
+        this.goblin_work.setVisible(true);
     }
 
     goblinAnim() {
-        this.time.addEvent({ delay: 2000, callback: () => { goblin_work.setVisible(false); }, loop: true });
-        this.time.addEvent({ delay: 2000, callback: () => { goblin_idle.setVisible(true); }, loop: true });
+        this.time.addEvent({ delay: 2000, callback: () => { this.goblin_work.setVisible(false); }, loop: true });
+        this.time.addEvent({ delay: 2000, callback: () => { this.goblin_idle.setVisible(true); }, loop: true });
     }
 
     endGame(cause) {
