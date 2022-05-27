@@ -159,7 +159,7 @@ class Play extends Phaser.Scene {
                     this.sound.play("create");
                     console.log("Item Created");
                 } else {
-                    this.endGame("Input filled up");
+                    this.endGame("Input backlog");
                 }
             }
         });
@@ -199,7 +199,7 @@ class Play extends Phaser.Scene {
                     console.log("Request Created");
                     customer.setVisible(true);
                 } else {
-                    this.endGame("Output filled up");
+                    this.endGame("Output backlog");
                 }
             }
         });
