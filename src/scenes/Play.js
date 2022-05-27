@@ -304,7 +304,6 @@ class Play extends Phaser.Scene {
 
         // Sets startTime to time at first update
         if(!this.startTime) {
-            console.log(this.startTime);
             this.startTime = this.time.now;
         }
 
