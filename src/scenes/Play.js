@@ -272,15 +272,18 @@ class Play extends Phaser.Scene {
         // Player feedback
         console.log(`Death from ${cause}`);
         this.sound.play("death");
-        let duration = gameSettings.endingSequence.duration * 1000;
+        let zoomDuration = 0;
+        let totalDuration = gameSettings.endingSequence.thinkTime * 1000;
 
         // Clock movement
         if(zoomX != undefined && zoomY != undefined) {
+            zoomDuration = gameSettings.endingSequence.duration * 1000;
             let {ease, force, zoom} = gameSettings.endingSequence.zoom;
             console.log(ease);
-            this.cameras.main.pan(zoomX, zoomY, duration, ease, force);
-            this.cameras.main.zoomTo(zoom, duration, ease, force);
+            this.cameras.main.pan(zoomX, zoomY, zoomDuration, ease, force);
+            this.cameras.main.zoomTo(zoom, zoomDuration, ease, force);
         }
+        totalDuration += zoomDuration;
 
         // Stop Gameplay
         this.endOGame = true;
@@ -288,7 +291,7 @@ class Play extends Phaser.Scene {
         this.time.removeAllEvents();
 
         // Ending clock
-        this.time.delayedCall(1000, () => {
+        this.time.delayedCall(totalDuration, () => {
             this.scene.start('end');
             this.startTime = undefined;
         });

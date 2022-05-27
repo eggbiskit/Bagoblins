@@ -63,9 +63,10 @@
         "maxLevel": 9
     },
     "endingSequence": {
-        "duration": 1,
+        "duration": 2,
+        "thinkTime": 0.5,
         "zoom": {
-            "ease": "Linear",
+            "ease": "Cubic.easeInOut",
             "force": false,
             "zoom": 4
         }
