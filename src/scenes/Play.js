@@ -250,9 +250,11 @@ class Play extends Phaser.Scene {
     }
 
     moveCursor(isVertical, isPositive) {
-        this.cursor.move(isVertical, isPositive);
-        this.goblin_idle.setVisible(false);
-        this.goblin_work.setVisible(true);
+        if(this.cursor.move(isVertical, isPositive)) {
+            this.sound.play("move");
+            this.goblin_idle.setVisible(false);
+            this.goblin_work.setVisible(true);
+        }
     }
 
     goblinAnim() {
