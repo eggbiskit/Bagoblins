@@ -18,3 +18,6 @@ let keyLeft, keyRight, keyUp, keyDown, keySelect, keyInput, keyOutput, keySpace;
 // Game setting JSON files
 let gameSettings;
 let itemSpecs;
+
+// Global var
+let orderTotal = 0;

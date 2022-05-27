@@ -33,7 +33,8 @@ class Endgame extends Phaser.Scene {
 
         this.add.image(game.config.width/2, game.config.height/2, 'menu_atlas', 'pinkslip');
         this.add.bitmapText(game.config.width/2 - 40, 70, 'pixel_font', 'EMPLOYEE: __GOBLIN__', 5);
-        this.add.bitmapText(game.config.width/2 - 40, 90, 'pixel_font', 'TIME: _______________', 5);
+        this.add.bitmapText(game.config.width/2 - 40, 90, 'pixel_font', 'ORDERS HANDL', 5);
+        this.add.bitmapText(game.config.width/2 + 14, 90, 'pixel_font', 'ED: ' + orderTotal, 5);
         this.add.bitmapText(game.config.width/2 - 40, 110, 'pixel_font', 'REASON: ____________', 5);
         this.add.bitmapText(game.config.width/2 - 40, 120, 'pixel_font', '____________________', 5);
         this.add.bitmapText(game.config.width/2 - 40, 130, 'pixel_font', '____________________', 5);
