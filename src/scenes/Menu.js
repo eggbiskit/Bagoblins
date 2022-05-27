@@ -70,15 +70,17 @@ class Menu extends Phaser.Scene {
         });
         this.play.anims.play('playAni', true);
         keySpace.on("down", () => {
-            this.sound.play("temp_sfx");
-            // fade out
-            this.input.keyboard.once('keydown-SPACE', () => {
-                this.cameras.main.fadeOut(1000, 0, 0, 0);
-                this.fading = true;
-            });
-            this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
-                this.scene.start('tutorial');
-            });
+            if (!this.fading) {
+                this.sound.play("temp_sfx");
+                // fade out
+                this.input.keyboard.once('keydown-SPACE', () => {
+                    this.cameras.main.fadeOut(1000, 0, 0, 0);
+                    this.fading = true;
+                });
+                this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
+                    this.scene.start('tutorial');
+                });
+            }
         });
     }
 }
