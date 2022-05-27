@@ -18,5 +18,7 @@ Grace Ho
 [Fade-In/Out Scene Transition](https://blog.ourcade.co/posts/2020/phaser-3-fade-out-scene-transition/) 
 [CSS Units](https://www.w3schools.com/cssref/css_units.asp)  
 [“vertically center canvas” Code Answer](https://www.codegrepper.com/code-examples/css/vertically+center+canvas)  
+["CameraLucida"](https://github.com/nathanaltice/CameraLucida)
+["YasTween"](https://github.com/nathanaltice/YasTween)  
 
 ## External Sound Effects
