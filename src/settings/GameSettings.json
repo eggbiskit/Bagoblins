@@ -61,5 +61,13 @@
             1.0
         ],
         "maxLevel": 9
+    },
+    "endingSequence": {
+        "duration": 1,
+        "zoom": {
+            "ease": "Linear",
+            "force": false,
+            "zoom": 4
+        }
     }
 }

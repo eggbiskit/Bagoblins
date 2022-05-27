@@ -159,7 +159,7 @@ class Play extends Phaser.Scene {
                     this.sound.play("create");
                     console.log("Item Created");
                 } else {
-                    this.endGame("Input backlog");
+                    this.endGame("Input backlog", this.inputSpace.x, this.inputSpace.y);
                 }
             }
         });
@@ -199,7 +199,7 @@ class Play extends Phaser.Scene {
                     console.log("Request Created");
                     customer.setVisible(true);
                 } else {
-                    this.endGame("Output backlog");
+                    this.endGame("Output backlog", this.outputSpace.x, this.outputSpace.y);
                 }
             }
         });
@@ -262,16 +262,36 @@ class Play extends Phaser.Scene {
         this.time.addEvent({ delay: 2000, callback: () => { this.goblin_idle.setVisible(true); }, loop: true });
     }
 
-    endGame(cause) {
+    /**
+     * 
+     * @param {string} cause – Name of cause of defeat
+     * @param {Number} zoomX – Zoom X coordinate
+     * @param {Number} zoomY – Zoom Y coordinate
+     */
+    endGame(cause, zoomX, zoomY) {
+        // Player feedback
         console.log(`Death from ${cause}`);
         this.sound.play("death");
+        let duration = gameSettings.endingSequence.duration * 1000;
+
+        // Clock movement
+        if(zoomX != undefined && zoomY != undefined) {
+            let {ease, force, zoom} = gameSettings.endingSequence.zoom;
+            console.log(ease);
+            this.cameras.main.pan(zoomX, zoomY, duration, ease, force);
+            this.cameras.main.zoomTo(zoom, duration, ease, force);
+        }
+
+        // Stop Gameplay
+        this.endOGame = true;
+        this.soundtrack.stop();
         this.time.removeAllEvents();
+
+        // Ending clock
         this.time.delayedCall(1000, () => {
             this.scene.start('end');
             this.startTime = undefined;
         });
-        this.endOGame = true;
-        this.soundtrack.stop();
     }
 
     update() {
