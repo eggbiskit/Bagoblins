@@ -72,43 +72,31 @@ class Play extends Phaser.Scene {
 
         // Movement Setup  
         keyLeft.on("down", () => {
-            this.cursor.move(false, false);
-            goblin_idle.setVisible(false);   // hide idle state for work state
-            goblin_work.setVisible(true);
+            this.moveCursor(false, false);
         });
         keyLeft.on("up", () => {             // delay work anim for a bit, resume idle after inactivity
-            this.time.addEvent({ delay: 2000, callback: () => { goblin_work.setVisible(false); }, loop: true });
-            this.time.addEvent({ delay: 2000, callback: () => { goblin_idle.setVisible(true); }, loop: true });
+            this.goblinAnim();
         });
 
         keyRight.on("down", () => {
-            this.cursor.move(false, true);
-            goblin_idle.setVisible(false);
-            goblin_work.setVisible(true);
+            this.moveCursor(false, true);
         });
         keyRight.on("up", () => {
-            this.time.addEvent({ delay: 2000, callback: () => { goblin_work.setVisible(false); }, loop: true });
-            this.time.addEvent({ delay: 2000, callback: () => { goblin_idle.setVisible(true); }, loop: true });
+            this.goblinAnim();
         });
 
         keyUp.on("down", () => {
-            this.cursor.move(true, false);
-            goblin_idle.setVisible(false);
-            goblin_work.setVisible(true);
+            this.moveCursor(true, false);
         });
         keyUp.on("up", () => {
-            this.time.addEvent({ delay: 2000, callback: () => { goblin_work.setVisible(false); }, loop: true });
-            this.time.addEvent({ delay: 2000, callback: () => { goblin_idle.setVisible(true); }, loop: true });
+            this.goblinAnim();
         });
         
         keyDown.on("down", () => {
-            this.cursor.move(true, true);
-            goblin_idle.setVisible(false);
-            goblin_work.setVisible(true);
+            this.moveCursor(true, true);
         });
         keyDown.on("up", () => {
-            this.time.addEvent({ delay: 2000, callback: () => { goblin_work.setVisible(false); }, loop: true });
-            this.time.addEvent({ delay: 2000, callback: () => { goblin_idle.setVisible(true); }, loop: true });
+            this.goblinAnim();
         });
 
         // C to pull from input
@@ -259,6 +247,17 @@ class Play extends Phaser.Scene {
         // Background music
         this.soundtrack = this.sound.add("BGM", { loop: true, volume: 0.25 });
         this.soundtrack.play();
+    }
+
+    moveCursor(isVertical, isPositive) {
+        this.cursor.move(isVertical, isPositive);
+        goblin_idle.setVisible(false);
+        goblin_work.setVisible(true);
+    }
+
+    goblinAnim() {
+        this.time.addEvent({ delay: 2000, callback: () => { goblin_work.setVisible(false); }, loop: true });
+        this.time.addEvent({ delay: 2000, callback: () => { goblin_idle.setVisible(true); }, loop: true });
     }
 
     endGame(cause) {
