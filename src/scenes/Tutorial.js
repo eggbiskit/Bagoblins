@@ -21,7 +21,7 @@ class Tutorial extends Phaser.Scene {
 
         // c key
         this.add.image(160, 73, 'tutorial_atlas', 'bg_invoice');
-        this.add.image(160, 77, 'tutorial_atlas', 'tut_potion_c');
+        this.add.image(160, 76, 'tutorial_atlas', 'tut_potion_c');
         this.add.bitmapText(111, 103, 'pixel_font', 'C TO RECIEVE INVOICE ORDER', 5);
 
         // z key
