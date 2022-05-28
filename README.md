@@ -20,5 +20,6 @@ Grace Ho
 [“vertically center canvas” Code Answer](https://www.codegrepper.com/code-examples/css/vertically+center+canvas)  
 ["CameraLucida"](https://github.com/nathanaltice/CameraLucida)
 ["YasTween"](https://github.com/nathanaltice/YasTween)  
+["MDN Web Docs"](https://developer.mozilla.org/en-US/docs/Web/API)
 
 ## External Sound Effects

@@ -21,3 +21,12 @@ let itemSpecs;
 
 // Global var
 let orderTotal = 0;
+
+// Pause game on tab out
+document.addEventListener("visibilitychange", function() {
+   if(document.visibilityState === "visible") {
+      console.log("unpause");
+   } else {
+      console.log("pause");
+   }
+});
