@@ -35,8 +35,26 @@ class Endgame extends Phaser.Scene {
         this.add.bitmapText(game.config.width / 2 - 40, 70, 'pixel_font', 'EMPLOYEE: __GOBLIN__', 5);
         this.add.bitmapText(game.config.width / 2 - 40, 90, 'pixel_font', 'ORDERS HANDL', 5);
         this.add.bitmapText(game.config.width / 2 + 14, 90, 'pixel_font', 'ED: ' + orderTotal, 5);
-        this.add.bitmapText(game.config.width / 2 - 40, 110, 'pixel_font', 'REASON: ____________', 5);
-        this.add.bitmapText(game.config.width / 2 - 40, 120, 'pixel_font', endCause.toUpperCase(), 5);
+
+        // endgame reasons
+        if(endCause == 'Input backlog') {
+            this.add.bitmapText(game.config.width / 2 - 40, 110, 'pixel_font', 'REASON: ____________', 5);
+            this.add.bitmapText(game.config.width / 2 - 40, 120, 'pixel_font', '_INVOICE_OVERFLOW_', 5);
+        }
+        else if (endCause == 'Output backlog') {
+            this.add.bitmapText(game.config.width / 2 - 40, 110, 'pixel_font', 'REASON: ____________', 5);
+            this.add.bitmapText(game.config.width / 2 - 40, 120, 'pixel_font', '_ORDERS_PILIED_UP__', 5);
+        }
+        else if (endCause == 'Sh*tty Game Design') {
+            this.add.bitmapText(game.config.width / 2 - 40, 110, 'pixel_font', 'REASON: __', 5);
+            this.add.bitmapText(game.config.width / 2 + 1, 110, 'pixel_font', 'TAKE_IT__', 5);
+            this.add.bitmapText(game.config.width / 2 - 40, 120, 'pixel_font', 'UP_WITH_MANAGEMENT', 5);
+        }
+        else {
+            this.add.bitmapText(game.config.width / 2 - 40, 110, 'pixel_font', 'REASON: ____________', 5);
+            this.add.bitmapText(game.config.width / 2 - 40, 120, 'pixel_font', '____________________', 5);
+
+        }
         this.add.bitmapText(game.config.width / 2 - 40, 130, 'pixel_font', '____________________', 5);
 
         // press space to start
