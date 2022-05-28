@@ -277,6 +277,7 @@ class Play extends Phaser.Scene {
     endGame(cause, zoomX, zoomY) {
         // Player feedback
         console.log(`Death from ${cause}`);
+        endCause = cause;
         this.sound.play("death");
         let zoomDuration = 0;
         let totalDuration = gameSettings.endingSequence.thinkTime * 1000;

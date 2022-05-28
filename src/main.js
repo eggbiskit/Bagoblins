@@ -21,6 +21,7 @@ let itemSpecs;
 
 // Global var
 let orderTotal = 0;
+let endCause;
 
 // Pause game on tab out
 document.addEventListener("visibilitychange", function() {

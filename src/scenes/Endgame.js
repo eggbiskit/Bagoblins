@@ -36,7 +36,7 @@ class Endgame extends Phaser.Scene {
         this.add.bitmapText(game.config.width / 2 - 40, 90, 'pixel_font', 'ORDERS HANDL', 5);
         this.add.bitmapText(game.config.width / 2 + 14, 90, 'pixel_font', 'ED: ' + orderTotal, 5);
         this.add.bitmapText(game.config.width / 2 - 40, 110, 'pixel_font', 'REASON: ____________', 5);
-        this.add.bitmapText(game.config.width / 2 - 40, 120, 'pixel_font', '____________________', 5);
+        this.add.bitmapText(game.config.width / 2 - 40, 120, 'pixel_font', endCause.toUpperCase(), 5);
         this.add.bitmapText(game.config.width / 2 - 40, 130, 'pixel_font', '____________________', 5);
 
         // press space to start
