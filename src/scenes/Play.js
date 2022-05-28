@@ -245,7 +245,7 @@ class Play extends Phaser.Scene {
         });
 
         // Background music
-        this.soundtrack = this.sound.add("BGM", { loop: true, volume: 0.25 });
+        this.soundtrack = this.sound.add("BGM", { loop: true, volume: 1 });
         this.soundtrack.play();
     }
 
