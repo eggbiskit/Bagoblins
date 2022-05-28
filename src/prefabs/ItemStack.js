@@ -1,7 +1,7 @@
 class ItemStack extends Phaser.GameObjects.Sprite {
-    constructor(scene, initialPos, stackSize = 1, configIntex) {
+    constructor(scene, initialPos, stackSize = 1, configIndex) {
         // Getting item info
-        let itemConfig = itemSpecs[configIntex];
+        let itemConfig = itemSpecs[configIndex];
         console.assert(itemConfig.maxSize && itemConfig.textureName, "Error: Invalid item config index");
         if(itemConfig.maxSize < stackSize) {
             console.error("Error: Invalid Stack Size");
