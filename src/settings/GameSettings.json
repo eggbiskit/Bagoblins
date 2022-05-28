@@ -16,21 +16,21 @@
     "timings": {
         "item": {
             "delay": 5,
-            "headway": 10,
+            "headway": 7,
             "increase": {
-                "rate": 1.5,
-                "time": 30
+                "rate": 1.25,
+                "time": 15
             }
         },
         "request": {
             "delay": 30,
-            "headway": 15,
+            "headway": 10,
             "increase": {
-                "rate": 1.25,
-                "time": 45
+                "rate": 1.75,
+                "time": 20
             }
         },
-        "leveling": 30
+        "leveling": 15
     },
     "depths": {
         "background": 0,
@@ -42,7 +42,7 @@
     "textConfigs": {
         "item": {
             "font": "pixel_gold",
-            "size": 5,
+            "size": 7,
             "align": 2,
             "dropShadowColor": "#000"
         }
