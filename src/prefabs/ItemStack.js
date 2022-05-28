@@ -31,9 +31,12 @@ class ItemStack extends Phaser.GameObjects.Sprite {
         }
 
         // Adding stack text
-        this.textOffset = this.width / gameSettings.offsetDenoms.itemText;
+        this.textOffset = {
+            x: this.width / 2 - this.width / gameSettings.offsetDenoms.itemTextX,
+            y: this.height / 2 - this.height / gameSettings.offsetDenoms.itemTextY
+        };
         let txtCfg = gameSettings.textConfigs.item;
-        this.stackText = scene.add.bitmapText(this.textOffset + this.x, this.textOffset + this.y, txtCfg.font, Math.abs(this.curSize), txtCfg.size, txtCfg.align);
+        this.stackText = scene.add.bitmapText(this.textOffset.x + this.x, this.textOffset.y + this.y, txtCfg.font, Math.abs(this.curSize), txtCfg.size, txtCfg.align);
         this.stackText.setDepth(12);
         this.stackText.setOrigin(0.5, 0.375);
     }
@@ -53,8 +56,8 @@ class ItemStack extends Phaser.GameObjects.Sprite {
     }
 
     positionText() {
-        this.stackText.x = this.x + this.textOffset;
-        this.stackText.y = this.y + this.textOffset;
+        this.stackText.x = this.x + this.textOffset.x;
+        this.stackText.y = this.y + this.textOffset.y;
     }
 
     updateText() {

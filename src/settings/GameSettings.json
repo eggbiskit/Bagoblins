@@ -11,7 +11,8 @@
     },
     "offsetDenoms": {
         "UIDist": 30,
-        "itemText": 4
+        "itemTextX": 4,
+        "itemTextY": 5
     },
     "timings": {
         "item": {
@@ -42,7 +43,7 @@
     "textConfigs": {
         "item": {
             "font": "pixel_gold",
-            "size": 7,
+            "size": 5,
             "align": 2,
             "dropShadowColor": "#000"
         }
