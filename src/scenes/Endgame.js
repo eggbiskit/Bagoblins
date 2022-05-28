@@ -43,7 +43,7 @@ class Endgame extends Phaser.Scene {
         }
         else if (endCause == 'Output backlog') {
             this.add.bitmapText(game.config.width / 2 - 40, 110, 'pixel_font', 'REASON: ____________', 5);
-            this.add.bitmapText(game.config.width / 2 - 40, 120, 'pixel_font', '_ORDERS_PILIED_UP__', 5);
+            this.add.bitmapText(game.config.width / 2 - 40, 120, 'pixel_font', '__ORDERS_PILED_UP__', 5);
         }
         else if (endCause == 'Sh*tty Game Design') {
             this.add.bitmapText(game.config.width / 2 - 40, 110, 'pixel_font', 'REASON: __', 5);
