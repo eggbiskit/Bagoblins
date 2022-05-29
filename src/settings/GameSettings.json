@@ -16,10 +16,10 @@
     },
     "timings": {
         "item": {
-            "delay": 5,
+            "delay": 2.5,
             "headway": 7,
             "increase": {
-                "rate": 1.25,
+                "rate": 1.125,
                 "time": 15
             }
         },
@@ -27,8 +27,8 @@
             "delay": 30,
             "headway": 10,
             "increase": {
-                "rate": 1.75,
-                "time": 20
+                "rate": 1.25,
+                "time": 25  
             }
         },
         "leveling": 15
