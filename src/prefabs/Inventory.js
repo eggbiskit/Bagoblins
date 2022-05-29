@@ -119,7 +119,7 @@ class Inventory extends Phaser.GameObjects.Sprite {
             stack = outputSpace.push(stack);
             if (stack) {
                 this.contents[row][col] = stack;
-                this.itemCount[name] -= stack.curSize;
+                this.itemCount[name] -= (size - stack.curSize);
             } else {
                 this.contents[row][col] = undefined;
                 this.itemCount[name] -= size;
