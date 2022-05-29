@@ -20,7 +20,7 @@ let gameSettings;
 let itemSpecs;
 
 // Global var
-let orderTotal = 0;
+let endTime;
 let endCause;
 
 // Pause game on tab out
