@@ -19,7 +19,7 @@ class Menu extends Phaser.Scene {
 
         // title animation
         this.title = this.add.sprite(game.config.width / 2, game.config.height / 5);
-        this.title.setScale(3);
+        this.title.setScale(2);
         this.anims.create({
             key: 'titleAni',
             frames: this.anims.generateFrameNames('menu_atlas', {
@@ -31,7 +31,7 @@ class Menu extends Phaser.Scene {
             repeat: -1
         });
         this.title.anims.play('titleAni', true);
-        this.desc = this.add.sprite(game.config.width / 2, game.config.height / 5 + 40, 'menu_atlas', 'desc');
+        this.desc = this.add.sprite(game.config.width / 2, game.config.height / 5 + 25, 'menu_atlas', 'desc');
         this.desc.setScale(1);
 
         // potions animation
