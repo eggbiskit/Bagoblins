@@ -24,6 +24,7 @@ class InputTile extends IOTile {
                 console.log("Pulled partial or no stack from input");
             } else {
                 this.scene.inventory.itemCount[name] += startingSize;
+                this.scene.removeTween(this.scene.inItemTween);
                 console.log("Pulled full stack from input");
             }
         } else {

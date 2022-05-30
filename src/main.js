@@ -18,6 +18,7 @@ let keyLeft, keyRight, keyUp, keyDown, keySelect, keyInput, keyOutput, keySpace;
 // Game setting JSON files
 let gameSettings;
 let itemSpecs;
+let tweenConfigs;
 
 // Global var
 let endTime;

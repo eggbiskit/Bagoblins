@@ -162,6 +162,7 @@ class Play extends Phaser.Scene {
 
                     // Creating the item
                     this.inputSpace.createItem(stackSize, itemIndex);
+                    this.inItemTween = this.addTween(this.inputSpace.curItem, "inOutItem");
                     this.sound.play("create");
                     console.log("Item Created");
                 } else {
@@ -201,6 +202,7 @@ class Play extends Phaser.Scene {
                     let maxRequestSize = (maxStackSize < countInInventory) ? maxStackSize : countInInventory;
                     let stackSize = Math.ceil(Math.random() * maxRequestSize);
                     this.outputSpace.createRequest(stackSize, itemIndex);
+                    this.requestTween = this.addTween(this.outputSpace.requestedItem, "inOutItem");
                     this.sound.play("request");
                     console.log("Request Created");
                     customer.setVisible(true);
@@ -268,6 +270,22 @@ class Play extends Phaser.Scene {
         this.time.addEvent({ delay: 2000, callback: () => { this.goblin_idle.setVisible(true); }, loop: true });
     }
 
+    addTween(target, cfgIndex) {
+        let config = tweenConfigs[cfgIndex];
+        config.targets = target;
+
+        // All tweens for this project have to do with scale, tint, xor position
+        if(config.scale) {
+            config.onStop = () => target.setScale(1);
+        }
+        return this.add.tween(config);
+    }
+
+    removeTween(tween) {
+        tween.stop();
+        tween.remove();
+    }
+
     /**
      * 
      * @param {string} cause – Name of cause of defeat
@@ -297,6 +315,7 @@ class Play extends Phaser.Scene {
         this.endOGame = true;
         this.soundtrack.stop();
         this.time.removeAllEvents();
+        this.tweens.killAll();
 
         // Ending clock
         this.time.delayedCall(totalDuration, () => {

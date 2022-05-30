@@ -1,0 +1,9 @@
+{
+    "inOutItem": {
+        "scale": { "from": 0.75, "to": 1.25 },
+        "ease": "Sine.easeInOut",
+        "duration": 500,
+        "repeat": -1,
+        "yoyo": true
+    }
+}
