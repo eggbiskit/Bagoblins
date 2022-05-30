@@ -22,13 +22,13 @@ class Tutorial extends Phaser.Scene {
         // c key
         this.add.image(160, 73, 'tutorial_atlas', 'bg_invoice');
         this.add.image(160, 76, 'tutorial_atlas', 'tut_potion_c');
-        this.add.bitmapText(111, 103, 'pixel_font', 'C TO RECIEVE INVOICE ORDER', 5);
+        this.add.bitmapText(106, 103, 'pixel_font', 'C TO PUT INVOICE IN INVENTORY', 5);
 
         // z key
         this.add.image(160, 137, 'tutorial_atlas', 'bg_orders');
         this.add.image(161, 134, 'tutorial_atlas', 'tut_potion_z').alpha = 0.5;
         this.add.bitmapText(117, 165, 'pixel_font', 'Z', 5);
-        this.add.bitmapText(123, 165, 'pixel_font', 'TO SEND OUT DELIVERIES', 5);
+        this.add.bitmapText(123, 165, 'pixel_font', 'TO SEND OUT ORDERS', 5);
 
         // press space to play
         keySpace = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes[gameSettings.keybinds.space]);
