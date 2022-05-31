@@ -107,12 +107,10 @@ class Play extends Phaser.Scene {
                     if(pulled) {
                         this.sound.play("input_pull");
                     } else {
-                        this.addTween(this.cursor, "invalidMove");
-                        this.sound.play("wrong");
+                        this.wrongMove();
                     }
                 } else {
-                    this.addTween(this.cursor, "invalidMove");
-                    this.sound.play("wrong");
+                    this.wrongMove();
                     console.warn("Cannot pull or push while holding an item");
                 }
             }
@@ -129,8 +127,7 @@ class Play extends Phaser.Scene {
                     if (pickedUp) {
                         this.sound.play("pick_up_stack");
                     } else {
-                        this.addTween(this.cursor, "invalidMove");
-                        this.sound.play("wrong");
+                        this.wrongMove();
                     }
                 }
             }
@@ -146,12 +143,10 @@ class Play extends Phaser.Scene {
                             customer.setVisible(false);
                         }
                     } else {
-                        this.addTween(this.cursor, "invalidMove");
-                        this.sound.play("wrong");
+                        this.wrongMove();
                     }
                 } else {
-                    this.addTween(this.cursor, "invalidMove");
-                    this.sound.play("wrong");
+                    this.wrongMove();
                     console.warn("Cannot pull or push while holding an item");
                 }
             }
@@ -270,6 +265,11 @@ class Play extends Phaser.Scene {
         // Background music
         this.soundtrack = this.sound.add("BGM", { loop: true, volume: 1 });
         this.soundtrack.play();
+    }
+
+    wrongMove() {
+        this.addTween(this.cursor, "invalidMove");
+        this.sound.play("wrong");
     }
 
     moveCursor(isVertical, isPositive) {
