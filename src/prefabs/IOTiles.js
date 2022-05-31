@@ -27,8 +27,10 @@ class InputTile extends IOTile {
                 this.scene.removeTween(this.scene.inItemTween);
                 console.log("Pulled full stack from input");
             }
+            return true;
         } else {
             console.log("No stack to pull");
+            return false;
         }
     }
 

@@ -103,9 +103,15 @@ class Play extends Phaser.Scene {
         keyInput.on("down", () => {
             if (!this.endOGame) {
                 if (!this.cursor.heldStack) {
-                    this.sound.play("input_pull");
-                    this.inputSpace.pull(this.cursor);
+                    let pulled = this.inputSpace.pull(this.cursor);
+                    if(pulled) {
+                        this.sound.play("input_pull");
+                    } else {
+                        this.addTween(this.cursor, "invalidMove");
+                        this.sound.play("wrong");
+                    }
                 } else {
+                    this.addTween(this.cursor, "invalidMove");
                     this.sound.play("wrong");
                     console.warn("Cannot pull or push while holding an item");
                 }
@@ -123,6 +129,7 @@ class Play extends Phaser.Scene {
                     if (pickedUp) {
                         this.sound.play("pick_up_stack");
                     } else {
+                        this.addTween(this.cursor, "invalidMove");
                         this.sound.play("wrong");
                     }
                 }
@@ -132,10 +139,18 @@ class Play extends Phaser.Scene {
         keyOutput.on("down", () => {
             if (!this.endOGame) {
                 if (!this.cursor.heldStack) {
-                    customer.setVisible(false);
-                    this.sound.play("output_push");
-                    this.inventory.pushStack(this.cursor.coordinates.y, this.cursor.coordinates.x, this.outputSpace);
+                    let pushed = this.inventory.pushStack(this.cursor.coordinates.y, this.cursor.coordinates.x, this.outputSpace);
+                    if(pushed) {
+                        this.sound.play("output_push");
+                        if(!this.outputSpace.requestedItem) {
+                            customer.setVisible(false);
+                        }
+                    } else {
+                        this.addTween(this.cursor, "invalidMove");
+                        this.sound.play("wrong");
+                    }
                 } else {
+                    this.addTween(this.cursor, "invalidMove");
                     this.sound.play("wrong");
                     console.warn("Cannot pull or push while holding an item");
                 }

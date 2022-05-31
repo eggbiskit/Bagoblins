@@ -124,8 +124,10 @@ class Inventory extends Phaser.GameObjects.Sprite {
                 this.contents[row][col] = undefined;
                 this.itemCount[name] -= size;
             }
+            return true;
         } else {
-            console.log("No stack to push")
+            console.log("No stack to push");
+            return false;
         }
     }
 }

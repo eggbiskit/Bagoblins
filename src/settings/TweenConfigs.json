@@ -5,5 +5,10 @@
         "duration": 500,
         "repeat": -1,
         "yoyo": true
+    },
+    "invalidMove": {
+        "scale": { "from": 1.15, "to": 1.0 },
+        "ease": "Back.easeOut",
+        "duration": 250
     }
 }
