@@ -44,7 +44,7 @@ class Load extends Phaser.Scene {
         this.load.audio("create", "assets/SFX/appear.mp3");
         this.load.audio("request", "assets/SFX/receiving.wav");
         this.load.audio("wrong", "assets/SFX/request.mp3");
-        this.load.audio("death", "assets/SFX/select.mp3");
+        this.load.audio("death", "assets/SFX/440773__mgamabile__smashing-glass (1).wav");
         this.load.audio("move", "assets/SFX/move.mp3");
         this.load.audio("BGM", "assets/music/BagTheme.wav");
 
