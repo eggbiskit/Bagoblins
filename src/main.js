@@ -21,12 +21,25 @@ let gameSettings, itemSpecs, tweenConfigs, soundConfigs;
 // Global var
 let endTime;
 let endCause;
+let pausedScene;
+let pauseTime;
 
 // Pause game on tab out
 window.addEventListener("focus", function () {
-   console.log("unpause");
+   if (pausedScene) {
+      console.log("unpause");
+      pausedScene.startTime += (this.performance.now() - pauseTime);
+      game.scene.resume(pausedScene);
+      pausedScene = undefined;
+   }
 });
 
 window.addEventListener("blur", function () {
-   console.log("pause");
+   if (!pausedScene) {
+      console.log("pause");
+      console.assert(game.scene.getScenes(true).length == 1, "Geddemmit Phaser");
+      pausedScene = game.scene.getScenes(true)[0];
+      pauseTime = pausedScene.time.now;
+      game.scene.pause(pausedScene);
+   }
 });
