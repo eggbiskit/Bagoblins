@@ -29,7 +29,7 @@ class InputTile extends IOTile {
             }
             return true;
         } else {
-            console.log("No stack to pull");
+            console.error("No stack to pull");
             return false;
         }
     }
@@ -87,7 +87,7 @@ class OutputTile extends IOTile {
      */
     push(incomingStack) {
         if (!this.requestedItem) {
-            console.log("No item requested");
+            console.error("No item requested");
             return incomingStack;
         }
 

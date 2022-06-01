@@ -56,6 +56,7 @@ class Cursor extends Phaser.GameObjects.Sprite {
             return true;
         } else {
             console.log("No Stack to Pick Up");
+            this.scene.wrongMove();
             return false;
         }
     }

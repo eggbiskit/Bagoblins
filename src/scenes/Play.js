@@ -103,10 +103,11 @@ class Play extends Phaser.Scene {
         keyInput.on("down", () => {
             if (!this.endOGame) {
                 if (!this.cursor.heldStack) {
-                    let pulled = this.inputSpace.pull(this.cursor);
-                    if(pulled) {
+                    if(this.inputSpace.curItem) {
+                        this.inputSpace.pull(this.cursor);
                         this.sound.play("input_pull");
                     } else {
+                        console.log("No stack to pull");
                         this.wrongMove();
                     }
                 } else {
@@ -120,14 +121,15 @@ class Play extends Phaser.Scene {
         keySelect.on("down", () => {
             if (!this.endOGame) {
                 if (this.cursor.heldStack) {
-                    this.sound.play("drop_stack");
+                    let curSize = this.cursor.heldStack.curSize;
                     this.cursor.dropStack();
+                    if (!this.cursor.heldStack || this.cursor.heldStack.curSize < curSize) {
+                        this.sound.play("drop_stack");
+                    }
                 } else {
                     let pickedUp = this.cursor.pickUpStack();
                     if (pickedUp) {
                         this.sound.play("pick_up_stack");
-                    } else {
-                        this.wrongMove();
                     }
                 }
             }
@@ -136,14 +138,15 @@ class Play extends Phaser.Scene {
         keyOutput.on("down", () => {
             if (!this.endOGame) {
                 if (!this.cursor.heldStack) {
-                    let pushed = this.inventory.pushStack(this.cursor.coordinates.y, this.cursor.coordinates.x, this.outputSpace);
-                    if(pushed) {
+                    if(this.outputSpace.requestedItem) {
+                        this.inventory.pushStack(this.cursor.coordinates.y, this.cursor.coordinates.x, this.outputSpace);
                         this.sound.play("output_push");
-                        if(!this.outputSpace.requestedItem) {
+                        if (!this.outputSpace.requestedItem) {
                             customer.setVisible(false);
                         }
                     } else {
                         this.wrongMove();
+                        console.log("No Item Requested");
                     }
                 } else {
                     this.wrongMove();
@@ -290,7 +293,7 @@ class Play extends Phaser.Scene {
         config.targets = target;
 
         // All tweens for this project have to do with scale, tint, xor position
-        if(config.scale) {
+        if (config.scale) {
             config.onStop = () => target.setScale(1);
         }
         return this.add.tween(config);

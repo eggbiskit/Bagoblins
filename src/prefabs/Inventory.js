@@ -105,6 +105,7 @@ class Inventory extends Phaser.GameObjects.Sprite {
         } else {
             // Can't Merge
             console.log("Incompatible Stacks");
+            this.scene.wrongMove();
             return incomingStack;
         }
     }
@@ -127,6 +128,7 @@ class Inventory extends Phaser.GameObjects.Sprite {
             return true;
         } else {
             console.log("No stack to push");
+            this.scene.wrongMove();
             return false;
         }
     }
