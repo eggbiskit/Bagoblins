@@ -290,7 +290,6 @@ class Play extends Phaser.Scene {
 
     addTween(target, cfgIndex, mods) {
         let config = Object.assign({}, tweenConfigs[cfgIndex]);
-        console.log(config);
         config.targets = target;
         if(mods) {
             for(let x in mods){
