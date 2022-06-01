@@ -10,5 +10,9 @@
         "scale": { "from": 1.15, "to": 1.0 },
         "ease": "Back.easeOut",
         "duration": 250
+    },
+    "cursorMove": {
+        "ease": "Sine.easeInOut",
+        "duration": 175
     }
 }

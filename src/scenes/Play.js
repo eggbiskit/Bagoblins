@@ -288,9 +288,15 @@ class Play extends Phaser.Scene {
         this.time.addEvent({ delay: 2000, callback: () => { this.goblin_idle.setVisible(true); }, loop: true });
     }
 
-    addTween(target, cfgIndex) {
-        let config = tweenConfigs[cfgIndex];
+    addTween(target, cfgIndex, mods) {
+        let config = Object.assign({}, tweenConfigs[cfgIndex]);
+        console.log(config);
         config.targets = target;
+        if(mods) {
+            for(let x in mods){
+                config[x] = mods[x];
+            }
+        }
 
         // All tweens for this project have to do with scale, tint, xor position
         if (config.scale) {

@@ -25,7 +25,6 @@ class Cursor extends Phaser.GameObjects.Sprite {
      */
     move(isVertical, isPositive) {
         if (!this.scene.endOGame) {
-            let posChange = (isPositive) ? this.inventory.slotSize : -this.inventory.slotSize;
             let increment = (isPositive) ? 1 : -1;
             let axisTerms = (isVertical) ? { axis: "y", tableJust: "rows" } : { axis: "x", tableJust: "cols" };
             if ((this.coordinates[axisTerms.axis] == 0 && !isPositive)
@@ -33,15 +32,13 @@ class Cursor extends Phaser.GameObjects.Sprite {
                 // Placeholder for tweens later maybe
                 return false;
             } else {
-                this[axisTerms.axis] += posChange;
                 this.coordinates[axisTerms.axis] += increment;
-            }
-
-            // Moving held stack
-            if (this.heldStack) {
-                this.heldStack.x = this.x;
-                this.heldStack.y = this.y;
-                this.heldStack.positionText();
+                let newCoords = this.inventory.getSpaceCoords(this.coordinates.y, this.coordinates.x)[axisTerms.axis];
+                if(this.heldStack) {
+                    this.scene.addTween([this, this.heldStack], "cursorMove", {[axisTerms.axis]: newCoords, onUpdate: () => this.heldStack.positionText()});
+                } else {
+                    this.scene.addTween(this, "cursorMove", {[axisTerms.axis]: newCoords});
+                }
             }
             return true;
         }
