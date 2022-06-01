@@ -35,7 +35,7 @@ class Cursor extends Phaser.GameObjects.Sprite {
                 this.coordinates[axisTerms.axis] += increment;
                 let newCoords = this.inventory.getSpaceCoords(this.coordinates.y, this.coordinates.x)[axisTerms.axis];
                 if(this.heldStack) {
-                    this.scene.addTween([this, this.heldStack], "cursorMove", {[axisTerms.axis]: newCoords, onUpdate: () => this.heldStack.positionText()});
+                    this.scene.addTween([this, this.heldStack], "cursorMove", {[axisTerms.axis]: newCoords, onUpdate: () => {if(this.heldStack){this.heldStack.positionText()}}});
                 } else {
                     this.scene.addTween(this, "cursorMove", {[axisTerms.axis]: newCoords});
                 }
