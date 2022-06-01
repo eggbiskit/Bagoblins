@@ -24,4 +24,6 @@ Grace Ho
 ["3 Ways to Clone Objects in JavaScript"](https://www.samanthaming.com/tidbits/70-3-ways-to-clone-objects/)
 
 ## External Sound Effects
-[Glass Shattering Effect for death sound] (https://freesound.org/people/mgamabile/sounds/440773/)
+[Glass] (https://freesound.org/people/mgamabile/sounds/440773/)
+[Reaper] (https://www.reaper.fm/)
+[Audacity] (https://www.audacityteam.org/)
