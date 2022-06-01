@@ -105,7 +105,7 @@ class Play extends Phaser.Scene {
                 if (!this.cursor.heldStack) {
                     if(this.inputSpace.curItem) {
                         this.inputSpace.pull(this.cursor);
-                        this.sound.play("input_pull");
+                        this.sound.play("input_pull", soundConfigs.input_pull);
                     } else {
                         console.log("No stack to pull");
                         this.wrongMove();
@@ -124,12 +124,12 @@ class Play extends Phaser.Scene {
                     let curSize = this.cursor.heldStack.curSize;
                     this.cursor.dropStack();
                     if (!this.cursor.heldStack || this.cursor.heldStack.curSize < curSize) {
-                        this.sound.play("drop_stack");
+                        this.sound.play("drop_stack", soundConfigs.drop_stack);
                     }
                 } else {
                     let pickedUp = this.cursor.pickUpStack();
                     if (pickedUp) {
-                        this.sound.play("pick_up_stack");
+                        this.sound.play("pick_up_stack", soundConfigs.pick_up_stack);
                     }
                 }
             }
@@ -140,7 +140,7 @@ class Play extends Phaser.Scene {
                 if (!this.cursor.heldStack) {
                     if(this.outputSpace.requestedItem) {
                         this.inventory.pushStack(this.cursor.coordinates.y, this.cursor.coordinates.x, this.outputSpace);
-                        this.sound.play("output_push");
+                        this.sound.play("output_push", soundConfigs.output_push);
                         if (!this.outputSpace.requestedItem) {
                             customer.setVisible(false);
                         }
@@ -176,7 +176,7 @@ class Play extends Phaser.Scene {
                     // Creating the item
                     this.inputSpace.createItem(stackSize, itemIndex);
                     this.inItemTween = this.addTween(this.inputSpace.curItem, "inOutItem");
-                    this.sound.play("create");
+                    this.sound.play("create", soundConfigs.create);
                     console.log("Item Created");
                 } else {
                     this.endGame("Input backlog", this.inputSpace.x, this.inputSpace.y);
@@ -216,7 +216,7 @@ class Play extends Phaser.Scene {
                     let stackSize = Math.ceil(Math.random() * maxRequestSize);
                     this.outputSpace.createRequest(stackSize, itemIndex);
                     this.requestTween = this.addTween(this.outputSpace.requestedItem, "inOutItem");
-                    this.sound.play("request");
+                    this.sound.play("request", soundConfigs.request);
                     console.log("Request Created");
                     customer.setVisible(true);
                 } else {
@@ -272,12 +272,12 @@ class Play extends Phaser.Scene {
 
     wrongMove() {
         this.addTween(this.cursor, "invalidMove");
-        this.sound.play("wrong");
+        this.sound.play("wrong", soundConfigs.wrong);
     }
 
     moveCursor(isVertical, isPositive) {
         if (this.cursor.move(isVertical, isPositive)) {
-            this.sound.play("move");
+            this.sound.play("move", soundConfigs.move);
             this.goblin_idle.setVisible(false);
             this.goblin_work.setVisible(true);
         }
@@ -315,7 +315,7 @@ class Play extends Phaser.Scene {
         console.log(`Death from ${cause}`);
         endCause = cause;
         endTime = this.runtimeClock.text;
-        this.sound.play("death");
+        this.sound.play("death", soundConfigs.death);
         let zoomDuration = 0;
         let totalDuration = gameSettings.endingSequence.thinkTime * 1000;
 

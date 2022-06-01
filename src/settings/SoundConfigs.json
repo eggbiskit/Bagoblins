@@ -1,0 +1,33 @@
+{
+    "input_pull": {
+        "volume": 0.5
+    },
+    "drop_stack": {
+        "volume": 1
+    },
+    "pick_up_stack": {
+        "volume": 0.5
+    },
+    "output_push": {
+        "volume": 0.5
+    },
+    "create": {
+        "volume": 1
+    },
+    "request": {
+        "volume": 1
+    },
+    "wrong": {
+        "volume": 1
+    },
+    "death": {
+        "volume": 1
+    },
+    "move": {
+        "volume": 2
+    },
+    "BGM": {
+        "volume": 1.5,
+        "loop": true
+    }
+}

@@ -52,6 +52,7 @@ class Load extends Phaser.Scene {
         this.load.json("gameSettings", "src/settings/GameSettings.json");
         this.load.json("items", "src/settings/Items.json");
         this.load.json("tweens", "src/settings/TweenConfigs.json");
+        this.load.json("SFX", "src/settings/SoundConfigs.json");
     }
 
     create() {
@@ -60,6 +61,7 @@ class Load extends Phaser.Scene {
         gameSettings = this.cache.json.get("gameSettings");
         itemSpecs = this.cache.json.get("items");
         tweenConfigs = this.cache.json.get("tweens");
+        soundConfigs = this.cache.json.get("SFX");
 
         this.cameras.main.fadeOut(1000, 0, 0, 0);
         this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
