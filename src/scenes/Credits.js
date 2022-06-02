@@ -17,7 +17,10 @@ class Credits extends Phaser.Scene {
       // assets
       this.add.image(game.config.width / 2, game.config.height / 2, 'tutorial_atlas', 'menu_bg').setScale(3); 
       this.add.image(game.config.width / 2, game.config.height / 2 - 4, 'tutorial_atlas', 'clipboard').setScale(2);
-      this.add.image(game.config.width / 2, 40 , 'menu_atlas', 'credits_title').setScale(2); 
+      this.add.image(game.config.width / 2, 45, 'menu_atlas', 'credits_title').setScale(2); 
+      this.add.image(118, 45, 'menu_atlas', 'customer'); 
+      this.add.image(200, 45, 'menu_atlas', 'customer').flipX = true; 
+
 
       // press space to start
       keySpace = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes[gameSettings.keybinds.space]);
@@ -49,6 +52,20 @@ class Credits extends Phaser.Scene {
               });
           }
       });
+
+      this.add.bitmapText(130, 65, 'pixel_font', 'ALEXIS ADOLPHO', 5);
+      this.add.bitmapText(135, 75, 'pixel_font', '(SFX + MUSIC)', 5).setAlpha(0.75);
+      this.add.bitmapText(158, 82, 'pixel_font', '...', 5);
+      this.add.bitmapText(127, 93, 'pixel_font', 'JACOB DICKERMAN', 5);
+      this.add.bitmapText(123, 103, 'pixel_font', '(LEAD PROGRAMMER)', 5).setAlpha(0.75);
+      this.add.bitmapText(158, 109, 'pixel_font', '...', 5);
+      this.add.bitmapText(144, 119, 'pixel_font', 'GRACE HO', 5);
+      this.add.bitmapText(120, 129, 'pixel_font', '(ARTIST + SUPPLEMENT-', 5).setAlpha(0.75);
+      this.add.bitmapText(140, 139, 'pixel_font', 'ARY CODE)', 5).setAlpha(0.75);
+
+      this.add.bitmapText(120, 155, 'pixel_gold', 'THANKS FOR PLAYING!', 5);
+      this.add.bitmapText(121, 155, 'pixel_font', 'THANKS FOR PLAYING!', 5);
+
 
    }
 }
