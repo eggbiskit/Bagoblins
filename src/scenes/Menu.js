@@ -56,7 +56,7 @@ class Menu extends Phaser.Scene {
         // press space to start
         keySpace = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes[gameSettings.keybinds.space]);
 
-        this.play = this.add.sprite(game.config.width / 2, game.config.height / 5 + 150);
+        this.play = this.add.sprite(game.config.width / 2, game.config.height / 5 + 142);
         this.play.setScale(1.0);
         this.anims.create({
             key: 'playAni',
@@ -82,6 +82,15 @@ class Menu extends Phaser.Scene {
                     this.scene.start('tutorial');
                 });
             }
+        });
+
+        // press c for credits
+        keyInput = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes[gameSettings.keybinds.input]);
+        
+        this.add.sprite(game.config.width / 2, game.config.height / 5 + 150, 'menu_atlas', 'credits');
+        keyInput.on("down", () => {
+            this.sound.play("temp_sfx");
+            this.scene.start('credits');
         });
     }
 }

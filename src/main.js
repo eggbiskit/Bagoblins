@@ -8,7 +8,7 @@ const config = {
       zoom: 3,
       autoCenter: Phaser.Scale.Center.CENTER_BOTH
    },
-   scene: [Load, Menu, Tutorial, Tutorial2, Play, Endgame]
+   scene: [Load, Menu, Tutorial, Tutorial2, Play, Endgame, Credits]
 };
 
 let game = new Phaser.Game(config);
