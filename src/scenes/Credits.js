@@ -48,7 +48,7 @@ class Credits extends Phaser.Scene {
               });
               this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
                   this.fading = false;
-                  this.scene.start('tutorial');
+                  this.scene.start('menu');
               });
           }
       });

@@ -86,11 +86,18 @@ class Menu extends Phaser.Scene {
 
         // press c for credits
         keyInput = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes[gameSettings.keybinds.input]);
-        
+
         this.add.sprite(game.config.width / 2, game.config.height / 5 + 150, 'menu_atlas', 'credits');
         keyInput.on("down", () => {
-            this.sound.play("temp_sfx");
-            this.scene.start('credits');
+            if (!this.fading) {
+                this.sound.play("temp_sfx");
+                this.cameras.main.fadeOut(1000);
+                this.fading = true;
+                this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
+                    this.fading = false;
+                    this.scene.start('credits');
+                });
+            }
         });
     }
 }
