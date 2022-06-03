@@ -27,7 +27,6 @@ class IOTile extends Phaser.GameObjects.Sprite {
      */
     pushPullTween(startingObj, endingObj, numItems){
         for(let i = 0; i < numItems; i++) {
-            console.log(this.itemIndex);
             this.scene.addTween(
                 new ItemStack(this.scene, { x: startingObj.x, y: startingObj.y }, 1, this.itemIndex),
                 "pullNPush",
@@ -144,24 +143,33 @@ class OutputTile extends IOTile {
      * Pushes an item in the inventory to the output
      * 
      * @param {ItemStack} incomingStack – The stack currently being pushed
+     * @param {Object} invenCoords – The coordinates of the inventory space being pulled from
+     * @param {Number} invenCoords.x – Inventory space X coordinate
+     * @param {Number} invenCoords.y – Inventory space Y coordinate
      * @returns – The remainder of the outgoing stack following the push (or null for an empty stack)
      */
-    push(incomingStack) {
+    push(incomingStack, invenCoords) {
         if (!this.requestedItem) {
             console.error("No item requested");
             return incomingStack;
         }
 
         if (incomingStack.name == this.requestedItem.name) {
+            // Compatable stacks
+            let transferred;
             if (incomingStack.curSize >= Math.abs(this.requestedItem.curSize)) {
                 incomingStack.curSize += this.requestedItem.curSize;
                 incomingStack.updateText();
+                transferred = -this.requestedItem.curSize;
                 this.requestedItem.curSize = 0;
             } else {
                 this.requestedItem.curSize += incomingStack.curSize;
                 this.requestedItem.updateText();
-                incomingStack.curSize = 0
+                transferred = incomingStack.curSize;
+                incomingStack.curSize = 0;
             }
+            console.log(transferred);
+            this.pushPullTween(invenCoords, this, transferred);
 
             // Check for empty stacks
             if (this.requestedItem.curSize == 0) {
