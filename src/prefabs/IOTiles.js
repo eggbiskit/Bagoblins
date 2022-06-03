@@ -11,6 +11,35 @@ class IOTile extends Phaser.GameObjects.Sprite {
         this.setOrigin(0.5);
         this.setDepth(gameSettings.depths.UI);
         this.scene = scene;
+        this.itemIndex = -1;
+    }
+
+    /**
+     * Initiates the tween showing an object sliding to or from the inventory
+     * 
+     * @param {Object} startingObj – Where the stack will start
+     * @param {Number} startingObj.x – Starting X coordinate
+     * @param {Number} startingObj.y – Starting Y coordinate
+     * @param {Object} endingObj – Where the stack will end
+     * @param {Number} endingObj.x – Ending X coordinate
+     * @param {Number} endingObj.y – Ending Y coordinate
+     * @param {Number} numItems – The number of items in the stack
+     */
+    pushPullTween(startingObj, endingObj, numItems){
+        for(let i = 0; i < numItems; i++) {
+            console.log(this.itemIndex);
+            this.scene.addTween(
+                new ItemStack(this.scene, { x: startingObj.x, y: startingObj.y }, 1, this.itemIndex),
+                "pullNPush",
+                {
+                    x: { "from": startingObj.x, "to": endingObj.x },
+                    y: { "from": startingObj.y, "to": endingObj.y },
+                    delay: i * 100,
+                    onUpdate: (tween, targets) => {targets.positionText;},
+                    onComplete: (tween) => {tween.targets[0].deconstructor();}
+                }
+            );
+        }
     }
 }
 
@@ -32,6 +61,7 @@ class InputTile extends IOTile {
      */
     pull(cursor) {
         if (this.curItem) {
+            let cursorPos = this.scene.inventory.getSpaceCoords(cursor.coordinates.y, cursor.coordinates.x);
             let startingSize = this.curItem.curSize;
             let name = this.curItem.name;
             this.curItem = this.scene.inventory.mergeStacks(this.curItem, cursor.coordinates.y, cursor.coordinates.x, true);
@@ -39,6 +69,7 @@ class InputTile extends IOTile {
                 let diff = startingSize - this.curItem.curSize;
                 if(diff > 0) {
                     this.scene.inventory.itemCount[name] += diff;
+                    this.pushPullTween(this, cursorPos, diff);
                     console.log("Pulled partial stack from input")
                 } else {
                     console.log("Pulled no stack from input");
@@ -46,8 +77,10 @@ class InputTile extends IOTile {
                 }
             } else {
                 this.scene.inventory.itemCount[name] += startingSize;
+                this.pushPullTween(this, cursorPos, startingSize);
                 this.scene.removeTween(this.scene.inItemTween);
                 console.log("Pulled full stack from input");
+                this.itemIndex = -1;
             }
             return true;
         } else {
@@ -70,6 +103,7 @@ class InputTile extends IOTile {
             console.assert(stackSize > 0, "Error: Invalid stack size");
 
             this.curItem = new ItemStack(this.scene, { x: this.x, y: this.y }, stackSize, itemIndex);
+            this.itemIndex = itemIndex;
         }
 
         return this.curItem;
@@ -100,6 +134,7 @@ class OutputTile extends IOTile {
             console.assert(stackSize > 0, "Error: Invalid stack size");
 
             this.requestedItem = new ItemStack(this.scene, { x: this.x, y: this.y }, -stackSize, itemIndex);
+            this.itemIndex = itemIndex;
         }
 
         return this.requestedItem;
@@ -133,6 +168,7 @@ class OutputTile extends IOTile {
                 console.log("Request Fulfilled");
                 this.requestedItem.deconstructor();
                 this.requestedItem = null;
+                this.itemIndex = -1;
             }
             if (incomingStack.curSize == 0) {
                 incomingStack.deconstructor();

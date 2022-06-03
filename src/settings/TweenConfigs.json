@@ -14,5 +14,9 @@
     "cursorMove": {
         "ease": "Sine.easeInOut",
         "duration": 175
+    },
+    "pullNPush": {
+        "ease": "Cubic.easeOut",
+        "duration": 250
     }
 }
