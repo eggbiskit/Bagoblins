@@ -20,7 +20,7 @@ class ItemStack extends Phaser.GameObjects.Sprite {
         super(scene, initialPos.x, initialPos.y, itemConfig.textureName);
         scene.add.existing(this);
         this.setOrigin(0.5);
-        this.setDepth(gameSettings.depths.items);
+        this.setDepth(gameSettings.depths.inOutItems);
 
         // Setting parameters
         this.inventory = scene.inventory;

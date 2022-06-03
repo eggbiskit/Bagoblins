@@ -38,7 +38,9 @@
         "UI": 1,
         "items": 2,
         "heldItems": 4,
-        "cursor": 3
+        "cursor": 3,
+        "inOutItems": 4,
+        "inOutTweens": 3.5
     },
     "textConfigs": {
         "item": {

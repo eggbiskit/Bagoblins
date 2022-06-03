@@ -28,7 +28,7 @@ class IOTile extends Phaser.GameObjects.Sprite {
     pushPullTween(startingObj, endingObj, numItems){
         for(let i = 0; i < numItems; i++) {
             this.scene.addTween(
-                new ItemStack(this.scene, { x: startingObj.x, y: startingObj.y }, 1, this.itemIndex),
+                new ItemStack(this.scene, { x: startingObj.x, y: startingObj.y }, 1, this.itemIndex).setDepth(gameSettings.depths.inOutTweens),
                 "pullNPush",
                 {
                     x: { "from": startingObj.x, "to": endingObj.x },

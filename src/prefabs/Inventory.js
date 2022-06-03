@@ -89,6 +89,8 @@ class Inventory extends Phaser.GameObjects.Sprite {
             // Put stack in spot
             if (!fromInput) {
                 this.contents[incomingStack.coordinates.row][incomingStack.coordinates.col] = undefined;
+            } else {
+                incomingStack.setDepth(gameSettings.depths.items);
             }
             this.contents[row][col] = incomingStack;
             incomingStack.setSpot(row, col);
