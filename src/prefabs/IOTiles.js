@@ -26,7 +26,7 @@ class IOTile extends Phaser.GameObjects.Sprite {
      * @param {Number} numItems – The number of items in the stack
      */
     pushPullTween(startingObj, endingObj, numItems, fromInput = true, destroyOnEnd = false){
-        let endBehavior = (fromInput) ? (tween) => { endingObj.setAlpha(1); endingObj.stackText.setAlpha(1); } : (tween) => { console.log(tween.lastItem); if(destroyOnEnd && tween.lastItem){ endingObj.deconstructor() } };
+        let endBehavior = (fromInput) ? (tween) => { endingObj.setAlpha(1); endingObj.stackText.setAlpha(1); } : (tween) => { if(destroyOnEnd && tween.lastItem){ endingObj.deconstructor() } };
         for(let i = 0; i < numItems; i++) {
             let last = i == (numItems - 1);
             let tween = this.scene.addTween(

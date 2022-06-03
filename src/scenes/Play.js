@@ -104,8 +104,9 @@ class Play extends Phaser.Scene {
             if (!this.endOGame) {
                 if (!this.cursor.heldStack) {
                     if(this.inputSpace.curItem) {
-                        this.inputSpace.pull(this.cursor);
-                        this.sound.play("push_n_pull", soundConfigs.input_pull);
+                        if(this.inputSpace.pull(this.cursor)) {
+                            this.sound.play("push_n_pull", soundConfigs.input_pull);
+                        }
                     } else {
                         console.log("No stack to pull");
                         this.wrongMove();
@@ -353,7 +354,6 @@ class Play extends Phaser.Scene {
         if (zoomX != undefined && zoomY != undefined) {
             zoomDuration = gameSettings.endingSequence.duration * 1000;
             let { ease, force, zoom } = gameSettings.endingSequence.zoom;
-            console.log(ease);
             this.cameras.main.pan(zoomX, zoomY, zoomDuration, ease, force);
             this.cameras.main.zoomTo(zoom, zoomDuration, ease, force);
         }
