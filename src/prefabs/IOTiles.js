@@ -1,7 +1,7 @@
 // General class for the input and output tiles
 class IOTile extends Phaser.GameObjects.Sprite {
     /**
-     * @param {Phaser.scene} scene – Scene the tile is attatched to
+     * @param {Phaser.Scene} scene – Scene the tile is attatched to
      * @param {Number} posX – X Position of the tile
      * @param {Number} posY – Y Position of the tile
      */
