@@ -105,7 +105,7 @@ class Play extends Phaser.Scene {
                 if (!this.cursor.heldStack) {
                     if(this.inputSpace.curItem) {
                         this.inputSpace.pull(this.cursor);
-                        this.sound.play("input_pull", soundConfigs.input_pull);
+                        this.sound.play("push_n_pull", soundConfigs.input_pull);
                     } else {
                         console.log("No stack to pull");
                         this.wrongMove();
@@ -140,7 +140,7 @@ class Play extends Phaser.Scene {
                 if (!this.cursor.heldStack) {
                     if(this.outputSpace.requestedItem) {
                         this.inventory.pushStack(this.cursor.coordinates.y, this.cursor.coordinates.x, this.outputSpace);
-                        this.sound.play("output_push", soundConfigs.output_push);
+                        this.sound.play("push_n_pull", soundConfigs.output_push);
                         if (!this.outputSpace.requestedItem) {
                             customer.setVisible(false);
                         }
