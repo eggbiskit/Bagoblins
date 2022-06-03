@@ -25,7 +25,8 @@ class IOTile extends Phaser.GameObjects.Sprite {
      * @param {Number} endingObj.y – Ending Y coordinate
      * @param {Number} numItems – The number of items in the stack
      */
-    pushPullTween(startingObj, endingObj, numItems){
+    pushPullTween(startingObj, endingObj, numItems, fromInput){
+        let endBehavior = (fromInput) ? () => { endingObj.setAlpha(1); endingObj.stackText.setAlpha(1); } : () => {};
         for(let i = 0; i < numItems; i++) {
             this.scene.addTween(
                 new ItemStack(this.scene, { x: startingObj.x, y: startingObj.y }, 1, this.itemIndex).setDepth(gameSettings.depths.inOutTweens),
@@ -35,7 +36,7 @@ class IOTile extends Phaser.GameObjects.Sprite {
                     y: { "from": startingObj.y, "to": endingObj.y },
                     delay: i * 100,
                     onUpdate: (tween, targets) => {targets.positionText();},
-                    onComplete: (tween) => {tween.targets[0].deconstructor();}
+                    onComplete: (tween) => {tween.targets[0].deconstructor(); endBehavior();}
                 }
             );
         }
@@ -60,15 +61,20 @@ class InputTile extends IOTile {
      */
     pull(cursor) {
         if (this.curItem) {
-            let cursorPos = this.scene.inventory.getSpaceCoords(cursor.coordinates.y, cursor.coordinates.x);
             let startingSize = this.curItem.curSize;
             let name = this.curItem.name;
             this.curItem = this.scene.inventory.mergeStacks(this.curItem, cursor.coordinates.y, cursor.coordinates.x, true);
+            let mergedItem = this.scene.inventory.getStack(cursor.coordinates.y, cursor.coordinates.x);
+            if(mergedItem.curSize == startingSize) {
+                mergedItem.setAlpha(0);
+                mergedItem.stackText.setAlpha(0);
+            }
+
             if (this.curItem) {
                 let diff = startingSize - this.curItem.curSize;
                 if(diff > 0) {
                     this.scene.inventory.itemCount[name] += diff;
-                    this.pushPullTween(this, cursorPos, diff);
+                    this.pushPullTween(this, mergedItem, diff, true);
                     console.log("Pulled partial stack from input")
                 } else {
                     console.log("Pulled no stack from input");
@@ -76,7 +82,7 @@ class InputTile extends IOTile {
                 }
             } else {
                 this.scene.inventory.itemCount[name] += startingSize;
-                this.pushPullTween(this, cursorPos, startingSize);
+                this.pushPullTween(this, mergedItem, startingSize, true);
                 this.scene.removeTween(this.scene.inItemTween);
                 console.log("Pulled full stack from input");
                 this.itemIndex = -1;
