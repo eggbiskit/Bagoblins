@@ -24,7 +24,7 @@
             }
         },
         "request": {
-            "delay": 30,
+            "delay": 15,
             "headway": 10,
             "increase": {
                 "rate": 1.25,
