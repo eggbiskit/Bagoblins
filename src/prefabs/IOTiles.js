@@ -25,10 +25,11 @@ class IOTile extends Phaser.GameObjects.Sprite {
      * @param {Number} endingObj.y – Ending Y coordinate
      * @param {Number} numItems – The number of items in the stack
      */
-    pushPullTween(startingObj, endingObj, numItems, fromInput){
-        let endBehavior = (fromInput) ? () => { endingObj.setAlpha(1); endingObj.stackText.setAlpha(1); } : () => {};
+    pushPullTween(startingObj, endingObj, numItems, fromInput = true, destroyOnEnd = false){
+        let endBehavior = (fromInput) ? (tween) => { endingObj.setAlpha(1); endingObj.stackText.setAlpha(1); } : (tween) => { console.log(tween.lastItem); if(destroyOnEnd && tween.lastItem){ endingObj.deconstructor() } };
         for(let i = 0; i < numItems; i++) {
-            this.scene.addTween(
+            let last = i == (numItems - 1);
+            let tween = this.scene.addTween(
                 new ItemStack(this.scene, { x: startingObj.x, y: startingObj.y }, 1, this.itemIndex).setDepth(gameSettings.depths.inOutTweens),
                 "pullNPush",
                 {
@@ -36,9 +37,10 @@ class IOTile extends Phaser.GameObjects.Sprite {
                     y: { "from": startingObj.y, "to": endingObj.y },
                     delay: i * 100,
                     onUpdate: (tween, targets) => {targets.positionText();},
-                    onComplete: (tween) => {tween.targets[0].deconstructor(); endBehavior();}
+                    onComplete: (tween) => {tween.targets[0].deconstructor(); endBehavior(tween);}
                 }
             );
+            tween.lastItem = last;
         }
     }
 }
@@ -65,7 +67,8 @@ class InputTile extends IOTile {
             let name = this.curItem.name;
             this.curItem = this.scene.inventory.mergeStacks(this.curItem, cursor.coordinates.y, cursor.coordinates.x, true);
             let mergedItem = this.scene.inventory.getStack(cursor.coordinates.y, cursor.coordinates.x);
-            if(mergedItem.curSize == startingSize) {
+
+            if((!this.curItem || this.curItem.curSize < startingSize) && mergedItem.curSize == startingSize) {
                 mergedItem.setAlpha(0);
                 mergedItem.stackText.setAlpha(0);
             }
@@ -174,16 +177,18 @@ class OutputTile extends IOTile {
                 transferred = incomingStack.curSize;
                 incomingStack.curSize = 0;
             }
-            console.log(transferred);
-            this.pushPullTween(invenCoords, this, transferred);
 
             // Check for empty stacks
             if (this.requestedItem.curSize == 0) {
                 console.log("Request Fulfilled");
-                this.requestedItem.deconstructor();
+                this.pushPullTween(invenCoords, this.requestedItem, transferred, false, true);
                 this.requestedItem = null;
                 this.itemIndex = -1;
+            } else {
+                console.log("Request Partially Fulfilled");
+                this.pushPullTween(invenCoords, this.requestedItem, transferred, false, false);
             }
+
             if (incomingStack.curSize == 0) {
                 incomingStack.deconstructor();
                 return null;
