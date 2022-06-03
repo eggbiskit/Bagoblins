@@ -34,7 +34,7 @@ class IOTile extends Phaser.GameObjects.Sprite {
                     x: { "from": startingObj.x, "to": endingObj.x },
                     y: { "from": startingObj.y, "to": endingObj.y },
                     delay: i * 100,
-                    onUpdate: (tween, targets) => {targets.positionText;},
+                    onUpdate: (tween, targets) => {targets.positionText();},
                     onComplete: (tween) => {tween.targets[0].deconstructor();}
                 }
             );
