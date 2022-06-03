@@ -103,8 +103,8 @@ class Play extends Phaser.Scene {
         keyInput.on("down", () => {
             if (!this.endOGame) {
                 if (!this.cursor.heldStack) {
-                    if(this.inputSpace.curItem) {
-                        if(this.inputSpace.pull(this.cursor)) {
+                    if (this.inputSpace.curItem) {
+                        if (this.inputSpace.pull(this.cursor)) {
                             this.sound.play("push_n_pull", soundConfigs.input_pull);
                         }
                     } else {
@@ -139,11 +139,16 @@ class Play extends Phaser.Scene {
         keyOutput.on("down", () => {
             if (!this.endOGame) {
                 if (!this.cursor.heldStack) {
-                    if(this.outputSpace.requestedItem) {
-                        this.inventory.pushStack(this.cursor.coordinates.y, this.cursor.coordinates.x, this.outputSpace);
-                        this.sound.play("push_n_pull", soundConfigs.output_push);
-                        if (!this.outputSpace.requestedItem) {
-                            customer.setVisible(false);
+                    if (this.outputSpace.requestedItem) {
+                        if (this.outputSpace.requestedItem.name == this.inventory.getStack(this.cursor.coordinates.y, this.cursor.coordinates.x).name) {
+                            this.inventory.pushStack(this.cursor.coordinates.y, this.cursor.coordinates.x, this.outputSpace);
+                            this.sound.play("push_n_pull", soundConfigs.output_push);
+                            if (!this.outputSpace.requestedItem) {
+                                customer.setVisible(false);
+                            }
+                        } else {
+                            this.wrongMove();
+                            console.log("Wrong item was attempted to be pushed");
                         }
                     } else {
                         this.wrongMove();
@@ -312,8 +317,8 @@ class Play extends Phaser.Scene {
     addTween(target, cfgIndex, mods) {
         let config = Object.assign({}, tweenConfigs[cfgIndex]);
         config.targets = target;
-        if(mods) {
-            for(let x in mods){
+        if (mods) {
+            for (let x in mods) {
                 config[x] = mods[x];
             }
         }

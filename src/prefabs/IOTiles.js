@@ -205,7 +205,7 @@ class OutputTile extends IOTile {
                 return null;
             }
         } else {
-            console.log("Wrong item was attempted to be pushed");
+            console.error("Wrong item was attempted to be pushed");
         }
 
         return incomingStack;
