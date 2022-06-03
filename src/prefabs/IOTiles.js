@@ -24,10 +24,21 @@ class IOTile extends Phaser.GameObjects.Sprite {
      * @param {Number} endingObj.x – Ending X coordinate
      * @param {Number} endingObj.y – Ending Y coordinate
      * @param {Number} numItems – The number of items in the stack
+     * @param {boolean} fromInput – Whether or not this is being called from the input tile
+     * @param {boolean} destroyOnEnd – Should fromInput be false, whether or not endingObj will be destroyed after the last tweened item
      */
-    pushPullTween(startingObj, endingObj, numItems, fromInput = true, destroyOnEnd = false){
-        let endBehavior = (fromInput) ? (tween) => { endingObj.setAlpha(1); endingObj.stackText.setAlpha(1); } : (tween) => { if(destroyOnEnd && tween.lastItem){ endingObj.deconstructor() } };
-        for(let i = 0; i < numItems; i++) {
+    pushPullTween(startingObj, endingObj, numItems, fromInput = true, destroyOnEnd = false) {
+        // Setting up what happens after the tweens complete
+        let endBehavior = (fromInput) ? (tween) => {
+            endingObj.setAlpha(1);
+            endingObj.stackText.setAlpha(1);
+        } : (tween) => {
+            if (destroyOnEnd && tween.lastItem) {
+                endingObj.deconstructor()
+            }
+        };
+
+        for (let i = 0; i < numItems; i++) {
             let last = i == (numItems - 1);
             let tween = this.scene.addTween(
                 new ItemStack(this.scene, { x: startingObj.x, y: startingObj.y }, 1, this.itemIndex).setDepth(gameSettings.depths.inOutTweens),
@@ -36,8 +47,8 @@ class IOTile extends Phaser.GameObjects.Sprite {
                     x: { "from": startingObj.x, "to": endingObj.x },
                     y: { "from": startingObj.y, "to": endingObj.y },
                     delay: i * 100,
-                    onUpdate: (tween, targets) => {targets.positionText();},
-                    onComplete: (tween) => {tween.targets[0].deconstructor(); endBehavior(tween);}
+                    onUpdate: (tween, targets) => { targets.positionText(); },
+                    onComplete: (tween) => { tween.targets[0].deconstructor(); endBehavior(tween); }
                 }
             );
             tween.lastItem = last;
@@ -68,14 +79,14 @@ class InputTile extends IOTile {
             this.curItem = this.scene.inventory.mergeStacks(this.curItem, cursor.coordinates.y, cursor.coordinates.x, true);
             let mergedItem = this.scene.inventory.getStack(cursor.coordinates.y, cursor.coordinates.x);
 
-            if((!this.curItem || this.curItem.curSize < startingSize) && mergedItem.curSize == startingSize) {
+            if ((!this.curItem || this.curItem.curSize < startingSize) && mergedItem.curSize == startingSize) {
                 mergedItem.setAlpha(0);
                 mergedItem.stackText.setAlpha(0);
             }
 
             if (this.curItem) {
                 let diff = startingSize - this.curItem.curSize;
-                if(diff > 0) {
+                if (diff > 0) {
                     this.scene.inventory.itemCount[name] += diff;
                     this.pushPullTween(this, mergedItem, diff, true);
                     console.log("Pulled partial stack from input")
