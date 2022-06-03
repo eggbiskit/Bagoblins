@@ -270,11 +270,20 @@ class Play extends Phaser.Scene {
         this.soundtrack.play();
     }
 
+    /**
+     * Wobbles the cursor and plays a sound to indicate an incorrect move
+     */
     wrongMove() {
         this.addTween(this.cursor, "invalidMove");
         this.sound.play("wrong", soundConfigs.wrong);
     }
 
+    /**
+     * Handles cursor movement and associated sounds and animations
+     * 
+     * @param {boolean} isVertical – Whether or not the move is vertical
+     * @param {boolean} isPositive – Whether or not the movement is in a positive direction (down or right)
+     */
     moveCursor(isVertical, isPositive) {
         if (this.cursor.move(isVertical, isPositive)) {
             this.sound.play("move", soundConfigs.move);
@@ -283,11 +292,22 @@ class Play extends Phaser.Scene {
         }
     }
 
+    /**
+     * Adds the goblin animation
+     */
     goblinAnim() {
         this.time.addEvent({ delay: 2000, callback: () => { this.goblin_work.setVisible(false); }, loop: true });
         this.time.addEvent({ delay: 2000, callback: () => { this.goblin_idle.setVisible(true); }, loop: true });
     }
 
+    /**
+     * Adds a tween to the scene
+     * 
+     * @param {Phaser.GameObjects.Sprite} target – The sprite the tween will be applied to
+     * @param {Number} cfgIndex – The index in {@link tweenConfigs} corresponding to the desired tween
+     * @param {Object} mods – Any modifications to be made to the base tween
+     * @returns the tween
+     */
     addTween(target, cfgIndex, mods) {
         let config = Object.assign({}, tweenConfigs[cfgIndex]);
         config.targets = target;
@@ -304,6 +324,11 @@ class Play extends Phaser.Scene {
         return this.add.tween(config);
     }
 
+    /**
+     * Stops and removes the specified tween
+     * 
+     * @param {Phaser.Tweens.Tween} tween – The tween to be removed
+     */
     removeTween(tween) {
         tween.stop();
         tween.remove();
@@ -384,6 +409,12 @@ class Play extends Phaser.Scene {
         this.runtimeClock.setText(`${mins}:${secs}:${mills}`);
     }
 
+    /**
+     * Adds a leading 0 to 1-digit numbers
+     * 
+     * @param {Number} time – The number to be formatted
+     * @returns the formatted number as a string
+     */
     formatTimeText(time) {
         return (time < 10) ? `0${time}` : time;
     }

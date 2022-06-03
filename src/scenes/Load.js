@@ -58,11 +58,13 @@ class Load extends Phaser.Scene {
     create() {
         console.log("load");
 
+        // Setting global JSON vars
         gameSettings = this.cache.json.get("gameSettings");
         itemSpecs = this.cache.json.get("items");
         tweenConfigs = this.cache.json.get("tweens");
         soundConfigs = this.cache.json.get("SFX");
 
+        // Go to menu
         this.cameras.main.fadeOut(1000, 0, 0, 0);
         this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
             this.scene.start('menu');

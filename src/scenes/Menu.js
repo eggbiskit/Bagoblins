@@ -53,9 +53,7 @@ class Menu extends Phaser.Scene {
         });
         this.title.anims.play('goblinAni', true);
 
-        // press space to start
-        keySpace = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes[gameSettings.keybinds.space]);
-
+        // Start text animation
         this.play = this.add.sprite(game.config.width / 2, game.config.height / 5 + 142);
         this.play.setScale(1.0);
         this.anims.create({
@@ -69,6 +67,9 @@ class Menu extends Phaser.Scene {
             repeat: -1
         });
         this.play.anims.play('playAni', true);
+
+        // press space to start
+        keySpace = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes[gameSettings.keybinds.space]);
         keySpace.on("down", () => {
             if (!this.fading) {
                 this.sound.play("temp_sfx");
