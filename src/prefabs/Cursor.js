@@ -1,4 +1,7 @@
 class Cursor extends Phaser.GameObjects.Sprite {
+    /**
+     * @param {Inventory} inventory – The inventory the cursor is tied to 
+     */
     constructor(inventory) {
         let initialPos = inventory.getSpaceCoords(0, 0);
         // Sprite Setup
@@ -46,6 +49,11 @@ class Cursor extends Phaser.GameObjects.Sprite {
         return false;
     }
 
+    /**
+     * Picks up a stack for movement
+     * 
+     * @returns whether or not the pick up was successful
+     */
     pickUpStack() {
         this.heldStack = this.inventory.getStack(this.coordinates.y, this.coordinates.x);
         if (this.heldStack) {
@@ -59,6 +67,9 @@ class Cursor extends Phaser.GameObjects.Sprite {
         }
     }
 
+    /**
+     * Drops a held stack
+     */
     dropStack() {
         this.heldStack.setDepth(gameSettings.depths.items);
         this.heldStack = this.inventory.mergeStacks(this.heldStack, this.coordinates.y, this.coordinates.x);

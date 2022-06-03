@@ -22,6 +22,7 @@ Grace Ho
 ["YasTween"](https://github.com/nathanaltice/YasTween)  
 ["MDN Web Docs"](https://developer.mozilla.org/en-US/docs/Web/API)  
 ["3 Ways to Clone Objects in JavaScript"](https://www.samanthaming.com/tidbits/70-3-ways-to-clone-objects/)
+["@use JSDoc"](https://jsdoc.app/)
 
 ## External Sound Effects
 

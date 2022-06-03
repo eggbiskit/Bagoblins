@@ -1,4 +1,9 @@
 class Inventory extends Phaser.GameObjects.Sprite {
+    /**
+     * @param {Phaser.Scene} scene – The scene the inventory is tied to
+     * @param {Number} rows – The number of rows (horizontal) in the inventory
+     * @param {Number} cols – The number of columns (vertical) in the inventory
+     */
     constructor(scene, rows, cols) {
         // Sprite Setup
         super(scene, game.config.width / 2, game.config.height / 2 + 30, 'play_atlas', '4x3inventory');
@@ -30,8 +35,8 @@ class Inventory extends Phaser.GameObjects.Sprite {
     /**
      * Gets the X,Y coordinates of the center of a given cell in world space
      * 
-     * @param {int} row – the row of the input cell
-     * @param {int} col – the col of the input cell
+     * @param {Number} row – the row of the input cell
+     * @param {Number} col – the col of the input cell
      * @returns the world-space X,Y coordinates of the center of the given cell
      */
     getSpaceCoords(row, col) {
@@ -46,6 +51,9 @@ class Inventory extends Phaser.GameObjects.Sprite {
         };
     }
 
+    /**
+     * @returns whether or not the inventory has no items in it
+     */
     isEmpty() {
         for(let elem in this.itemCount) {
             if(this.itemCount[elem] != 0) {
@@ -56,8 +64,8 @@ class Inventory extends Phaser.GameObjects.Sprite {
     }
 
     /**
-     * @param {*} row – The row of the stack to get
-     * @param {*} col – The col of the stack to get
+     * @param {Number} row – The row of the stack to get
+     * @param {Number} col – The col of the stack to get
      * @returns the stack at the provided space (or undefined for an empty stack)
      */
     getStack(row, col) {
@@ -110,6 +118,15 @@ class Inventory extends Phaser.GameObjects.Sprite {
         }
     }
 
+    /**
+     * Pushes the stack located at the specified row and column to outputspace
+     * Also decriments the respective itemCount property by the amount pushed
+     * 
+     * @param {Number} row – The row of the item to be pushed
+     * @param {Number} col – The column of the item to be pushed
+     * @param {OutputTile} outputSpace 
+     * @returns whether or not the push was successful
+     */
     pushStack(row, col, outputSpace) {
         let stack = this.getStack(row, col);
 

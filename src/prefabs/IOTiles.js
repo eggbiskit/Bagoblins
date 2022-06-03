@@ -1,4 +1,10 @@
+// General class for the input and output tiles
 class IOTile extends Phaser.GameObjects.Sprite {
+    /**
+     * @param {Phaser.scene} scene – Scene the tile is attatched to
+     * @param {Number} posX – X Position of the tile
+     * @param {Number} posY – Y Position of the tile
+     */
     constructor(scene, posX, posY) {
         super(scene, posX, posY);
         scene.add.existing(this);
@@ -8,12 +14,22 @@ class IOTile extends Phaser.GameObjects.Sprite {
     }
 }
 
+// Class for the input tile
 class InputTile extends IOTile {
+    /**
+     * See {@link IOTile} for param details
+     */
     constructor(scene, posX, posY) {
         super(scene, posX, posY);
         this.curItem = null;
     }
 
+    /**
+     * Moves the current stack to the inventory at the cursor's location
+     * 
+     * @param {Cursor} cursor – The cursor
+     * @returns whether or not the pull was successful
+     */
     pull(cursor) {
         if (this.curItem) {
             let startingSize = this.curItem.curSize;
@@ -60,7 +76,11 @@ class InputTile extends IOTile {
     }
 }
 
+// Class for the output tile
 class OutputTile extends IOTile {
+    /**
+     * See {@link IOTile} for param details
+     */
     constructor(scene, posX, posY) {
         super(scene, posX, posY);
         this.requestedItem = null;

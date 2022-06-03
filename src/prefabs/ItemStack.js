@@ -1,4 +1,10 @@
 class ItemStack extends Phaser.GameObjects.Sprite {
+    /**
+     * @param {*} scene – Scene the stack is tied to
+     * @param {*} initialPos – Starting position of the item
+     * @param {*} stackSize – The number of items starting in the stack. Must be less than or equal to the maximum stack size for the item
+     * @param {*} configIndex – The index in {@link itemConfig} of the item
+     */
     constructor(scene, initialPos, stackSize = 1, configIndex) {
         // Getting item info
         let itemConfig = itemSpecs[configIndex];
@@ -41,11 +47,20 @@ class ItemStack extends Phaser.GameObjects.Sprite {
         this.stackText.setOrigin(0.5, 0.375);
     }
 
+    /**
+     * Destroys all components of the item
+     */
     deconstructor() {
         this.stackText.destroy();
         this.destroy();
     }
 
+    /**
+     * Sets the position of the item to the provided inventory space
+     * 
+     * @param {*} row – Row in inventory to move the item
+     * @param {*} col – Column in inventory to move the item
+     */
     setSpot(row, col) {
         let pos = this.inventory.getSpaceCoords(row, col);
         this.coordinates.row = row;
@@ -55,11 +70,17 @@ class ItemStack extends Phaser.GameObjects.Sprite {
         this.positionText();
     }
 
+    /**
+     * Re-positions the stack text relative to the item
+     */
     positionText() {
         this.stackText.x = this.x + this.textOffset.x;
         this.stackText.y = this.y + this.textOffset.y;
     }
 
+    /**
+     * Updates the stacktext to reflect the current stack size
+     */
     updateText() {
         this.stackText.text = Math.abs(this.curSize);
     }
