@@ -42,6 +42,10 @@ class Play extends Phaser.Scene {
         this.add.image(255, 60, 'play_atlas', 'frame_candles');
         this.add.image(68, 54, 'play_atlas', 'frame_order_tablets');
         this.add.image(23, 57, 'play_atlas', 'frame_order_tablet');
+        this.add.bitmapText(258, 10, 'pixel_font', 'WORK CAM', 5);
+        this.add.bitmapText(259, 10, 'pixel_gold', 'WORK CAM', 5);
+        this.add.bitmapText(15, 10, 'pixel_font', 'CUSTOMER CAM', 5);
+        this.add.bitmapText(16, 10, 'pixel_gold', 'CUSTOMER CAM', 5);
 
         // Timer assets
         this.add.image(game.config.width / 2 - 1, 23, 'play_atlas', 'timer_frame').setOrigin(0.5); // Runtime clock background
@@ -135,6 +139,7 @@ class Play extends Phaser.Scene {
                 }
             }
         });
+
         // Z to push to output
         keyOutput.on("down", () => {
             if (!this.endOGame) {
