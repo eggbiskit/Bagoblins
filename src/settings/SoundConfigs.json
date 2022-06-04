@@ -27,7 +27,7 @@
         "volume": 2
     },
     "BGM": {
-        "volume": 2.5,
+        "volume": 0.25,
         "loop": true
     }
 }

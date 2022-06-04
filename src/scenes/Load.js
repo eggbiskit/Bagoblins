@@ -45,7 +45,7 @@ class Load extends Phaser.Scene {
         this.load.audio("wrong", "assets/SFX/error.mp3");
         this.load.audio("death", "assets/SFX/death.mp3");
         this.load.audio("move", "assets/SFX/move.mp3");
-        this.load.audio("BGM", "assets/music/BagTheme.wav");
+        this.load.audio("BGM", "assets/music/BagTheme.mp3");
 
         // JSON loading
         this.load.json("gameSettings", "src/settings/GameSettings.json");
